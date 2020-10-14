@@ -18,6 +18,12 @@ public class EDD_SafeWay {
         // TODO code application logic here
         
         System.out.println("Hola Mundo!!");
+        
+        Usuario user1 = new Usuario(1,"Daniel","kbytegt","email","1234","555",0.23,-23.34);
+        Conductor con1 = new Conductor(1,"Jose","kbytegt","1234","555",0.23,-23.34,false);
+        
+        System.out.println(user1.getNombre());
+        System.out.println(con1.getNombre());
     }
     
 }

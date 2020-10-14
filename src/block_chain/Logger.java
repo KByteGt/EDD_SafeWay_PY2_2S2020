@@ -15,6 +15,8 @@ import java.util.Stack;
  * @hidden Patron Singleton
  */
 public class Logger {
+    //Ruta de la carpeta
+    private String path = "C:\\KByteGt\\bloques";
     
     //Instancia tipo Logger
     private static Logger log; 

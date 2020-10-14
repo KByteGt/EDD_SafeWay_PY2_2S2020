@@ -10,5 +10,26 @@ package edd_safeway;
  * @author JOSED
  */
 public class Conductor extends Usuario {
+    private boolean disponibilidad;
+
+    public Conductor(int id, String nombre, String usuario, String contraseña, String telefono, double latitud, double longitud, boolean disponibilidad) {
+        this.setId(id);
+        this.setNombre(nombre);
+        this.setUsuario(usuario);
+        this.setContraseña(contraseña);
+        this.setTelefono(telefono);
+        this.setLatitud(latitud);
+        this.setLongitud(longitud);
+        this.disponibilidad = disponibilidad;
+    }
+    
+    public boolean isDisponibilidad() {
+        return disponibilidad;
+    }
+
+    public void setDisponibilidad(boolean disponibilidad) {
+        this.disponibilidad = disponibilidad;
+    }
+    
     
 }
