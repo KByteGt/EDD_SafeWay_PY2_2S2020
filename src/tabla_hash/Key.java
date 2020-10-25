@@ -8,48 +8,35 @@ package tabla_hash;
 /**
  *
  * @author JOSED
+ * @param <T>
+ * @param <V>
  */
-public class Key <T extends Comparable<T>, V> implements Comparable {
+public class Key <T> {
 
-    private T key;
-    private V valor;
+    private int hash;
+    private T valor;
     
-    public Key(T key, V valor){
-        this.key = key;
+    public Key(int hash, T valor){
+        this.hash = hash;
         this.valor = valor;
     }
     
-    @Override
-    public int compareTo(Object o) {
-        T temp = (T) o;
-        
-        if (this.key.compareTo(temp) < 0) {
-            //Menor
-            return -1;
-        } else if(this.key.compareTo(temp) > 0){ 
-            //Mayor
-            return 1; 
-        }else {
-            //Igual
-            return 0;
-        }
-    }
     
     //Get & Set
 
-    public T getKey() {
-        return key;
+    public int getHash() {
+        return hash;
     }
 
-    public void setKey(T key) {
-        this.key = key;
+    public void setHash(int hash) {
+        this.hash = hash;
     }
 
-    public V getValor() {
+    public T getValor() {
         return valor;
     }
 
-    public void setValor(V valor) {
+    public void setValor(T valor) {
         this.valor = valor;
     }
     
