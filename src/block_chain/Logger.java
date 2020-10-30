@@ -5,6 +5,8 @@
  */
 package block_chain;
 
+import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Stack;
 
 /**
@@ -35,5 +37,13 @@ public class Logger {
             log = new Logger();
         }
         return log;
+    }
+    
+    //Obtener timestamp
+    public String getTimeStamp(){
+        Date date = new Date();
+        Timestamp ts = new Timestamp(date.getTime());
+        
+        return ts.toString();
     }
 }

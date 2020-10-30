@@ -15,9 +15,44 @@ public class Log {
         ELIMINA,BUSCAR,INSERTAR;
     }
     
+    public enum Tipo{
+        USUARIO,CONDUCTOR,LUGAR,ASIGNACION;
+    }
+    
+    private Accion accion;
+    private Tipo tipo;
+    private Object objeto;
+    
     //Constructor de registros
     public Log(){
-        
+        this.accion = null;
+        this.tipo = null;
+        this.objeto = null;
     }
+
+    public Accion getAccion() {
+        return accion;
+    }
+
+    public void setAccion(Accion accion) {
+        this.accion = accion;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public Object getObjeto() {
+        return objeto;
+    }
+
+    public void setObjeto(Object objeto) {
+        this.objeto = objeto;
+    }
+    
     
 }

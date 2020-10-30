@@ -5,17 +5,26 @@
  */
 package edd_safeway;
 import block_chain.Cryptography;
+import block_chain.Log;
+import block_chain.Log.Accion;
+import block_chain.Log.Tipo;
+import block_chain.Logger;
+import block_chain.Nodo;
 import block_chain.Zip;
+import com.google.gson.Gson;
 import java.io.UnsupportedEncodingException;
+import java.lang.annotation.Annotation;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.Date;
 import java.util.zip.DataFormatException;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import tabla_hash.TablaHash;
-
+import java.sql.Timestamp;
+import java.util.Arrays;
 /**
  *
  * @author JOSED
@@ -39,7 +48,8 @@ public class EDD_SafeWay {
 //        System.out.println(cryp.sha256("admin"));
         
     
-        hashNode();
+//        hashNode();
+        jsonNodo();
         
 
 //        Usuario user1 = new Usuario(1,"Daniel","kbytegt","email","1234","555",0.23,-23.34);
@@ -98,6 +108,43 @@ public class EDD_SafeWay {
 //        
 //        System.out.println(l1.getJSON());
        
+    }
+    
+    public static void jsonNodo() throws UnsupportedEncodingException, DataFormatException{
+       
+        
+        Logger logger = Logger.getInstance();
+        Gson json = new Gson();
+        Zip zip = Zip.getInstance();
+        
+        Lugar lugar = new Lugar(1,"USAC","T-3",14.5877,-90.5536);
+        Log log = new Log();
+        log.setAccion(Accion.INSERTAR);
+        log.setTipo(Tipo.LUGAR);
+        log.setObjeto(lugar);
+        
+        Lugar lugar2 = new Lugar(2,"Plaza","Plaza Villa nueva",14.533,-90.5852);
+        Log log2 = new Log();
+        log2.setAccion(Accion.INSERTAR);
+        log2.setTipo(Tipo.LUGAR);
+        log2.setObjeto(lugar2);
+
+        
+        Nodo nodeBC = new Nodo();
+        nodeBC.setId(1);
+        nodeBC.setTimestamp(logger.getTimeStamp());
+        nodeBC.setData(log);
+        nodeBC.setData(log2);
+        nodeBC.setNonce(0);
+        nodeBC.setPreviousHash("0");
+        nodeBC.setHash("0000da8618afd5fa8293ec73ad2ef326cb12f5ae50ecedc89d06d05a0a9f7f12");
+        
+        String respuesta = json.toJson(nodeBC);
+        System.out.println(respuesta);
+        
+        byte[] cripting = zip.zip(respuesta);
+        System.out.println(cripting);
+        System.out.println(zip.unzip(cripting));
     }
     
     public static void hashNode(){
