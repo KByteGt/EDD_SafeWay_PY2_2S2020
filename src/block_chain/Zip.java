@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edd_safeway;
+package block_chain;
 
 import java.util.zip.*;
 import java.io.UnsupportedEncodingException;

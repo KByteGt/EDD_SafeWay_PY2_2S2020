@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package edd_safeway;
+import block_chain.Cryptography;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -23,7 +24,7 @@ public class EDD_SafeWay {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, DataFormatException, NoSuchAlgorithmException {
+    public static void main(String[] args) {
         // TODO code application logic here
             
         Usuario admin = new Usuario();
