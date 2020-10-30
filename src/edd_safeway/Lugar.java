@@ -52,13 +52,13 @@ public class Lugar {
         
         System.out.println(" >> Exportadno JSON del lugar: "+id);
         
-        g.concat("{");
-        g.concat("\"id\":").concat(Integer.toString(id));
-        g.concat(",\"Categoria\":").concat(categoria);
-        g.concat(",\"Nombre\":").concat(nombre);
-        g.concat(",\"Lat\":").concat(Double.toString(latitud));
-        g.concat(",\"Lon\":").concat(Double.toString(longitud));
-        g.concat("}");
+        g += "{";
+        g += "\"id\":" + Integer.toString(id);
+        g += ",\"Categoria\":" + "\"" + categoria + "\"";
+        g += ",\"Nombre\":" + "\"" + nombre + "\"";
+        g += ",\"Lat\":" + Double.toString(latitud);
+        g += ",\"Lon\":" + Double.toString(longitud);
+        g += "}";
         
         return g;
     }
