@@ -42,4 +42,16 @@ public class Cryptography {
            throw new RuntimeException(ex);
         }
     }
+    
+    public String toHexadecimal(String txt){
+        char ch[] = txt.toCharArray();
+        String sb = "";
+        
+        for (int i = 0; i < ch.length; i++) {
+            String hexString = Integer.toHexString(ch[i]);
+            sb += hexString;
+        }
+        
+        return sb;
+    }
 }

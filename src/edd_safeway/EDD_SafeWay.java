@@ -5,6 +5,7 @@
  */
 package edd_safeway;
 import block_chain.Cryptography;
+import block_chain.Zip;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -24,19 +25,21 @@ public class EDD_SafeWay {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException, DataFormatException {
         // TODO code application logic here
             
-        Usuario admin = new Usuario();
-        admin.setId(1);
-        admin.setNombre("Marvin");
-        admin.setCorreo("admin@safeway.com");
-        
+//        Usuario admin = new Usuario();
+//        admin.setId(1);
+//        admin.setNombre("Marvin");
+//        admin.setCorreo("admin@safeway.com");
+//        
         Cryptography cryp = Cryptography.getInstance();
+//        
+//        admin.setContraseña(cryp.sha256("admin"));
+//        System.out.println(cryp.sha256("admin"));
         
-        admin.setContraseña(cryp.sha256("admin"));
-        System.out.println(cryp.sha256("admin"));
-        
+    
+        hashNode();
         
 
 //        Usuario user1 = new Usuario(1,"Daniel","kbytegt","email","1234","555",0.23,-23.34);
@@ -96,4 +99,58 @@ public class EDD_SafeWay {
 //        System.out.println(l1.getJSON());
        
     }
+    
+    public static void hashNode(){
+        ///////////////////////////////////////////////
+        Cryptography cryp = Cryptography.getInstance();
+        // Hash BlockChain
+        String node = "";
+        int nonce = 0, n = 4;
+        
+        String idnode = cryp.toHexadecimal("2");
+        String fechanode = cryp.toHexadecimal("29/10/2020");
+        String prevhashnode = cryp.toHexadecimal("0000da8618afd5fa8293ec73ad2ef326cb12f5ae50ecedc89d06d05a0a9f7f12");
+        String datanode = cryp.toHexadecimal("{\"id\":1,\"Categoria\":\"USAC\",\"Nombre\":\"T-3\",\"Lat\":14.5877,\"Lon\":-90.5536}");
+        String tempnonce = "";
+//        String idnode = "1";
+//        String fechanode = "29/10/2020";
+//        String prevhashnode = "0";
+//        String datanode = "{\"id\":1,\"Categoria\":\"USAC\",\"Nombre\":\"T-3\",\"Lat\":14.5877,\"Lon\":-90.5536}";
+//        String tempnonce = "";
+        
+        System.out.println("Hash node ");
+        boolean flagHashValid = true, flagHash = true;
+        char[] hashNode;
+        
+        while(flagHash){
+            flagHashValid = true;
+            tempnonce = Integer.toHexString(nonce);
+            node = idnode + fechanode + prevhashnode + datanode + tempnonce;
+            hashNode = cryp.sha256(node).toCharArray();
+            
+            for (int i = 0; i < n; i++) {
+                if(hashNode[i] != '0'){
+                    flagHashValid = false;
+                    break;
+                } 
+            }
+            
+            if (flagHashValid) {
+                System.out.println("Hash Válido, nonce: " + nonce);
+                flagHash = false;
+                System.out.println(hashNode);
+            } else {
+                //System.out.println(" nonce: " + nonce); 
+                nonce += 1;
+            }
+        }
+        
+        // nonce: 15597, incremento en 3
+        // 82533 - 3, 38072 - 1
+//        char[] hashNode = "00004587bfr48".toCharArray();
+
+        
+        ///////////////////////////////////////////////////
+    }
+    
 }
