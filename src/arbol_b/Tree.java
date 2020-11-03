@@ -83,7 +83,5 @@ public class Tree<T extends Comparable,V> {
 
     public void setRaiz(Page raiz) {
         this.raiz = raiz;
-    }
-    
-    
+    }  
 }

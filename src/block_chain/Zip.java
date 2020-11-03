@@ -30,15 +30,20 @@ public class Zip {
     
     //Comprimir
     public byte[] zip(String txt) throws UnsupportedEncodingException{
-        d = new Deflater();
-        data = new byte[1024];
-        
-        //Convertir entrada
-        d.setInput(txt.getBytes("UTF-8"));
-        d.finish();
-        
-        //Comprimir la data
-        size = d.deflate(data);
+        try {
+             d = new Deflater();
+            data = new byte[4 * 1024];
+
+            //Convertir entrada
+            d.setInput(txt.getBytes("UTF-8"));
+            d.finish();
+
+            //Comprimir la data
+            size = d.deflate(data);
+
+            
+        } catch (Exception e) {
+        }
         
         return data;
     }

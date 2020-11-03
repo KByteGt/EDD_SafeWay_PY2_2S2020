@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package edd_safeway;
+import arbol_b.Tree;
 import block_chain.Cryptography;
 import block_chain.Log;
 import block_chain.Log.Accion;
@@ -30,27 +31,28 @@ import java.util.Arrays;
  * @author JOSED
  */
 public class EDD_SafeWay {
+    Cryptography cryp = Cryptography.getInstance();
+    public static final Usuario admin = new Usuario();
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws UnsupportedEncodingException, DataFormatException {
+    public static void main(String[] args) {
         // TODO code application logic here
-            
-//        Usuario admin = new Usuario();
-//        admin.setId(1);
-//        admin.setNombre("Marvin");
-//        admin.setCorreo("admin@safeway.com");
-//        
         Cryptography cryp = Cryptography.getInstance();
-//        
+        admin.setId(1);
+        admin.setNombre("Marvin");
+        admin.setUsuario("Marvin");
+        admin.setCorreo("admin@safeway.com");
+        admin.setContraseña(cryp.sha256("admin"));
+
 //        admin.setContraseña(cryp.sha256("admin"));
 //        System.out.println(cryp.sha256("admin"));
         
     
 //        hashNode();
-        jsonNodo();
-        
+//        jsonNodo();
+        b_tree();
 
 //        Usuario user1 = new Usuario(1,"Daniel","kbytegt","email","1234","555",0.23,-23.34);
 //        Conductor con1 = new Conductor(1,"Jose","kbytegt","1234","555",0.23,-23.34,false);
@@ -200,4 +202,20 @@ public class EDD_SafeWay {
         ///////////////////////////////////////////////////
     }
     
+    public static void b_tree(){
+        //Árbol B
+        System.out.println(" Prueba árbol B");
+        Cryptography cryp = Cryptography.getInstance();
+        
+        Usuario user1 = new Usuario();
+        user1.setNombre("Daniel");
+        user1.setUsuario("KByteGt");
+        user1.setId(1);
+        user1.setCorreo("josedan1996@hotmail.com");
+        user1.setContraseña(cryp.sha256("123456"));
+        
+        Tree bt= new Tree(5);
+        
+        bt.insertar(user1.getUsuario(), user1);
+    }
 }
