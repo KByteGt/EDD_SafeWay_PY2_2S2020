@@ -204,18 +204,32 @@ public class EDD_SafeWay {
     
     public static void b_tree(){
         //Árbol B
-        System.out.println(" Prueba árbol B");
-        Cryptography cryp = Cryptography.getInstance();
+//        System.out.println(" Prueba árbol B");
+//        Cryptography cryp = Cryptography.getInstance();
+//        
+//        Usuario user1 = new Usuario();
+//        user1.setNombre("Daniel");
+//        user1.setUsuario("KByteGt");
+//        user1.setId(1);
+//        user1.setCorreo("josedan1996@hotmail.com");
+//        user1.setContraseña(cryp.sha256("123456"));
+//        
+//        Tree bt= new Tree(5);
+//        
+//        bt.insertar(user1.getUsuario(), user1);
+
+        Tree<Integer, Integer> arbol = new Tree(5);
         
-        Usuario user1 = new Usuario();
-        user1.setNombre("Daniel");
-        user1.setUsuario("KByteGt");
-        user1.setId(1);
-        user1.setCorreo("josedan1996@hotmail.com");
-        user1.setContraseña(cryp.sha256("123456"));
+        arbol.insertar(10, 10);
+        arbol.insertar(20, 20);
+        arbol.insertar(5, 5);
+        arbol.insertar(6, 6);
+        arbol.insertar(12, 12);
+        arbol.insertar(30, 30);
+        arbol.insertar(7, 7);
+        arbol.insertar(17, 17);
+        arbol.insertar(25, 25);
+        arbol.insertar(11, 11);
         
-        Tree bt= new Tree(5);
-        
-        bt.insertar(user1.getUsuario(), user1);
     }
 }
