@@ -23,6 +23,10 @@ public class Tree<T extends Comparable<T>,V> {
 
     //Otros
     
+    /*
+     * Método de insertar
+     */
+    
     public void insertar(T llave, V valor){
         Key newKey = new Key(llave, valor);
         
@@ -39,19 +43,17 @@ public class Tree<T extends Comparable<T>,V> {
                 //Dividir la raiz y generar dos nuevos sub-arboles
                 Page tempPage = new Page(grado);
                 tempPage.dividirPagina(this.raiz);
-//                this.raiz = dividirPagina(raiz);
+                //Cambiar la raiz
+                this.raiz = tempPage;
                 
-                //Buscar en donde insertar la neva Key
-                if(this.raiz.getKey(0).compareTo(newKey.getKey()) < 0 ){
+                //Buscar en donde insertar la nueva Key
+                if(this.raiz.getKey(0).compareTo(newKey.getKey()) > 0 ){
                     //Insertar en el sub-arbol izquierdo
                     this.raiz.getKey(0).getIzquierda().insertarNoLleno(newKey);
                 } else {
                     //Insertar en el sub-arbol derecho
-                    this.raiz.getKey(0).getDerecha().insertar(newKey);
+                    this.raiz.getKey(0).getDerecha().insertarNoLleno(newKey);
                 }
-                
-                //Cambiar la raiz
-                this.raiz = tempPage;
             } else {
                 //La raiz no está llena, insertar en la pagina
                 //Llamar al método insertarNotFull
@@ -270,35 +272,45 @@ public class Tree<T extends Comparable<T>,V> {
 //        }
     }
     
-    private int colocarNodo(Page nodo, Key newKey) {
-        int index = -1;
-        for (int i = 0; i < grado; i++) {
-            if(nodo.getKey(i) == null){
-                boolean placed = false;
-                for (int j = i-1; j >= 0; j--) {
-                    if(nodo.getKey(j).compareTo(newKey.getKey()) > 0){
-                        nodo.putKey(j+1, nodo.getKey(j));
-                    } else {
-                        nodo.putKey(j+1, newKey);
-                        nodo.getKey(j).setDerecha(newKey.getIzquierda());
-                        if(j+2 < grado && nodo.getKey(j+2) != null){
-                            nodo.getKey(j+2).setIzquierda(newKey.getDerecha());
-                        }
-                        
-                        placed = true;
-                        break;
-                    }
-                }
-                if(placed == false){
-                  nodo.putKey(0, newKey);
-                  nodo.getKey(1).setIzquierda(newKey.getDerecha());
-                }
-                
-                index = i;
-                break;
-            }
+//    private int colocarNodo(Page nodo, Key newKey) {
+//        int index = -1;
+//        for (int i = 0; i < grado; i++) {
+//            if(nodo.getKey(i) == null){
+//                boolean placed = false;
+//                for (int j = i-1; j >= 0; j--) {
+//                    if(nodo.getKey(j).compareTo(newKey.getKey()) > 0){
+//                        nodo.putKey(j+1, nodo.getKey(j));
+//                    } else {
+//                        nodo.putKey(j+1, newKey);
+//                        nodo.getKey(j).setDerecha(newKey.getIzquierda());
+//                        if(j+2 < grado && nodo.getKey(j+2) != null){
+//                            nodo.getKey(j+2).setIzquierda(newKey.getDerecha());
+//                        }
+//                        
+//                        placed = true;
+//                        break;
+//                    }
+//                }
+//                if(placed == false){
+//                  nodo.putKey(0, newKey);
+//                  nodo.getKey(1).setIzquierda(newKey.getDerecha());
+//                }
+//                
+//                index = i;
+//                break;
+//            }
+//        }
+//        return index;
+//    }
+    
+    /*
+     * Método para recorrer
+     */
+    
+    public void recorrer(){
+        if(!isEmpty()){
+            this.raiz.recorrer();
         }
-        return index;
     }
     
     //Get & Set

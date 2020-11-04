@@ -47,73 +47,121 @@ class Page {
     }
     
     public void insertarNoLleno(Key key){
-        //Inicializar el indice con el elemento más a la derecha
-        int index = size-1;
         
         //Si la pagina es una pagina hoja
         if(this.isHoja()){
             //Encontrar una posición para la key
-            while(index >= 0 && keys[index].compareTo(key.getKey()) > 0){
-                keys[index + 1] = keys[index];
-                index--;
-            }
-            
-            //Insertar la nueva Key en la ubicación encontrada
-            keys[index + 1] = keys[index];
-            size++;
+            this.insetarKeyPadre(key);
+//            while(index >= 0 && keys[index].compareTo(key.getKey()) > 0){
+//                keys[index + 1] = keys[index];
+//                index--;
+//            }
+//            
+//            //Insertar la nueva Key en la ubicación encontrada
+//            keys[index + 1] = key;
+//            size++;
         } else {
+            //Inicializar el indice con el elemento más a la derecha
+            int index = size-1;
+            
             //Si la pagina no es una pagina hoja
             
             //Encontrar el hijo que almacenara la nueva key
-            while(index >= 0 && keys[index].compareTo(key.getKey()) > 0)
+            while(index >= 0 && keys[index].compareTo(key.getKey()) > 0){
                 index--;
+            }
             
             //Verificar si el hijo encontrado está lleno
-            if(keys[index].getDerecha().isFull()){
-                //El hijo está lleno
+            if(index == -1){
+                //Verificar pagina izquierda del primer elemento
+                if(keys[0].getIzquierda().isFull()){
+                    //El hijo está lleno
+                    //Dividir hijo
+                    Page tempPage = new Page(grado);
+                    tempPage.dividirPagina(keys[0].getIzquierda());
+
+                    this.insetarKeyPadre(tempPage.getKey(0));
+
+                    //Buscar en donde insertar la nueva Key
+                    if(this.getKey(0).compareTo(key.getKey()) < 0 ){
+                        //Insertar en el sub-arbol izquierdo
+                        this.getKey(0).getIzquierda().insertarNoLleno(key);
+                    } 
+                }
+                //Insertar en el sub-arbol derecho
+                keys[0].getIzquierda().insertarNoLleno(key);
                 
-                Page tempPage = new Page(grado);
-                tempPage.dividirPagina(keys[index].getDerecha());
+            } else {
+                //Verificar pagina derecha
+                if(keys[index].getDerecha().isFull()){
+                    //El hijo está lleno
+                    //Dividir hijo
+                    Page tempPage = new Page(grado);
+                    tempPage.dividirPagina(keys[index].getDerecha());
+
+                    this.insetarKeyPadre(tempPage.getKey(0));
+
+//                    //Buscar en donde insertar la nueva Key
+//                    if(keys[index].compareTo(key.getKey()) < 0 ){
+//                        //Insertar en el sub-arbol izquierdo
+//                        this.getKey(index).getDerecha().insertarNoLleno(key);
+//                    } 
+                }
                 
+                int i = size -1;
+                while(i >= 0 && keys[i].compareTo(key.getKey()) > 0){
+                    i--;
+                }
+                if(keys[i].compareTo(key.getKey()) < 0 ){
+                    //Insertar en el sub-arbol izquierdo
+                    this.getKey(i).getDerecha().insertarNoLleno(key);
+                } else {
+                     //Insertar en el sub-arbol derecho
+                    keys[i].getDerecha().insertarNoLleno(key);
+                }
             }
-            keys[index].getDerecha().insertarNoLleno(key);
         }
-        
-        
-//        //
-//        int index = -1;
-//        int i = size-1;
-//        
-//        //Si la pagina es una pagina hoja
-//
-//        //Encontrar una posición paral la key
-//        while(i >= 0 && keys[i].compareTo(key.getKey()) > 0){
-//            keys[i + 1] = keys[i];
-//            i--;
-//        }
-//
-//        //Insertar la nueva Key en la ubicación encontrada
-//        index = i +1;
-//        keys[index] = keys[i];
-//        size++;
-//        
-//        return index;
     }
         
+    private void insetarKeyPadre(Key key){
+        int index = size - 1;
         
+        //Encontrar una posición para la key
+        while(index >= 0 && keys[index].compareTo(key.getKey()) > 0){
+            keys[index + 1] = keys[index];
+            index--;
+        }
+
+        //Insertar la nueva Key en la ubicación encontrada
+        keys[index + 1] = key;
+        
+        //Re-organizar punteros
+        if(index + 1 == 0){
+            //Se inserto al inicio
+            keys[index +2].setIzquierda(key.getDerecha());
+        } else if(index + 1 == size){
+            //Se inserto al final
+            keys[index].setDerecha(key.getIzquierda());
+        } else {
+            keys[index].setDerecha(key.getIzquierda());
+            keys[index +2].setIzquierda(key.getDerecha());
+        }  
+        
+        size++;
+    }
+    
     public void dividirPagina(Page page){
-     //Dividir la pagina en dos
-        Page newPage = new Page(grado);
+        //Dividir la pagina en dos
         
         int middleIndex = grado / 2;
         Key middleKey = page.getKey(middleIndex); //Indice central de la pagina
 
-        //Crar nuevas paginas
+        //Crear nuevas paginas
         Page rigth = new Page(grado);
         Page left = new Page(grado);
 
         //Llenar paginas
-        for (int i = 0; i < grado; i++) {
+        for (int i = 0; i < grado -1; i++) {
             if(page.getKey(i).compareTo(middleKey.getKey()) < 0){
                 //Insertar llaves menores en la pagina izquierda
                 left.insertar(page.getKey(i));
@@ -126,10 +174,6 @@ class Page {
             }
         }
 
-        //Insertar la Key central
-        this.putKey(0, middleKey);
-        this.setHoja(false);
-
         //Apuntar enlaces de hijos a padre
         left.setPadre(this);
         left.setHoja(true);
@@ -139,6 +183,10 @@ class Page {
         //Apuntar enlaces de padre a hijos
         middleKey.setIzquierda(left);
         middleKey.setDerecha(rigth);
+        
+        //Insertar la Key central
+        this.putKey(0, middleKey);
+        this.setHoja(false);
 
     }
     
@@ -235,4 +283,24 @@ class Page {
     public void setHoja(boolean hoja) {
         this.hoja = hoja;
     }  
+    
+    /*
+     * Método para recorrer
+     */
+    
+    void recorrer() {
+        int i;
+        
+        for(i = 0; i < size; i++){
+            if(!isHoja()){
+                keys[i].getIzquierda().recorrer();
+            }
+            
+            keys[i].imprimir();
+        }
+        
+        if(!isHoja()){
+            keys[size - 1].getDerecha().recorrer();
+        }
+    }
 }

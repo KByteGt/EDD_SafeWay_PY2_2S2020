@@ -231,5 +231,14 @@ public class EDD_SafeWay {
         arbol.insertar(25, 25);
         arbol.insertar(11, 11);
         
+        arbol.insertar(1, 1);
+        arbol.insertar(2, 2);
+        arbol.insertar(3, 3);
+        arbol.insertar(40, 40);
+        arbol.insertar(31, 31);
+        arbol.insertar(13, 13);
+        
+        arbol.recorrer();
+        
     }
 }

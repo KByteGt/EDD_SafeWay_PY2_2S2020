@@ -50,6 +50,16 @@ public class Key <T extends Comparable<T>, V> implements Comparable {
         }
     }
 
+    public void imprimir(){
+        try {
+            String s = key.toString();
+            String v = valor.toString();
+            System.out.println(" -> Key: " + s + " Valor("+ v + ");");
+        } catch (Exception e) {
+            System.out.println(" Error al castear la key a string");
+        }
+    }
+    
     //Gete & Set
     public T getKey() {
         return key;
