@@ -313,6 +313,22 @@ public class Tree<T extends Comparable<T>,V> {
         }
     }
     
+    /*
+     * Método para obtener el dot
+     * @param String nombre
+     * @return dot
+     */
+    
+    public String getGraphviz(String nombre){
+        String g = "";
+        
+        g += "digraph g{\nnode [shape = record, height = .1];\nlabel = \".: Árbol B - "+nombre+" :.\";";
+        g += this.raiz.getGraphviz();
+        g += "\n}";
+        
+        return g;
+    }
+    
     //Get & Set
     
     public int getGrado() {

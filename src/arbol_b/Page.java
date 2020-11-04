@@ -303,4 +303,34 @@ class Page {
             keys[size - 1].getDerecha().recorrer();
         }
     }
+    
+    /*
+     * Método para obtener el dot
+     * @return dot
+     */
+    
+    public String getGraphviz(){
+        String g = "";
+        int i;
+        int j;
+        
+        g += "\nnode"+keys[0].hashCode()+" [label=\"";
+        for (j = 0; j < this.size; j++) {
+            g += "<f"+j+"> |["+this.keys[j].getStringKey()+"]|";
+        }
+        g += "<f"+j+">\"];\n";
+        
+        for(i = 0; i < this.size; i++){
+            if(!this.isHoja()){
+                g += "\n\"node"+keys[0].hashCode()+"\": f"+i+" -> \"node"+keys[i].getIzquierda().getKey(0).hashCode()+"\"";
+                g += keys[i].getIzquierda().getGraphviz();
+            }
+        }
+        if(!isHoja()){
+            g += "\n\"node"+keys[0].hashCode()+"\": f"+i+" -> \"node"+keys[i-1].getDerecha().getKey(0).hashCode()+"\"";
+            g += keys[i-1].getDerecha().getGraphviz();
+        }
+        
+        return g;
+    }
 }

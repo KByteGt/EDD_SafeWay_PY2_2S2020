@@ -238,7 +238,12 @@ public class EDD_SafeWay {
         arbol.insertar(31, 31);
         arbol.insertar(13, 13);
         
+        arbol.insertar(8, 8);
+        arbol.insertar(14, 14);
+        
         arbol.recorrer();
+        
+        System.out.println(arbol.getGraphviz("Prueba"));
         
     }
 }

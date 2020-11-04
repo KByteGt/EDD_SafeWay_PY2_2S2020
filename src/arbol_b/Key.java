@@ -92,4 +92,12 @@ public class Key <T extends Comparable<T>, V> implements Comparable {
     public void setIzquierda(Page izquierda) {
         this.izquierda = izquierda;
     }
+    
+    public String getStringKey(){
+        try {
+            return key.toString();
+        } catch (Exception e) {
+            return "Error";
+        }
+    }
 }
