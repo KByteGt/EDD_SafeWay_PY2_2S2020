@@ -102,6 +102,7 @@ class Page {
                 while(i >= 0 && keys[i].compareTo(key.getKey()) > 0){
                     i--;
                 }
+
                 if(keys[i].compareTo(key.getKey()) < 0 ){
                     //Insertar en el sub-arbol derecho
                     this.getKey(i).getDerecha().insertarNoLleno(key);
@@ -170,6 +171,20 @@ class Page {
         left.setHoja(true);
         rigth.setPadre(this);
         rigth.setHoja(true);
+        
+        
+        //Validar paginas hijas
+        if(left.keys[0] != null ){
+            if(left.keys[0].getIzquierda() != null){
+                left.setHoja(false);
+            }
+        }
+        
+        if(rigth.keys[0] != null ){
+            if(rigth.keys[0].getIzquierda() != null){
+                rigth.setHoja(false);
+            }
+        }
 
         //Apuntar enlaces de padre a hijos
         middleKey.setIzquierda(left);
