@@ -221,29 +221,33 @@ public class EDD_SafeWay {
 
         Tree<Integer, Integer> arbol = new Tree(5);
         
-        arbol.insertar(10, 10);
-        arbol.insertar(20, 20);
-        arbol.insertar(5, 5);
-        arbol.insertar(6, 6);
-        arbol.insertar(12, 12);
-        arbol.insertar(30, 30);
-        arbol.insertar(7, 7);
-        arbol.insertar(17, 17);
-        arbol.insertar(25, 25);
-        arbol.insertar(11, 11);
+        for (int i = 0; i < 50; i++) {
+            arbol.insertar(i, i);
+        }
         
-        arbol.insertar(1, 1);
-        arbol.insertar(2, 2);
-        arbol.insertar(3, 3);
-        arbol.insertar(40, 40);
-        arbol.insertar(31, 31);
-        arbol.insertar(13, 13);
-        
-        arbol.insertar(8, 8);
-        arbol.insertar(14, 14);
-        arbol.insertar(4, 4);
-        
-        arbol.recorrer();
+//        arbol.insertar(10, 10);
+//        arbol.insertar(20, 20);
+//        arbol.insertar(5, 5);
+//        arbol.insertar(6, 6);
+//        arbol.insertar(12, 12);
+//        arbol.insertar(30, 30);
+//        arbol.insertar(7, 7);
+//        arbol.insertar(17, 17);
+//        arbol.insertar(25, 25);
+//        arbol.insertar(11, 11);
+//        
+//        arbol.insertar(1, 1);
+//        arbol.insertar(2, 2);
+//        arbol.insertar(3, 3);
+//        arbol.insertar(40, 40);
+//        arbol.insertar(31, 31);
+//        arbol.insertar(13, 13);
+//        
+//        arbol.insertar(8, 8);
+//        arbol.insertar(14, 14);
+//        arbol.insertar(4, 4);
+//        
+//        arbol.recorrer();
         
         System.out.println(arbol.getGraphviz("Prueba"));
         
