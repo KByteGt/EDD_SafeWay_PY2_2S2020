@@ -33,6 +33,7 @@ class Page {
      * Insertar
      * @return posición insertada
      */
+    
     public int insertar(Key key){
         int index = -1;
         for (int i = 0; i < this.grado; i++) {
@@ -52,14 +53,7 @@ class Page {
         if(this.isHoja()){
             //Encontrar una posición para la key
             this.insetarKeyPadre(key);
-//            while(index >= 0 && keys[index].compareTo(key.getKey()) > 0){
-//                keys[index + 1] = keys[index];
-//                index--;
-//            }
-//            
-//            //Insertar la nueva Key en la ubicación encontrada
-//            keys[index + 1] = key;
-//            size++;
+
         } else {
             //Inicializar el indice con el elemento más a la derecha
             int index = size-1;
@@ -81,16 +75,18 @@ class Page {
                     tempPage.dividirPagina(keys[0].getIzquierda());
 
                     this.insetarKeyPadre(tempPage.getKey(0));
-
-                    //Buscar en donde insertar la nueva Key
-                    if(this.getKey(0).compareTo(key.getKey()) < 0 ){
-                        //Insertar en el sub-arbol izquierdo
-                        this.getKey(0).getIzquierda().insertarNoLleno(key);
-                    } 
+                  
                 }
-                //Insertar en el sub-arbol derecho
-                keys[0].getIzquierda().insertarNoLleno(key);
-                
+                //Buscar en donde insertar la nueva Key
+                if(this.getKey(0).compareTo(key.getKey()) < 0 ){
+                    //Insertar en el sub-arbol derecho
+                    keys[0].getDerecha().insertarNoLleno(key);
+//                     keys[0].getIzquierda().insertarNoLleno(key);
+                } else {
+                     //Insertar en el sub-arbol izquierdo
+                    keys[0].getIzquierda().insertarNoLleno(key);
+                }
+
             } else {
                 //Verificar pagina derecha
                 if(keys[index].getDerecha().isFull()){
@@ -100,12 +96,6 @@ class Page {
                     tempPage.dividirPagina(keys[index].getDerecha());
 
                     this.insetarKeyPadre(tempPage.getKey(0));
-
-//                    //Buscar en donde insertar la nueva Key
-//                    if(keys[index].compareTo(key.getKey()) < 0 ){
-//                        //Insertar en el sub-arbol izquierdo
-//                        this.getKey(index).getDerecha().insertarNoLleno(key);
-//                    } 
                 }
                 
                 int i = size -1;
@@ -113,11 +103,12 @@ class Page {
                     i--;
                 }
                 if(keys[i].compareTo(key.getKey()) < 0 ){
-                    //Insertar en el sub-arbol izquierdo
+                    //Insertar en el sub-arbol derecho
                     this.getKey(i).getDerecha().insertarNoLleno(key);
                 } else {
-                     //Insertar en el sub-arbol derecho
-                    keys[i].getDerecha().insertarNoLleno(key);
+                     //Insertar en el sub-arbol izquierdo
+                    keys[i].getIzquierda().insertarNoLleno(key);
+//                     keys[i].getDerecha().insertarNoLleno(key);
                 }
             }
         }

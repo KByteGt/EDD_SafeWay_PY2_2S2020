@@ -217,6 +217,7 @@ public class EDD_SafeWay {
 //        Tree bt= new Tree(5);
 //        
 //        bt.insertar(user1.getUsuario(), user1);
+//        bt.recorrer();
 
         Tree<Integer, Integer> arbol = new Tree(5);
         
@@ -240,6 +241,7 @@ public class EDD_SafeWay {
         
         arbol.insertar(8, 8);
         arbol.insertar(14, 14);
+        arbol.insertar(4, 4);
         
         arbol.recorrer();
         
