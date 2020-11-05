@@ -313,6 +313,12 @@ public class Tree<T extends Comparable<T>,V> {
         }
     }
     
+    public Key buscar(T llave){
+        Key k = new Key(llave, null);
+        
+        return (isEmpty()) ? null : this.raiz.buscar(k);
+    }
+    
     /*
      * Método para obtener el dot
      * @param String nombre

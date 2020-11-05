@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package edd_safeway;
+import arbol_b.Key;
 import arbol_b.Tree;
 import block_chain.Cryptography;
 import block_chain.Log;
@@ -221,35 +222,41 @@ public class EDD_SafeWay {
 
         Tree<Integer, Integer> arbol = new Tree(5);
         
-        for (int i = 0; i < 50; i++) {
-            arbol.insertar(i, i);
+        
+        arbol.insertar(10, 10);
+        arbol.insertar(20, 20);
+        arbol.insertar(5, 5);
+        arbol.insertar(6, 6);
+        arbol.insertar(12, 12);
+        arbol.insertar(30, 30);
+        arbol.insertar(7, 7);
+        arbol.insertar(17, 17);
+        arbol.insertar(25, 25);
+        arbol.insertar(11, 11);
+        
+        arbol.insertar(1, 1);
+        arbol.insertar(2, 2);
+        arbol.insertar(3, 3);
+        arbol.insertar(40, 40);
+        arbol.insertar(31, 31);
+        arbol.insertar(13, 13);
+        
+        arbol.insertar(8, 8);
+        arbol.insertar(14, 14);
+        arbol.insertar(4, 4);
+        
+        arbol.recorrer();
+        
+        System.out.println("Buscando en el árbol");
+        Key temp = arbol.buscar(140);
+        
+        if (temp != null) {
+            System.out.println("Key: " + temp.getKey());
+        } else {
+            System.out.println("No se encontro la key");
         }
         
-//        arbol.insertar(10, 10);
-//        arbol.insertar(20, 20);
-//        arbol.insertar(5, 5);
-//        arbol.insertar(6, 6);
-//        arbol.insertar(12, 12);
-//        arbol.insertar(30, 30);
-//        arbol.insertar(7, 7);
-//        arbol.insertar(17, 17);
-//        arbol.insertar(25, 25);
-//        arbol.insertar(11, 11);
-//        
-//        arbol.insertar(1, 1);
-//        arbol.insertar(2, 2);
-//        arbol.insertar(3, 3);
-//        arbol.insertar(40, 40);
-//        arbol.insertar(31, 31);
-//        arbol.insertar(13, 13);
-//        
-//        arbol.insertar(8, 8);
-//        arbol.insertar(14, 14);
-//        arbol.insertar(4, 4);
-//        
-//        arbol.recorrer();
-        
-        System.out.println(arbol.getGraphviz("Prueba"));
+//        System.out.println(arbol.getGraphviz("Prueba"));
         
     }
 }

@@ -310,6 +310,38 @@ class Page {
         }
     }
     
+    public Key buscar(Key k){
+        
+        int i = 0;
+        
+        while(i < size && keys[i].compareTo(k.getKey()) < 0){
+            i++;
+        }
+        
+        if(i != size){
+            if(keys[i].compareTo(k.getKey()) == 0){
+                return keys[i];
+            }
+        } else {
+            if(keys[i-1].compareTo(k.getKey()) == 0){
+                return keys[i-1];
+            }
+        }
+        
+        
+        if(isHoja()){
+            return null;
+        } else {
+            if(i == size){
+                return keys[i-1].getDerecha().buscar(k);
+            } else {
+                return keys[i].getIzquierda().buscar(k);
+            }
+        }
+        
+        
+    }
+    
     /*
      * Método para obtener el dot
      * @return dot
