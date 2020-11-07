@@ -32,8 +32,8 @@ import java.util.Arrays;
  * @author JOSED
  */
 public class EDD_SafeWay {
-    Cryptography cryp = Cryptography.getInstance();
-    public static final Usuario admin = new Usuario();
+ 
+    public static UI.LogIn logIn = new UI.LogIn();
 
     /**
      * @param args the command line arguments
@@ -41,11 +41,8 @@ public class EDD_SafeWay {
     public static void main(String[] args) {
         // TODO code application logic here
         Cryptography cryp = Cryptography.getInstance();
-        admin.setId(1);
-        admin.setNombre("Marvin");
-        admin.setUsuario("Marvin");
-        admin.setCorreo("admin@safeway.com");
-        admin.setContraseña(cryp.sha256("admin"));
+        
+        logIn.setVisible(true);
 
 //        admin.setContraseña(cryp.sha256("admin"));
 //        System.out.println(cryp.sha256("admin"));
@@ -53,7 +50,7 @@ public class EDD_SafeWay {
     
 //        hashNode();
 //        jsonNodo();
-        b_tree();
+//        b_tree();
 
 //        Usuario user1 = new Usuario(1,"Daniel","kbytegt","email","1234","555",0.23,-23.34);
 //        Conductor con1 = new Conductor(1,"Jose","kbytegt","1234","555",0.23,-23.34,false);
