@@ -24,6 +24,8 @@ public class UserController extends Controller {
     private final Usuario admin = new Usuario();
     private static UserController userController;
     
+    private int indexUser;
+    
     private UserController(){
         usuarios = new Tree(5);
         conductores = new Tree(5);
@@ -33,6 +35,8 @@ public class UserController extends Controller {
         admin.setUsuario("Marvin");
         admin.setCorreo("admin@safeway.com");
         admin.setContraseña(cryp.sha256("admin"));
+        
+        indexUser = 0;
     }
     
     public static UserController getInstance(){
@@ -83,5 +87,14 @@ public class UserController extends Controller {
             return null;
         }
         
+    }
+    
+    //Crear nuevos usuarios
+    public boolean createUser(){
+        return false;
+    }
+    
+    public boolean createDriver(){
+        return false;
     }
 }
