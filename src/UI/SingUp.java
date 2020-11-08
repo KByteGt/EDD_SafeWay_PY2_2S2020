@@ -5,8 +5,10 @@
  */
 package UI;
 
+import edd_safeway.UserController;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +17,11 @@ import java.util.regex.Pattern;
 public class SingUp extends javax.swing.JFrame {
     
     private boolean flagEmail;
+    private boolean flagName;
+    private boolean flagUserName;
+    private boolean flagPassword;
+    
+    private UserController controller;
 
     /**
      * Creates new form SingUp
@@ -22,11 +29,15 @@ public class SingUp extends javax.swing.JFrame {
     public SingUp() {
         initComponents();
         
+        controller = UserController.getInstance();
+        
         kind_user_field.add(kind_user);
         kind_user_field.add(kind_driver);
         
         this.label_correo.setText("");
-        this.flagEmail = true;
+        this.label_user.setText("");
+        this.label_name.setText("");
+        this.label_password.setText("");
     }
 
     /**
@@ -55,6 +66,9 @@ public class SingUp extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         kind_user = new javax.swing.JRadioButton();
         kind_driver = new javax.swing.JRadioButton();
+        label_user = new javax.swing.JLabel();
+        label_name = new javax.swing.JLabel();
+        label_password = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -72,10 +86,20 @@ public class SingUp extends javax.swing.JFrame {
         jLabel2.setText("Nombre completo");
 
         name_field.setText("Jonh Doe");
+        name_field.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                name_fieldFocusLost(evt);
+            }
+        });
 
         jLabel3.setText("Nombre de usuario");
 
         username_field.setText("jonh_doe");
+        username_field.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                username_fieldFocusLost(evt);
+            }
+        });
         username_field.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 username_fieldKeyTyped(evt);
@@ -98,6 +122,11 @@ public class SingUp extends javax.swing.JFrame {
         label_correo.setText("Hola");
 
         password_field.setText("Password");
+        password_field.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                password_fieldFocusLost(evt);
+            }
+        });
         password_field.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 password_fieldKeyTyped(evt);
@@ -136,6 +165,18 @@ public class SingUp extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        label_user.setForeground(new java.awt.Color(153, 0, 0));
+        label_user.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_user.setText("Hola");
+
+        label_name.setForeground(new java.awt.Color(153, 0, 0));
+        label_name.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_name.setText("Hola");
+
+        label_password.setForeground(new java.awt.Color(153, 0, 0));
+        label_password.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_password.setText("Hola");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -150,27 +191,39 @@ public class SingUp extends javax.swing.JFrame {
                     .addComponent(phone_field)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(label_correo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(label_correo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(label_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(label_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(label_password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(label_name))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(name_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(label_user))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(username_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -180,7 +233,9 @@ public class SingUp extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(email_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(label_password))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(password_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -284,7 +339,10 @@ public class SingUp extends javax.swing.JFrame {
         
         
         //Validar correo
-        if(!isEmail(this.email_field.getText())){
+        if(this.email_field.getText().isEmpty()){
+            this.label_correo.setText("Campo obligatorio");
+            this.flagEmail = false;
+        }else if(!isEmail(this.email_field.getText())){
             this.label_correo.setText("Correo electrónico inválido");
             this.email_field.requestFocus();
             this.flagEmail = false;
@@ -297,20 +355,70 @@ public class SingUp extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         //Registrar
-        if (flagEmail && !username_field.getText().isEmpty() && !password_field.getText().isEmpty()) {
+        if (flagEmail && flagName && flagUserName && flagPassword) {
             System.out.println(" | > Registrando usuario: " + this.username_field.getText());
             if(kind_user_field.getSelection().equals(kind_driver.getModel())){
                 //Registrar conductor
+                boolean flag = controller.createDriver(name_field.getText(), username_field.getText(), email_field.getText(), password_field.getText(), phone_field.getText());
                 
-                System.out.println(" | > Conductor registrado");
+                if(flag){
+                    System.out.println(" | > Conductor registrado");
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo crear el usuario, verificar datos nueva mente", "Nuevo conductor", JOptionPane.WARNING_MESSAGE);
+                }
+                
             } else {
                 //Registrar usuario
+                 boolean flag = controller.createUser(name_field.getText(), username_field.getText(), email_field.getText(), password_field.getText(), phone_field.getText());
                 
-                System.out.println(" | > Usuario registrado");
+                if(flag){
+                    System.out.println(" | > Usuario registrado");
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudo crear el usuario, verificar datos nueva mente", "Nuevo usuario", JOptionPane.WARNING_MESSAGE);
+                }
             }
         }
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void name_fieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_name_fieldFocusLost
+        
+        //Validar campo
+        if(this.name_field.getText().isEmpty()){
+            this.label_name.setText("Campo obligatorio");
+            this.flagName = false;
+        } else {
+            this.label_name.setText("");
+            this.flagName = true;
+        }
+       
+    }//GEN-LAST:event_name_fieldFocusLost
+
+    private void username_fieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_username_fieldFocusLost
+        
+        //Validar campo
+        if(this.username_field.getText().isEmpty()){
+            this.label_user.setText("Campo obligatorio");
+            this.flagUserName = false;
+        } else {
+            this.label_user.setText("");
+            this.flagUserName = true;
+        }
+        
+    }//GEN-LAST:event_username_fieldFocusLost
+
+    private void password_fieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_password_fieldFocusLost
+       
+        //Validar campo
+        if(this.password_field.getText().isEmpty()){
+            this.label_password.setText("Campo obligatorio");
+            this.flagPassword = false;
+        } else {
+            this.label_name.setText("");
+            this.flagPassword = true;
+        }
+        
+    }//GEN-LAST:event_password_fieldFocusLost
 
     /**
      * @param args the command line arguments
@@ -364,6 +472,9 @@ public class SingUp extends javax.swing.JFrame {
     private javax.swing.JRadioButton kind_user;
     private javax.swing.ButtonGroup kind_user_field;
     private javax.swing.JLabel label_correo;
+    private javax.swing.JLabel label_name;
+    private javax.swing.JLabel label_password;
+    private javax.swing.JLabel label_user;
     private javax.swing.JTextField name_field;
     private javax.swing.JTextField password_field;
     private javax.swing.JTextField phone_field;
@@ -391,5 +502,13 @@ public class SingUp extends javax.swing.JFrame {
         this.password_field.setText("");
         this.phone_field.setText("");
         this.label_correo.setText("");
+        this.label_user.setText("");
+        this.label_name.setText("");
+        this.label_password.setText("");
+        
+        this.flagEmail = false;
+        this.flagName = false;
+        this.flagPassword = false;
+        this.flagUserName = false;
     }
 }

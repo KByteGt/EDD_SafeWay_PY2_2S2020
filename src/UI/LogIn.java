@@ -215,11 +215,11 @@ public class LogIn extends javax.swing.JFrame{
             Usuario user = controller.logIn(user_field.getText(),password,kind);
 
             if(user != null && kind == UserKind.USER){
-                System.out.println("Es usuario");
+                System.out.println(" | > Launching user interface...");
             } else if(user != null && kind == UserKind.DRIVER){
-                System.out.println("Es conductor");
+                System.out.println(" | > Launching driver interface...");
             } else if(user != null && kind == UserKind.ADMIN){
-                System.out.println("Es admin");
+                System.out.println(" | > Launching admin interface...");
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "LogIn", JOptionPane.WARNING_MESSAGE);
             }

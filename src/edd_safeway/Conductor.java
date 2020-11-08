@@ -12,10 +12,11 @@ package edd_safeway;
 public class Conductor extends Usuario {
     private boolean disponibilidad;
 
-    public Conductor(int id, String nombre, String usuario, String contraseña, String telefono, double latitud, double longitud, boolean disponibilidad) {
+    public Conductor(int id, String nombre, String usuario, String correo, String contraseña, String telefono, double latitud, double longitud, boolean disponibilidad) {
         this.setId(id);
         this.setNombre(nombre);
         this.setUsuario(usuario);
+        this.setCorreo(correo);
         this.setContraseña(contraseña);
         this.setTelefono(telefono);
         this.setLatitud(latitud);

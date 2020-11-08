@@ -25,6 +25,7 @@ public class UserController extends Controller {
     private static UserController userController;
     
     private int indexUser;
+    private int indexDriver;
     
     private UserController(){
         usuarios = new Tree(5);
@@ -37,6 +38,7 @@ public class UserController extends Controller {
         admin.setContraseña(cryp.sha256("admin"));
         
         indexUser = 0;
+        indexDriver = 0;
     }
     
     public static UserController getInstance(){
@@ -89,12 +91,57 @@ public class UserController extends Controller {
         
     }
     
+//        Usuario user1 = new Usuario();
+//        user1.setNombre("Daniel");
+//        user1.setUsuario("KByteGt");
+//        user1.setId(1);
+//        user1.setCorreo("josedan1996@hotmail.com");
+//        user1.setContraseña(cryp.sha256("123456"));
+//        
+//        Tree bt= new Tree(5);
+//        
+//        bt.insertar(user1.getUsuario(), user1);
+//        bt.recorrer();
+    
     //Crear nuevos usuarios
-    public boolean createUser(){
-        return false;
+    public boolean createUser(String name, String user, String email, String password, String phone){
+        try {
+            //Encriptar contraseña
+            String encryptedPassword = cryp.sha256(password);
+            //Incrementar el index
+            indexUser++;
+
+            //Crear usuario
+            Usuario newUser = new Usuario(indexUser, name, user, email, encryptedPassword, phone, 0,0);
+
+            //Insertar el usuario
+            usuarios.insertar(user, newUser);
+
+            return true;
+        } catch (Exception e) {
+            System.out.println(" | **Error: " + e);
+            return false;
+        }
+        
     }
     
-    public boolean createDriver(){
-        return false;
+    public boolean createDriver(String name, String user, String email, String password, String phone){
+        try {
+            //Encriptar contraseña
+            String encryptedPassword = cryp.sha256(password);
+            //Incrementar el index
+            indexDriver++;
+
+            //Crear usuario
+            Conductor newUser = new Conductor(indexDriver,name,user,email,encryptedPassword,phone,0,0,true);
+
+            //Insertar el usuario
+            conductores.insertar(user, newUser);
+            
+            return true;
+        } catch (Exception e) {
+            System.out.println(" | **Error: " + e);
+            return false;
+        }
     }
 }
