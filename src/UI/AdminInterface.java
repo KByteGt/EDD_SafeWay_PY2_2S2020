@@ -5,7 +5,9 @@
  */
 package UI;
 
+import edd_safeway.UserController;
 import edd_safeway.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +16,7 @@ import edd_safeway.Usuario;
 public class AdminInterface extends javax.swing.JFrame {
     
     private Usuario user;
+    private UserController userController;
 
     /**
      * Creates new form AdminInterface
@@ -21,6 +24,7 @@ public class AdminInterface extends javax.swing.JFrame {
     public AdminInterface() {
         initComponents();
         
+        this.userController = UserController.getInstance();
         this.user = null;
     }
 
@@ -58,18 +62,18 @@ public class AdminInterface extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btn_json_usuarios = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        label_ver_usuarios = new javax.swing.JLabel();
+        label_ver_localidades = new javax.swing.JLabel();
         btn_json_localidades = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        label_ver_lugares = new javax.swing.JLabel();
         btn_json_lugares = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        label_ver_conexiones = new javax.swing.JLabel();
         btn_json_conexiones = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        label_ver_ubicaciones = new javax.swing.JLabel();
         btn_json_ubicaciones = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -267,9 +271,19 @@ public class AdminInterface extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setText("Ver ejemplo de archivo");
+        label_ver_usuarios.setText("Ver ejemplo de archivo");
+        label_ver_usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_ver_usuariosMouseClicked(evt);
+            }
+        });
 
-        jLabel11.setText("Ver ejemplo de archivo");
+        label_ver_localidades.setText("Ver ejemplo de archivo");
+        label_ver_localidades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_ver_localidadesMouseClicked(evt);
+            }
+        });
 
         btn_json_localidades.setText("Cargar JSON");
         btn_json_localidades.addActionListener(new java.awt.event.ActionListener() {
@@ -280,7 +294,12 @@ public class AdminInterface extends javax.swing.JFrame {
 
         jLabel12.setText("- Archivo de Localidades");
 
-        jLabel13.setText("Ver ejemplo de archivo");
+        label_ver_lugares.setText("Ver ejemplo de archivo");
+        label_ver_lugares.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_ver_lugaresMouseClicked(evt);
+            }
+        });
 
         btn_json_lugares.setText("Cargar JSON");
         btn_json_lugares.addActionListener(new java.awt.event.ActionListener() {
@@ -291,7 +310,12 @@ public class AdminInterface extends javax.swing.JFrame {
 
         jLabel14.setText("- Archivo de Lugares");
 
-        jLabel15.setText("Ver ejemplo de archivo");
+        label_ver_conexiones.setText("Ver ejemplo de archivo");
+        label_ver_conexiones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_ver_conexionesMouseClicked(evt);
+            }
+        });
 
         btn_json_conexiones.setText("Cargar JSON");
         btn_json_conexiones.addActionListener(new java.awt.event.ActionListener() {
@@ -304,7 +328,12 @@ public class AdminInterface extends javax.swing.JFrame {
 
         jLabel18.setText("- Archivo de ubicación de usuarios");
 
-        jLabel17.setText("Ver ejemplo de archivo");
+        label_ver_ubicaciones.setText("Ver ejemplo de archivo");
+        label_ver_ubicaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_ver_ubicacionesMouseClicked(evt);
+            }
+        });
 
         btn_json_ubicaciones.setText("Cargar JSON");
         btn_json_ubicaciones.addActionListener(new java.awt.event.ActionListener() {
@@ -327,7 +356,7 @@ public class AdminInterface extends javax.swing.JFrame {
                             .addGap(10, 10, 10)
                             .addComponent(btn_json_usuarios)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel10)
+                            .addComponent(label_ver_usuarios)
                             .addGap(18, 18, 18)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel18)
@@ -335,7 +364,7 @@ public class AdminInterface extends javax.swing.JFrame {
                                     .addGap(10, 10, 10)
                                     .addComponent(btn_json_ubicaciones)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jLabel17))))
+                                    .addComponent(label_ver_ubicaciones))))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel14)
@@ -343,7 +372,7 @@ public class AdminInterface extends javax.swing.JFrame {
                                     .addGap(10, 10, 10)
                                     .addComponent(btn_json_lugares)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jLabel13)))
+                                    .addComponent(label_ver_lugares)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel12)
@@ -351,13 +380,13 @@ public class AdminInterface extends javax.swing.JFrame {
                                     .addGap(10, 10, 10)
                                     .addComponent(btn_json_localidades)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jLabel11)))))
+                                    .addComponent(label_ver_localidades)))))
                     .addComponent(jLabel16)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(btn_json_conexiones)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel15)))
+                        .addComponent(label_ver_conexiones)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -371,13 +400,13 @@ public class AdminInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_json_usuarios)
-                            .addComponent(jLabel10)))
+                            .addComponent(label_ver_usuarios)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_json_ubicaciones)
-                            .addComponent(jLabel17))))
+                            .addComponent(label_ver_ubicaciones))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -385,19 +414,19 @@ public class AdminInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_json_localidades)
-                            .addComponent(jLabel11)))
+                            .addComponent(label_ver_localidades)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_json_lugares)
-                            .addComponent(jLabel13))))
+                            .addComponent(label_ver_lugares))))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_json_conexiones)
-                    .addComponent(jLabel15))
+                    .addComponent(label_ver_conexiones))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
@@ -459,7 +488,15 @@ public class AdminInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_salirMouseClicked
 
     private void btn_reporte_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reporte_usuariosActionPerformed
-        // TODO add your handling code here:
+        
+        //Mostrar reporte de Usuarios árbol B
+        if(!userController.viewUserTree()){
+            JOptionPane.showMessageDialog(this, "No hay usuarios registrados", "B tree Users", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Abrindo PDF", "B tree Users", JOptionPane.PLAIN_MESSAGE);
+        }
+                
+                
     }//GEN-LAST:event_btn_reporte_usuariosActionPerformed
 
     private void btn_reporte_conductoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reporte_conductoresActionPerformed
@@ -505,6 +542,26 @@ public class AdminInterface extends javax.swing.JFrame {
     private void btn_nuevaRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevaRutaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_nuevaRutaActionPerformed
+
+    private void label_ver_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_ver_usuariosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_label_ver_usuariosMouseClicked
+
+    private void label_ver_lugaresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_ver_lugaresMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_label_ver_lugaresMouseClicked
+
+    private void label_ver_conexionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_ver_conexionesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_label_ver_conexionesMouseClicked
+
+    private void label_ver_ubicacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_ver_ubicacionesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_label_ver_ubicacionesMouseClicked
+
+    private void label_ver_localidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_ver_localidadesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_label_ver_localidadesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -556,14 +613,9 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JButton btn_reporte_viajes;
     private javax.swing.JLabel btn_salir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -580,6 +632,11 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel label_user;
+    private javax.swing.JLabel label_ver_conexiones;
+    private javax.swing.JLabel label_ver_localidades;
+    private javax.swing.JLabel label_ver_lugares;
+    private javax.swing.JLabel label_ver_ubicaciones;
+    private javax.swing.JLabel label_ver_usuarios;
     // End of variables declaration//GEN-END:variables
 
     public void setUser(Usuario user){

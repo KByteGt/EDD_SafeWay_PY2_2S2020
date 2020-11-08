@@ -1,0 +1,25 @@
+{
+  "Grafo":[
+    { "inicio":"T-3",
+      "final":"Plaza Villa nueva",
+      "peso":3,
+      "unidad":"KM",
+      "precio": 35.6,
+      "moneda":"Quetzales"
+    },
+    { "inicio":"T-3",
+      "final":"Gasolinera puma quetzal",
+      "peso":10,
+      "unidad":"KM",
+      "precio": 110.25,
+      "moneda":"Quetzales"
+    },
+    { "inicio":"Plaza Villa nueva",
+      "final":"Gasolinera puma quetzal",
+      "peso":5,
+      "unidad":"KM",
+      "precio": 50.96,
+      "moneda":"Quetzales"
+    }
+  ]
+}

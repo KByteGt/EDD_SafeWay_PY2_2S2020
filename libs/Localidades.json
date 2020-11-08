@@ -1,0 +1,14 @@
+{
+  "localidades": [
+    {
+      "id_conductor": 1,
+      "lugar": "T-3",
+      "disponibilidad": true
+    },
+    {
+      "id_conductor": 2,
+      "lugar": "Plaza Villa nueva",
+      "disponibilidad": false
+    }
+  ]
+}

@@ -137,4 +137,35 @@ public class UserController extends Controller {
             return false;
         }
     }
+    
+    public boolean viewUserTree(){
+        
+        String dot = usuarios.getGraphviz("Usuarios");
+        
+        if(!dot.isEmpty()){
+            this.writeTxt("BTreeUsers",dot);
+            this.writePDF("BTreeUsers");
+            this.openPDF();
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean viewDriverTree(){
+        String dot = usuarios.getGraphviz("Conductores");
+        
+        if(!dot.isEmpty()){
+            this.writeTxt("BTreeDrivers",dot);
+            this.writePDF("BTreeDrivers");
+            this.openPDF();
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public void loadUsers(String path){
+        //Cargar usuarios desde JSON
+    }
 }

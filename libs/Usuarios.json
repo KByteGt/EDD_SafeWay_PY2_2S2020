@@ -1,0 +1,41 @@
+{
+	"usuarios":[
+  {
+	 "id":24,
+	 "nombre":"Bruno Wayne",
+	 "usuario":"batman",
+	 "correo":"batman@gmail.com",
+	 "pass":"batman",
+	 "telefono":"20201921",
+	 "rol":"conductor"
+  },
+  {
+	 "id":25,
+	 "nombre":"Michael Schumacher",
+	 "usuario":"mschumacher",
+	 "correo":"mschumacher@gmail.com",
+	 "pass":"schumacher",
+	 "telefono":"20201921",
+	 "rol":"conductor"
+  },
+  {
+	 "id":1,
+	 "nombre":"Clark Ken",
+	 "usuario":"superman",
+	 "correo":"superman@gmail.com",
+	 "pass":"superman",
+	 "telefono":"20201921",
+	 "rol":"normal"
+  },
+  {
+	 "id":2,
+	 "nombre":"Peter Parker",
+	 "usuario":"spiderman",
+	 "correo":"spiderman@gmail.com",
+	 "pass":"spiderman",
+	 "telefono":"20201921",
+	 "rol":"normal"
+  }
+]
+
+}
