@@ -16,12 +16,12 @@ import edd_safeway.UserController.UserKind;
 
 public class LogInController extends Controller{
     
-    String userKey;
+    //String userKey;
     private UserController userController;
     
     public LogInController(){
         userController = UserController.getInstance();
-        userKey = "";
+        //userKey = "";
     }
     
     /*
