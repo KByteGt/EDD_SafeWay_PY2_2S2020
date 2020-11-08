@@ -5,6 +5,7 @@
  */
 package UI;
 
+import edd_safeway.Conductor;
 import edd_safeway.LogInController;
 import edd_safeway.UserController.UserKind;
 import edd_safeway.Usuario;
@@ -197,31 +198,42 @@ public class LogIn extends javax.swing.JFrame{
         // BTN ENTRAR
         UserKind kind;
         
-        if(user_field.getText().length() > 0 && password_field.getPassword().length > 0){
-            if(kind_user_field.getSelection().equals(rb_usuario.getModel())){
-                kind = UserKind.USER;
-            } else if(kind_user_field.getSelection().equals(rb_conductor.getModel())){
-                kind = UserKind.DRIVER;
-            } else {
-                kind = UserKind.ADMIN;
-            }
-
+        if(!user_field.getText().isEmpty() && password_field.getPassword().length > 0){
+            
             String password = "";
             
             for(char i : password_field.getPassword()){
                 password += i;
             }
-
-            Usuario user = controller.logIn(user_field.getText(),password,kind);
-
-            if(user != null && kind == UserKind.USER){
-                System.out.println(" | > Launching user interface...");
-            } else if(user != null && kind == UserKind.DRIVER){
-                System.out.println(" | > Launching driver interface...");
-            } else if(user != null && kind == UserKind.ADMIN){
-                System.out.println(" | > Launching admin interface...");
-            } else {
-                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "LogIn", JOptionPane.WARNING_MESSAGE);
+            
+            if(kind_user_field.getSelection().equals(rb_usuario.getModel())){
+                Usuario user = controller.logInUser(user_field.getText(),password);
+                
+                if(user != null){
+                    System.out.println(" | > Launching user interface...");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "LogIn", JOptionPane.WARNING_MESSAGE);
+                }
+ 
+            } else if(kind_user_field.getSelection().equals(rb_conductor.getModel())){
+                Conductor driver = controller.logInDriver(user_field.getText(),password);
+                
+                if(driver != null){
+                     System.out.println(" | > Launching driver interface...");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "LogIn", JOptionPane.WARNING_MESSAGE);
+                }
+                
+            } else if(kind_user_field.getSelection().equals(rb_administrador.getModel())){
+                Usuario user = controller.logInAdmin(user_field.getText(),password);
+                
+                if(user != null){
+                    System.out.println(" | > Launching admin interface...");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "LogIn", JOptionPane.WARNING_MESSAGE);
+                }
+            }else {
+                System.out.println(" | **Error: fallo en la seguridad");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Campos incompletos", "LogIn", JOptionPane.WARNING_MESSAGE);

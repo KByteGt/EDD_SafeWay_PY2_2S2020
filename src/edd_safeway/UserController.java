@@ -18,8 +18,8 @@ public class UserController extends Controller {
         USER,DRIVER,ADMIN, NULL;
     }
     
-    Tree<String,Usuario> usuarios;
-    Tree<String,Usuario> conductores;
+    private static Tree<String,Usuario> usuarios;
+    private static Tree<String,Usuario> conductores;
     
     private final Usuario admin = new Usuario();
     private static UserController userController;
@@ -66,29 +66,22 @@ public class UserController extends Controller {
         
     }
     
-    public Usuario searchDriver(String nombre){
+    public Conductor searchDriver(String nombre){
 
         //Buscar y retornar el key
-        Key key = usuarios.buscar(nombre);
+        Key key = conductores.buscar(nombre);
         
         if(key != null){
             //Existe usuario
-            return (Usuario) key.getValor();
+            return (Conductor) key.getValor();
         } else {
             return null;
         }
         
     }
     
-    public Usuario searchAdmin(String nombre){
-
-        //Buscar y retornar el key
-        if(nombre.equals(admin.getUsuario())){
-            return admin;
-        } else {
-            return null;
-        }
-        
+    public Usuario getAdmin(){
+        return admin;
     }
     
 //        Usuario user1 = new Usuario();

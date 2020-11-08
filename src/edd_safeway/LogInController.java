@@ -24,45 +24,53 @@ public class LogInController extends Controller{
         userKey = "";
     }
     
-    public Usuario logIn(String user, String pass, UserKind kind){
+    /*
+    Pasos:
+    1- Buscar el usuario en el árbol de usuarios
+    2- encriptar contraseña [pass]
+    3- comparar contraseña
+    4- retornar respuesta
+    */
+    
+    public Usuario logInUser(String user, String pass){
         
-        /*
-        Pasos:
-        1- Buscar el usuario en el árbol de usuarios
-        2- encriptar contraseña [pass]
-        3- comparar contraseña
-        4- retornar respuesta
-        */
-        Usuario temp;
+        Usuario temp = userController.searchUser(user);
+        String password = cryp.sha256(pass);
         
-        switch(kind){
-            case USER:
-                temp = userController.searchUser(user);
-                break;
-            case DRIVER:
-                temp = userController.searchDriver(user);
-                break;
-            case ADMIN:
-                temp = userController.searchAdmin(user);
-                break;
-            default:
-                temp = null;
-                break;                
-        }
-        
-        if(temp != null){
+        if(temp != null && password.equals(temp.getContraseña())){
             //Existe el conductor
-            String password = cryp.sha256(pass);
-            
             System.out.println("Usuario: " + temp.getUsuario() + " ("+ temp.getContraseña() +")");
-
-            if(!password.equals(temp.getContraseña())){
-                //La contraseña es incorrecta
-                temp = null;
-            }
+            return temp;
         }
 
-        return temp;
+        return null;
+    }
+    
+    public Conductor logInDriver(String user, String pass){
+        
+        Conductor temp = userController.searchDriver(user);
+        String password = cryp.sha256(pass);
+        
+        if(temp != null && password.equals(temp.getContraseña())){
+            //Existe el conductor
+            System.out.println("Usuario: " + temp.getUsuario() + " ("+ temp.getContraseña() +")");
+            temp = temp; 
+        }
+
+        return null;
+
+    }
+    
+    public Usuario logInAdmin(String user, String pass){
+        Usuario temp = userController.getAdmin();
+        
+        String password = cryp.sha256(pass);
+        
+        if(password.equals(temp.getContraseña())){
+            System.out.println("Usuario: " + temp.getUsuario() + " ("+ temp.getContraseña() +")");
+            return temp;
+        }
+        return null;
     }
     
     

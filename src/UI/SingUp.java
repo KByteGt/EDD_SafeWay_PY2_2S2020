@@ -363,6 +363,7 @@ public class SingUp extends javax.swing.JFrame {
                 
                 if(flag){
                     System.out.println(" | > Conductor registrado");
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo crear el usuario, verificar datos nueva mente", "Nuevo conductor", JOptionPane.WARNING_MESSAGE);
                 }
@@ -373,6 +374,7 @@ public class SingUp extends javax.swing.JFrame {
                 
                 if(flag){
                     System.out.println(" | > Usuario registrado");
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudo crear el usuario, verificar datos nueva mente", "Nuevo usuario", JOptionPane.WARNING_MESSAGE);
                 }
