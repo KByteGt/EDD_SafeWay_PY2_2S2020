@@ -61,13 +61,12 @@ public class TablaHash {
         return ascii;
     }
     
-    public void insertar(Lugar l){
-        Key node = new Key(getASCII(l.getNombre()), l);
+    public boolean insertar(int id, Lugar l){
+        Key node = new Key(id, l);
         
-        int pos = getPosicion(node.getHash());
+        int pos = getPosicion(id);
         
         if(this.tabla[pos] == null){
-            System.out.println("Insertando: "+pos);
             tabla[pos] = node;
             carga++;
             
@@ -80,8 +79,10 @@ public class TablaHash {
                 resize((int) newSize);
             }
             
+            return  true;
+            
         } else {
-            System.out.println(" >> Ya existe el elemento a insertar: "+pos);
+            return false;
         }
     }
     
@@ -90,41 +91,115 @@ public class TablaHash {
         Key tempTabla[] = this.tabla;
         this.tabla = newTabla;
         this.size = m;
+        this.carga = 0;
         
         llenarTabla();
+        
 
         int i;
         for(Key n : tempTabla){
-            if(n != null){
-                i = getPosicion(n.getHash());
-                newTabla[i] = n;
+            if(n != null && !n.isDelited()){
+                this.insertar(n.getHash(), (Lugar)n.getValor());
+//                i = getPosicion(n.getHash());
+//                newTabla[i] = n;
+//                carga++;
             }
         }
         
         
     }
     
-    public void buscar(String nombre){
+    public boolean eliminar(int id){
+        
+        Key k = buscar(id);
+        
+        if(k != null){
+            k.setDelited();
+            carga--;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public Key buscar(int id){
         
         
-        int pos = getPosicion(getASCII(nombre));
+        int pos = getPosicion(id);
         
         if(this.tabla[pos] != null){
             //Tenemos el dato buscado
             Lugar n = (Lugar) tabla[pos].getValor();
+            
             System.out.println("["+ pos +"] - ("+tabla[pos].getHash()+") "+n.getNombre());
+            
+            return tabla[pos];
         } else {
             System.out.println(" >> No existe el elemento: "+pos);
+            return null;
         }
     }
     
     public void imprimir(){
         for (Key n : this.tabla) {
-            if(n != null){
+            if(n != null && !n.isDelited()){
                 Lugar l = (Lugar) n.getValor();
-                System.out.println("("+n.getHash()+") "+l.getNombre());
+                System.out.println("("+n.getHash()+") "+l.getNombre()+" id: "+l.getId());
             }
         }
+    }
+    
+    public String getGraphviz(String name){
+        String g = "";
+        g += "digraph g{\n" +
+                "node [shape = record, height = .1];\n" +
+                "label = \".: Tabla Hash - "+ name +" :.\\nTamaño: "+ size +", Elementos: "+ carga +"\";\n";
+        
+        int bloques = (int) size / 5;
+        String temp = "";
+        
+        for (int i = 0; i <= bloques; i++) {
+            temp = "node"+i+" [label=\"";
+
+            int j = 0;
+            if(((i*5)+j) < size){
+                if(tabla[(i*5)+j] != null){
+                    if(tabla[(i*5)+j].isDelited()){
+                        temp += " [ * ]";
+                    } else {
+                        Lugar l = (Lugar)tabla[(i*5)+j].getValor();
+                        temp += "["+tabla[(i*5)+j].getHash()+"] "+l.getNombre();
+                    }
+                } else {
+                    temp += " [ - ]";
+                }
+            }
+            
+            for (j = 1; j < 5; j++) {
+                if(((i*5)+j) < size){
+                    if(tabla[(i*5)+j] != null){
+                        if(tabla[(i*5)+j].isDelited()){
+                            temp += "| [ * ] ";
+                        } else {
+                            Lugar l = (Lugar)tabla[(i*5)+j].getValor();
+                            temp += "| ["+tabla[(i*5)+j].getHash()+"] "+l.getNombre();
+                        }
+                    } else {
+                        temp += "| [ - ] ";
+                    }
+                }
+            }
+
+            g += temp + "\"];\n";
+            temp = "";
+        }
+        
+        for (int i = 0; i < bloques; i++) {
+            g += "node"+i+" -> node"+(i+1)+";\n";
+        }
+        
+        g += "}";
+        return g;
     }
     
 }

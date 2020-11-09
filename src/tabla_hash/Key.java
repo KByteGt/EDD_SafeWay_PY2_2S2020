@@ -15,10 +15,12 @@ public class Key <T> {
 
     private int hash;
     private T valor;
+    private boolean delited;
     
     public Key(int hash, T valor){
         this.hash = hash;
         this.valor = valor;
+        this.delited = false;
     }
     
     
@@ -40,4 +42,11 @@ public class Key <T> {
         this.valor = valor;
     }
     
+    public boolean isDelited(){
+        return this.delited;
+    }
+    
+    public void setDelited(){
+        this.delited = true;
+    }
 }

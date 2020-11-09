@@ -132,6 +132,11 @@ public class UserController extends Controller {
         }       
     }
     
+    //Eliminar
+    
+    
+    //Obtener
+    
     public Usuario getAdmin(){
         return admin;
     }
@@ -298,4 +303,6 @@ public class UserController extends Controller {
     public void addAuthDrivers(int id, String name){
         authDrivers.add(new Nodo(id, name));
     }
+    
+    
 }

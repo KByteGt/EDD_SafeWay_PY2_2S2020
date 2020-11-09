@@ -40,9 +40,11 @@ public class EDD_SafeWay {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Cryptography cryp = Cryptography.getInstance();
-        
-        logIn.setVisible(true);
+//        Cryptography cryp = Cryptography.getInstance();
+//        
+//        logIn.setVisible(true);
+
+        hashTable();
 
 //        admin.setContraseña(cryp.sha256("admin"));
 //        System.out.println(cryp.sha256("admin"));
@@ -245,7 +247,7 @@ public class EDD_SafeWay {
         arbol.recorrer();
         
         System.out.println("Buscando en el árbol");
-        Key temp = arbol.buscar(140);
+        Key temp = arbol.buscar(14);
         
         if (temp != null) {
             System.out.println("Key: " + temp.getKey());
@@ -255,5 +257,45 @@ public class EDD_SafeWay {
         
 //        System.out.println(arbol.getGraphviz("Prueba"));
         
+    }
+    
+    public static void hashTable(){
+        System.out.println(" |> Tabla Hash");
+        
+        Lugar l1 = new Lugar(1,"USAC","T-3",14.5877,-90.5536);
+        Lugar l2 = new Lugar(2,"Plaza","Plaza Villa nueva",14.533,-90.5852);
+        Lugar l3 = new Lugar(3,"Gasolinera","Gasolinera puma quetzal",14.536,-90.5868);
+        Lugar l4 = new Lugar(4,"USAC","T6",0,0);
+        Lugar l5 = new Lugar(5,"USAC","T7",0,0);
+        Lugar l6 = new Lugar(6,"USAC","S12",0,0);
+        Lugar l7 = new Lugar(7,"USAC","S11",0,0);
+        Lugar l8 = new Lugar(8,"USAC","M5",0,0);
+        Lugar l9 = new Lugar(9,"USAC","T1",0,0);
+        Lugar l10 = new Lugar(10,"USAC","T2",0,0);
+        Lugar l11 = new Lugar(11,"USAC","M6",0,0);
+        
+        TablaHash hashTable = new TablaHash(11);
+        
+        hashTable.insertar(1, l1);
+        hashTable.insertar(2,l2);
+        hashTable.insertar(3,l3);
+        hashTable.insertar(4,l4);
+        hashTable.insertar(5,l5);
+        
+        
+        
+        hashTable.insertar(6,l6);
+        hashTable.insertar(7,l7);
+        hashTable.insertar(8,l8);
+        hashTable.insertar(9,l9);
+        hashTable.insertar(10,l10);
+        hashTable.insertar(11,l11);
+        hashTable.insertar(1,l1);
+        
+        hashTable.eliminar(1);
+        hashTable.eliminar(4);
+        hashTable.imprimir();
+        
+        System.out.println(hashTable.getGraphviz("lugares"));
     }
 }

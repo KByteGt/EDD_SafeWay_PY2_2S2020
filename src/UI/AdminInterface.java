@@ -5,6 +5,7 @@
  */
 package UI;
 
+import edd_safeway.PlaceController;
 import edd_safeway.UserController;
 import edd_safeway.Usuario;
 import javax.swing.JFileChooser;
@@ -18,6 +19,7 @@ public class AdminInterface extends javax.swing.JFrame {
     
     private Usuario user;
     private UserController userController;
+    private PlaceController placeController;
 
     /**
      * Creates new form AdminInterface
@@ -26,6 +28,7 @@ public class AdminInterface extends javax.swing.JFrame {
         initComponents();
         
         this.userController = UserController.getInstance();
+        this.placeController = PlaceController.getInstance();
         this.user = null;
     }
 
