@@ -6,6 +6,7 @@
 package tabla_hash;
 
 import edd_safeway.Lugar;
+import java.util.ArrayList;
 
 /**
  *
@@ -201,6 +202,19 @@ public class TablaHash {
         
         g += "}";
         return g;
+    }
+    
+    public ArrayList getPlaceList(){
+        ArrayList<Lugar> list = new ArrayList();
+        
+        for (int i = 0; i < size; i++) {
+            if(tabla[i] != null){
+                if(!tabla[i].isDelited())
+                    list.add((Lugar)tabla[i].getValor());
+            }
+        }
+        
+        return list;
     }
     
 }

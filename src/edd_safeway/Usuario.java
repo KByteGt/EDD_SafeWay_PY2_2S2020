@@ -4,6 +4,8 @@
  */
 package edd_safeway;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author JOSED
@@ -12,6 +14,10 @@ public class Usuario {
     private int id;
     private String nombre, usuario, correo, contraseña, telefono;
     private double latitud, longitud;
+    
+    private String place;
+    
+    private ArrayList<Integer> travelList;
     
     //Construcotes
     
@@ -24,6 +30,8 @@ public class Usuario {
         this.telefono = "";
         this.latitud = 0.0;
         this.longitud = 0.0;
+        this.travelList = new ArrayList();
+        this.place = "";
     }
 
     public Usuario(int id, String nombre, String usuario, String correo, String contraseña, String telefono, double latitud, double longitud) {
@@ -35,6 +43,8 @@ public class Usuario {
         this.telefono = telefono;
         this.latitud = latitud;
         this.longitud = longitud;
+        this.travelList = new ArrayList();
+        this.place = "";
     }
     
     //Get & Set
@@ -103,6 +113,20 @@ public class Usuario {
         this.longitud = longitud;
     }
     
+    public void addTravelId(int id){
+        this.travelList.add(id);
+    }
     
+    public ArrayList getTravelList(){
+        return this.travelList;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
     
 }

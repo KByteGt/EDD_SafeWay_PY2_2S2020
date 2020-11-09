@@ -9,6 +9,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import java.io.File;
+import java.util.ArrayList;
 import tabla_hash.TablaHash;
 
 /**
@@ -123,7 +124,7 @@ public class PlaceController extends Controller{
                         //Relacionar lugar con usuario
                         Lugar tempPlace = (Lugar) lugares.buscar(name).getValor();
                         
-                        userController.updateUserLocation(id_user, tempPlace.getLatitud(), tempPlace.getLongitud());
+                        userController.updateUserLocation(id_user, tempPlace.getLatitud(), tempPlace.getLongitud(), name);
                         i++;
                     }
                 }
@@ -158,7 +159,7 @@ public class PlaceController extends Controller{
                         //Relacionar lugar con Conductor
                         Lugar tempPlace = (Lugar) lugares.buscar(name).getValor();
                         
-                        userController.updateDriverLocation(id_user, tempPlace.getLatitud(), tempPlace.getLongitud(), available);
+                        userController.updateDriverLocation(id_user, tempPlace.getLatitud(), tempPlace.getLongitud(), available, name);
                         i++;
                     }
                 }
@@ -166,5 +167,15 @@ public class PlaceController extends Controller{
         }
         
         return i;
+    }
+    
+    public ArrayList getPlaces(){
+        
+        if(lugares.getPlaceList().isEmpty()){
+            return null;
+        } else {
+            return lugares.getPlaceList();
+        }
+        
     }
 }

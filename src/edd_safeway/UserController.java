@@ -306,7 +306,7 @@ public class UserController extends Controller {
         authDrivers.add(new Nodo(id, name));
     }
     
-    public void updateUserLocation(int id, double latitud, double longitud){
+    public void updateUserLocation(int id, double latitud, double longitud, String place){
         if(id > 0){
             //Buscar y retornar el key
             Key key = usuarios.buscar(id);
@@ -316,6 +316,7 @@ public class UserController extends Controller {
                 Usuario tempUser = (Usuario) key.getValor();
                 tempUser.setLatitud(latitud);
                 tempUser.setLongitud(longitud);
+                tempUser.setPlace(place);
                 
                 key.setValor(tempUser);
                 System.out.println(" | > Se actualizo la ubicación del usuario: "+ tempUser.getNombre());
@@ -325,7 +326,7 @@ public class UserController extends Controller {
         } 
     }
     
-    public void updateDriverLocation(int id, double latitud, double longitud, boolean available){
+    public void updateDriverLocation(int id, double latitud, double longitud, boolean available, String place){
         if(id > 0){
             //Buscar y retornar el key
             Key key = conductores.buscar(id);
@@ -336,6 +337,7 @@ public class UserController extends Controller {
                 tempUser.setLatitud(latitud);
                 tempUser.setLongitud(longitud);
                 tempUser.setDisponibilidad(available);
+                tempUser.setPlace(place);
                 
                 key.setValor(tempUser);
                 System.out.println(" | > Se actualizo la ubicación del conductor: "+ tempUser.getNombre());
