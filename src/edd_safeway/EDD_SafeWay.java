@@ -217,8 +217,8 @@ public class EDD_SafeWay {
         hashTable.insertar(l11.getNombre(),l11);
         hashTable.insertar(l1.getNombre(),l1);
         
-        hashTable.eliminar(1);
-        hashTable.eliminar(4);
+        hashTable.eliminar("T6");
+        hashTable.eliminar("M5");
         hashTable.imprimir();
         
         System.out.println(hashTable.getGraphviz("lugares"));

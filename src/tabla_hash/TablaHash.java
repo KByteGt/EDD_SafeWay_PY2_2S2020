@@ -110,7 +110,7 @@ public class TablaHash {
         
     }
     
-    public boolean eliminar(int id){
+    public boolean eliminar(String id){
         
         Key k = buscar(id);
         
@@ -123,10 +123,10 @@ public class TablaHash {
         }
     }
     
-    public Key buscar(int id){
+    public Key buscar(String id){
         
         
-        int pos = getPosicion(id);
+        int pos = getPosicion(getASCII(id));
         
         if(this.tabla[pos] != null){
             //Tenemos el dato buscado
