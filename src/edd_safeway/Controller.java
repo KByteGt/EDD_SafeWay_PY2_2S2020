@@ -110,6 +110,12 @@ class Controller {
 
                 Runtime rt = Runtime.getRuntime();
                 rt.exec(cmd);
+                
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    System.out.println(" | **Error: [02]: Thread "+e);
+                }
             } catch (Exception e) {
                 System.out.println(" | **Error: [02] "+e);
                 pdfPath = "";

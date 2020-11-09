@@ -1,23 +1,31 @@
 {
   "Lugares": [
     {
-      "id": 1,
+      "id": 152,
       "Categoria": "USAC",
       "Nombre": "T-3",
       "Lat": 14.5877,
       "Lon": -90.5536
     },
     {
-      "id": 2,
+      "id": 200,
       "Categoria": "Plaza",
       "Nombre": "Plaza Villa nueva",
       "Lat": 14.533,
       "Lon": -90.5852
     },
     {
-      "id": 3,
+      "id": 300,
       "Categoria": "Gasolinera",
       "Nombre": "Gasolinera puma quetzal",
+      "Lat": 14.536,
+      "Lon": -90.5868
+    }
+    ,
+    {
+      "id": 301,
+      "Categoria": "Gasolinera",
+      "Nombre": "Gasolinera puma quetzal2",
       "Lat": 14.536,
       "Lon": -90.5868
     }

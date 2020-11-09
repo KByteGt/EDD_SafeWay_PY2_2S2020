@@ -61,10 +61,11 @@ public class TablaHash {
         return ascii;
     }
     
-    public boolean insertar(int id, Lugar l){
-        Key node = new Key(id, l);
+    public boolean insertar(String id, Lugar l){
+        int hash = getASCII(id);
+        Key node = new Key(hash, l);
         
-        int pos = getPosicion(id);
+        int pos = getPosicion(hash);
         
         if(this.tabla[pos] == null){
             tabla[pos] = node;
@@ -99,10 +100,10 @@ public class TablaHash {
         int i;
         for(Key n : tempTabla){
             if(n != null && !n.isDelited()){
-                this.insertar(n.getHash(), (Lugar)n.getValor());
-//                i = getPosicion(n.getHash());
-//                newTabla[i] = n;
-//                carga++;
+//                this.insertar(n.getHash(), (Lugar)n.getValor());
+                i = getPosicion(n.getHash());
+                tabla[i] = n;
+                carga++;
             }
         }
         

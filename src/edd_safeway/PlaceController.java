@@ -43,7 +43,7 @@ public class PlaceController extends Controller{
         
         Lugar newPlace = new Lugar(indexPlace, category, name, latitud, longitud);
         
-        return lugares.insertar(indexPlace, newPlace);
+        return lugares.insertar(name, newPlace);
     }
     
     public boolean viewPlacesHashTable(){
@@ -83,7 +83,7 @@ public class PlaceController extends Controller{
                         double longitud = place.get("Lon").getAsDouble();
                         
                         Lugar newPlace = new Lugar(id, category, name, latitud,longitud);
-                        lugares.insertar(id, newPlace);
+                        lugares.insertar(name, newPlace);
                         
                         if(id > indexPlace){
                             indexPlace = id;

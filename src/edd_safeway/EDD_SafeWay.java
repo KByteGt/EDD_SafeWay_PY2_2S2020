@@ -15,18 +15,8 @@ import block_chain.Nodo;
 import block_chain.Zip;
 import com.google.gson.Gson;
 import java.io.UnsupportedEncodingException;
-import java.lang.annotation.Annotation;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import java.util.Date;
 import java.util.zip.DataFormatException;
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
 import tabla_hash.TablaHash;
-import java.sql.Timestamp;
-import java.util.Arrays;
 /**
  *
  * @author JOSED
@@ -40,76 +30,11 @@ public class EDD_SafeWay {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-//        Cryptography cryp = Cryptography.getInstance();
-//        
-//        logIn.setVisible(true);
-
-        hashTable();
-
-//        admin.setContraseña(cryp.sha256("admin"));
-//        System.out.println(cryp.sha256("admin"));
+        Cryptography cryp = Cryptography.getInstance();
         
-    
-//        hashNode();
-//        jsonNodo();
-//        b_tree();
+        logIn.setVisible(true);
 
-//        Usuario user1 = new Usuario(1,"Daniel","kbytegt","email","1234","555",0.23,-23.34);
-//        Conductor con1 = new Conductor(1,"Jose","kbytegt","1234","555",0.23,-23.34,false);
-//
-//        System.out.println(user1.getNombre());
-//        System.out.println(con1.getNombre());
-//
-//        System.out.println(" |> Encriptación ");
-//        Zip z = Zip.getInstance();
-//        
-//        byte data[];
-//        
-//        data = z.zip("Hola mundo!!");
-//        System.out.println( new String(data));
-//        System.out.println(z.unzip(data));
-//        
-//        data = z.zip("Daniel");
-//        System.out.println( new String(data));
-//        System.out.println(z.unzip(data));
-//        
-//        System.out.println(" |> Tabla Hash");
-//        
-//        Lugar l1 = new Lugar(1,"USAC","T-3",14.5877,-90.5536);
-//        Lugar l2 = new Lugar(1,"Plaza","Plaza Villa nueva",14.533,-90.5852);
-//        Lugar l3 = new Lugar(1,"Gasolinera","Gasolinera puma quetzal",14.536,-90.5868);
-//        Lugar l4 = new Lugar(1,"USAC","T6",0,0);
-//        Lugar l5 = new Lugar(1,"USAC","T7",0,0);
-//        Lugar l6 = new Lugar(1,"USAC","S12",0,0);
-//        Lugar l7 = new Lugar(1,"USAC","S11",0,0);
-//        Lugar l8 = new Lugar(1,"USAC","M5",0,0);
-//        Lugar l9 = new Lugar(1,"USAC","T1",0,0);
-//        Lugar l10 = new Lugar(1,"USAC","T2",0,0);
-//        Lugar l11 = new Lugar(1,"USAC","M6",0,0);
-//        
-//        TablaHash hashTable = new TablaHash(11);
-//        
-//        hashTable.insertar(l1);
-//        
-//        hashTable.insertar(l2);
-//        hashTable.insertar(l3);
-//        hashTable.insertar(l4);
-//        hashTable.insertar(l5);
-//        hashTable.insertar(l6);
-//        hashTable.insertar(l7);
-//        hashTable.insertar(l8);
-//        hashTable.insertar(l9);
-//        hashTable.insertar(l10);
-//        hashTable.insertar(l11);
-//        hashTable.insertar(l1);
-//        
-//        hashTable.imprimir();
-//        
-//        hashTable.buscar("T3");
-//        hashTable.buscar("T55");
-//        
-//        System.out.println(l1.getJSON());
-       
+//        hashTable();
     }
     
     public static void jsonNodo() throws UnsupportedEncodingException, DataFormatException{
@@ -276,21 +201,21 @@ public class EDD_SafeWay {
         
         TablaHash hashTable = new TablaHash(11);
         
-        hashTable.insertar(1, l1);
-        hashTable.insertar(2,l2);
-        hashTable.insertar(3,l3);
-        hashTable.insertar(4,l4);
-        hashTable.insertar(5,l5);
+        hashTable.insertar(l1.getNombre(), l1);
+        hashTable.insertar(l2.getNombre(),l2);
+        hashTable.insertar(l3.getNombre(),l3);
+        hashTable.insertar(l4.getNombre(),l4);
+        hashTable.insertar(l5.getNombre(),l5);
         
         
         
-        hashTable.insertar(6,l6);
-        hashTable.insertar(7,l7);
-        hashTable.insertar(8,l8);
-        hashTable.insertar(9,l9);
-        hashTable.insertar(10,l10);
-        hashTable.insertar(11,l11);
-        hashTable.insertar(1,l1);
+        hashTable.insertar(l6.getNombre(),l6);
+        hashTable.insertar(l7.getNombre(),l7);
+        hashTable.insertar(l8.getNombre(),l8);
+        hashTable.insertar(l9.getNombre(),l9);
+        hashTable.insertar(l10.getNombre(),l10);
+        hashTable.insertar(l11.getNombre(),l11);
+        hashTable.insertar(l1.getNombre(),l1);
         
         hashTable.eliminar(1);
         hashTable.eliminar(4);

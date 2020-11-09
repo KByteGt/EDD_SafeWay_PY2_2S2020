@@ -522,7 +522,13 @@ public class AdminInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_reporte_viajesActionPerformed
 
     private void btn_reporte_tablahashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reporte_tablahashActionPerformed
-        // TODO add your handling code here:
+        
+        //Mostrar reporte de lugares tabla hash
+        if(!placeController.viewPlacesHashTable()){
+          JOptionPane.showMessageDialog(this, "No hay lugares registrados", "Hash Table", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Abrindo PDF", "Hash Table", JOptionPane.PLAIN_MESSAGE);
+        }
     }//GEN-LAST:event_btn_reporte_tablahashActionPerformed
 
     private void btn_json_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_json_usuariosActionPerformed
@@ -549,11 +555,11 @@ public class AdminInterface extends javax.swing.JFrame {
         
         if(selection == JFileChooser.APPROVE_OPTION){
             
-            int request = userController.loadUsers(fileChooser.getSelectedFile());
+            int request = placeController.loadPlaces(fileChooser.getSelectedFile());
             if( request >= 0){
-                JOptionPane.showMessageDialog(this, request + " usuarios cargados con éxito", "JSON Usuarios", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(this, request + " lugares cargados con éxito", "JSON Lugares", JOptionPane.PLAIN_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "No se pudo cargar el JSON", "JSON Usuarios", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se pudo cargar el JSON", "JSON Lugares", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btn_json_lugaresActionPerformed
