@@ -220,27 +220,27 @@ public class EDD_SafeWay {
         Tree<Integer, Integer> arbol = new Tree(5);
         
         
-        arbol.insertar(10, 10);
-        arbol.insertar(20, 20);
-        arbol.insertar(5, 5);
-        arbol.insertar(6, 6);
-        arbol.insertar(12, 12);
-        arbol.insertar(30, 30);
-        arbol.insertar(7, 7);
-        arbol.insertar(17, 17);
-        arbol.insertar(25, 25);
-        arbol.insertar(11, 11);
+        arbol.insertar(10, 10, "Nodo");
+        arbol.insertar(20, 20, "Nodo");
+        arbol.insertar(5, 5, "Nodo");
+        arbol.insertar(6, 6, "Nodo");
+        arbol.insertar(12, 12, "Nodo");
+        arbol.insertar(30, 30, "Nodo");
+        arbol.insertar(7, 7, "Nodo");
+        arbol.insertar(17, 17, "Nodo");
+        arbol.insertar(25, 25, "Nodo");
+        arbol.insertar(11, 11, "Nodo");
         
-        arbol.insertar(1, 1);
-        arbol.insertar(2, 2);
-        arbol.insertar(3, 3);
-        arbol.insertar(40, 40);
-        arbol.insertar(31, 31);
-        arbol.insertar(13, 13);
+        arbol.insertar(1, 1, "Nodo");
+        arbol.insertar(2, 2, "Nodo");
+        arbol.insertar(3, 3, "Nodo");
+        arbol.insertar(40, 40, "Nodo");
+        arbol.insertar(31, 31, "Nodo");
+        arbol.insertar(13, 13, "Nodo");
         
-        arbol.insertar(8, 8);
-        arbol.insertar(14, 14);
-        arbol.insertar(4, 4);
+        arbol.insertar(8, 8, "Nodo");
+        arbol.insertar(14, 14, "Nodo");
+        arbol.insertar(4, 4, "Nodo");
         
         arbol.recorrer();
         

@@ -7,9 +7,14 @@ package edd_safeway;
 
 import block_chain.Cryptography;
 import com.google.gson.Gson;
+import java.awt.Desktop;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 /**
@@ -118,18 +123,47 @@ class Controller {
     public void openPDF(){
         if(!pdfPath.isEmpty()){
             try {
-                String[] cmd = new String[4];
-                cmd[0] = "rundll32";
-                cmd[1] = "url.dll";
-                cmd[2] = "FileProtocolHandler";
-                cmd[3] = pdfPath;
+//                String[] cmd = new String[4];
+//                cmd[0] = "rundll32";
+//                cmd[1] = "url.dll";
+//                cmd[2] = "FileProtocolHandler";
+//                cmd[3] = pdfPath;
+//                
+//                Runtime rt = Runtime.getRuntime();
+//                rt.exec(cmd);
                 
-                Runtime rt = Runtime.getRuntime();
-                rt.exec(cmd);
+                File file = new File(pdfPath);
+                Desktop.getDesktop().open(file);
             } catch (Exception e) {
                 System.out.println(" | **Error:[03] ");
                 e.printStackTrace();
             }
         }
+    }
+    
+    public String getJson(File file){
+        String j = "";
+        
+        FileInputStream is = null;
+        InputStreamReader sr = null;
+        BufferedReader br = null;
+
+        try {
+            is = new FileInputStream(file);
+            sr = new InputStreamReader(is, "UTF-8");
+            br = new BufferedReader(sr, 8);
+            
+            //Lectura del fichero
+            String line;
+            while((line = br.readLine()) != null)
+                j += line;
+            
+            is.close();
+            
+        } catch (Exception e) {
+            System.out.println(" | **Error [04]: "+e);
+        }
+        
+        return j;
     }
 }

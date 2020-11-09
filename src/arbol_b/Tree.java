@@ -5,6 +5,8 @@
  */
 package arbol_b;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author JOSED
@@ -12,6 +14,7 @@ package arbol_b;
  * @param <V>
  */
 public class Tree<T extends Comparable<T>,V> {
+
     private final int grado;
     private Page raiz;
     
@@ -27,8 +30,8 @@ public class Tree<T extends Comparable<T>,V> {
      * Método de insertar
      */
     
-    public void insertar(T llave, V valor){
-        Key newKey = new Key(llave, valor);
+    public void insertar(T llave, V valor, String nombre){
+        Key newKey = new Key(llave, valor, nombre);
         
         //Si el árbol está vacio
         if(isEmpty()){
@@ -78,10 +81,11 @@ public class Tree<T extends Comparable<T>,V> {
     }
     
     public Key buscar(T llave){
-        Key k = new Key(llave, null);
+        Key k = new Key(llave, null, "");
         
         return (isEmpty()) ? null : this.raiz.buscar(k);
     }
+
     
     /*
      * Método para obtener el dot

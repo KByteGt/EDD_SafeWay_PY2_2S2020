@@ -434,7 +434,7 @@ class Page {
         
         g += "\nnode"+keys[0].hashCode()+" [label=\"";
         for (j = 0; j < this.size; j++) {
-            g += "<f"+j+"> |["+this.keys[j].getStringKey()+"]|";
+            g += "<f"+j+"> |["+this.keys[j].getStringKey()+"] " + this.keys[j].getNombre() + "|";
         }
         g += "<f"+j+">\"];\n";
         

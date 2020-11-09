@@ -27,11 +27,14 @@ public class Key <T extends Comparable<T>, V> implements Comparable {
     private Page derecha;       //Puntero a página
     private Page izquierda;     //Puntero a página
     
-    public Key(T key, V valor){
+    private String nombre;
+    
+    public Key(T key, V valor, String nombre){
         this.key = key;
         this.valor = valor;
         this.derecha = null;
         this.izquierda = null;
+        this.nombre = nombre;
     }
     
     @Override
@@ -54,6 +57,7 @@ public class Key <T extends Comparable<T>, V> implements Comparable {
         try {
             String s = key.toString();
             String v = valor.toString();
+            
             System.out.println(" -> Key: " + s + " Valor("+ v + ");");
         } catch (Exception e) {
             System.out.println(" Error al castear la key a string");
@@ -100,4 +104,14 @@ public class Key <T extends Comparable<T>, V> implements Comparable {
             return "Error";
         }
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
 }

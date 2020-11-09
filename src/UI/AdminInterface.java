@@ -7,6 +7,7 @@ package UI;
 
 import edd_safeway.UserController;
 import edd_safeway.Usuario;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -500,7 +501,13 @@ public class AdminInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_reporte_usuariosActionPerformed
 
     private void btn_reporte_conductoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reporte_conductoresActionPerformed
-        // TODO add your handling code here:
+        
+        //Mostrar reporte de conductores árbol B
+        if(!userController.viewDriverTree()){
+           JOptionPane.showMessageDialog(this, "No hay usuarios registrados", "B tree Drivers", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Abrindo PDF", "B tree Drivers", JOptionPane.PLAIN_MESSAGE);
+        }
     }//GEN-LAST:event_btn_reporte_conductoresActionPerformed
 
     private void btn_reporte_facturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reporte_facturasActionPerformed
@@ -516,11 +523,36 @@ public class AdminInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_reporte_tablahashActionPerformed
 
     private void btn_json_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_json_usuariosActionPerformed
-        // TODO add your handling code here:
+        
+        //Cargar archivo JSON de Usuarios
+        JFileChooser fileChooser = new JFileChooser();
+        int selection = fileChooser.showOpenDialog(this);
+        
+        if(selection == JFileChooser.APPROVE_OPTION){
+            int request = userController.loadUsers(fileChooser.getSelectedFile());
+            if( request >= 0){
+                JOptionPane.showMessageDialog(this, request + " usuarios cargados con éxito", "JSON Usuarios", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo cargar el JSON", "JSON Usuarios", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btn_json_usuariosActionPerformed
 
     private void btn_json_lugaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_json_lugaresActionPerformed
-        // TODO add your handling code here:
+        
+        //Cargar archivo JSON de Lugares
+        JFileChooser fileChooser = new JFileChooser();
+        int selection = fileChooser.showOpenDialog(this);
+        
+        if(selection == JFileChooser.APPROVE_OPTION){
+            
+            int request = userController.loadUsers(fileChooser.getSelectedFile());
+            if( request >= 0){
+                JOptionPane.showMessageDialog(this, request + " usuarios cargados con éxito", "JSON Usuarios", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo cargar el JSON", "JSON Usuarios", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btn_json_lugaresActionPerformed
 
     private void btn_json_conexionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_json_conexionesActionPerformed
@@ -540,7 +572,17 @@ public class AdminInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_colocarTiempoActionPerformed
 
     private void btn_nuevaRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevaRutaActionPerformed
-        // TODO add your handling code here:
+        
+        //Obtener Ruta para la nueva carpeta
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Seleccionar carpeta para guardar los datos del programa");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+        
+        if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+            
+            System.out.println(" | > Directorio raiz cambiado a: " + chooser.getSelectedFile().getPath());
+        }
     }//GEN-LAST:event_btn_nuevaRutaActionPerformed
 
     private void label_ver_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_ver_usuariosMouseClicked
