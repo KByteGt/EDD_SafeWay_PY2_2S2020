@@ -20,12 +20,14 @@ public class PlaceController extends Controller{
     private TablaHash lugares;
     
     private static PlaceController placeController;
+    private UserController userController;
     
     private int indexPlace = 0;
     
     private PlaceController(){
         //Constructor
         lugares = new TablaHash(11);
+        userController = UserController.getInstance();
     }
     
     public static PlaceController getInstance(){
@@ -97,4 +99,72 @@ public class PlaceController extends Controller{
         return i;
     }
     
+    public int loadUsersLocation(File file){
+        //Cargar las ubicaciones de los usuarios
+        String gson = getJson(file);
+        int i = -1;
+        
+        if(!gson.isEmpty()){
+            i = 0;
+            
+            JsonElement element = json.fromJson(gson, JsonElement.class);
+            JsonObject obj = element.getAsJsonObject();
+            
+            JsonArray locations = obj.getAsJsonArray("localidades");
+            if(locations != null){
+                System.out.println(" T - Cargando localidades...");
+                for(JsonElement location_obj : locations){
+                    JsonObject location = location_obj.getAsJsonObject();
+                    
+                    if(location != null){
+                        int id_user = location.get("id_usuario").getAsInt();
+                        String name = location.get("nombre").getAsString();
+                        
+                        //Relacionar lugar con usuario
+                        Lugar tempPlace = (Lugar) lugares.buscar(name).getValor();
+                        
+                        userController.updateUserLocation(id_user, tempPlace.getLatitud(), tempPlace.getLongitud());
+                        i++;
+                    }
+                }
+            }
+        }
+        
+        return i;
+    }
+    
+    public int loadDriversLocation(File file){
+        //Cargar las ubicaciones de los conductores
+        String gson = getJson(file);
+        int i = -1;
+        
+        if(!gson.isEmpty()){
+            i = 0;
+            
+            JsonElement element = json.fromJson(gson, JsonElement.class);
+            JsonObject obj = element.getAsJsonObject();
+            
+            JsonArray locations = obj.getAsJsonArray("localidades");
+            if(locations != null){
+                System.out.println(" T - Cargando localidades...");
+                for(JsonElement location_obj : locations){
+                    JsonObject location = location_obj.getAsJsonObject();
+                    
+                    if(location != null){
+                        int id_user = location.get("id_conductor").getAsInt();
+                        String name = location.get("lugar").getAsString();
+                        boolean available = location.get("disponibilidad").getAsBoolean();
+                        
+                        //Relacionar lugar con Conductor
+                        Lugar tempPlace = (Lugar) lugares.buscar(name).getValor();
+                        
+                        userController.updateDriverLocation(id_user, tempPlace.getLatitud(), tempPlace.getLongitud(), available);
+                        i++;
+                    }
+                }
+            }
+        }
+        
+        return i;
+    }
 }

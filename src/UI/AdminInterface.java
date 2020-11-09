@@ -10,6 +10,7 @@ import edd_safeway.UserController;
 import edd_safeway.Usuario;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -20,12 +21,15 @@ public class AdminInterface extends javax.swing.JFrame {
     private Usuario user;
     private UserController userController;
     private PlaceController placeController;
+    
+    private FileNameExtensionFilter jsonFilter;
 
     /**
      * Creates new form AdminInterface
      */
     public AdminInterface() {
         initComponents();
+        jsonFilter = new FileNameExtensionFilter("JSON","json");
         
         this.userController = UserController.getInstance();
         this.placeController = PlaceController.getInstance();
@@ -535,6 +539,8 @@ public class AdminInterface extends javax.swing.JFrame {
         
         //Cargar archivo JSON de Usuarios
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("abrir archivo JSON");
+        fileChooser.setFileFilter(jsonFilter);
         int selection = fileChooser.showOpenDialog(this);
         
         if(selection == JFileChooser.APPROVE_OPTION){
@@ -551,6 +557,8 @@ public class AdminInterface extends javax.swing.JFrame {
         
         //Cargar archivo JSON de Lugares
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("abrir archivo JSON");
+        fileChooser.setFileFilter(jsonFilter);
         int selection = fileChooser.showOpenDialog(this);
         
         if(selection == JFileChooser.APPROVE_OPTION){
@@ -569,11 +577,42 @@ public class AdminInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_json_conexionesActionPerformed
 
     private void btn_json_ubicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_json_ubicacionesActionPerformed
-        // TODO add your handling code here:
+        
+        //Cargar archivo JSON de ubicaciones de usuario
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("abrir archivo JSON");
+        fileChooser.setFileFilter(jsonFilter);
+        int selection = fileChooser.showOpenDialog(this);
+        
+        if(selection == JFileChooser.APPROVE_OPTION){
+            
+            int request = placeController.loadUsersLocation(fileChooser.getSelectedFile());
+            if( request >= 0){
+                JOptionPane.showMessageDialog(this, request + " usuarios actualizados con éxito", "JSON Localidades", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar ningun usuario al cargar el JSON", "JSON Localidades", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btn_json_ubicacionesActionPerformed
 
     private void btn_json_localidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_json_localidadesActionPerformed
-        // TODO add your handling code here:
+        
+        //Cargar archivo JSON de ubicaciones de usuario
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("abrir archivo JSON");
+        fileChooser.setFileFilter(jsonFilter);
+        int selection = fileChooser.showOpenDialog(this);
+        
+        if(selection == JFileChooser.APPROVE_OPTION){
+            
+            int request = placeController.loadDriversLocation(fileChooser.getSelectedFile());
+            if( request >= 0){
+                JOptionPane.showMessageDialog(this, request + " conductores actualizados con éxito", "JSON Localidades", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar ningun conductor al cargar el JSON", "JSON Localidades", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
     }//GEN-LAST:event_btn_json_localidadesActionPerformed
 
     private void btn_colocarTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_colocarTiempoActionPerformed

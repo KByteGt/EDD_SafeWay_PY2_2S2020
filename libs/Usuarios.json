@@ -1,7 +1,7 @@
 {
 	"usuarios":[
   {
-	 "id":24,
+	 "id":1,
 	 "nombre":"Bruno Wayne",
 	 "usuario":"batman",
 	 "correo":"batman@gmail.com",
@@ -10,11 +10,20 @@
 	 "rol":"conductor"
   },
   {
-	 "id":25,
+	 "id":2,
 	 "nombre":"Michael Schumacher",
 	 "usuario":"mschumacher",
 	 "correo":"mschumacher@gmail.com",
 	 "pass":"schumacher",
+	 "telefono":"20201921",
+	 "rol":"conductor"
+  },
+  {
+	 "id":3,
+	 "nombre":"José Lopez",
+	 "usuario":"kbyte",
+	 "correo":"kbyte.gt@gmail.com",
+	 "pass":"123456",
 	 "telefono":"20201921",
 	 "rol":"conductor"
   },
@@ -33,6 +42,33 @@
 	 "usuario":"spiderman",
 	 "correo":"spiderman@gmail.com",
 	 "pass":"spiderman",
+	 "telefono":"20201921",
+	 "rol":"normal"
+  },
+  {
+	 "id":3,
+	 "nombre":"José López",
+	 "usuario":"kbyte",
+	 "correo":"j.lopez@gmail.com",
+	 "pass":"123456",
+	 "telefono":"20201921",
+	 "rol":"normal"
+  },
+  {
+	 "id":4,
+	 "nombre":"Lol",
+	 "usuario":"lolsito123",
+	 "correo":"lolsito123@gmail.com",
+	 "pass":"password",
+	 "telefono":"20201921",
+	 "rol":"normal"
+  },
+  {
+	 "id":5,
+	 "nombre":"Maria Perez",
+	 "usuario":"gatita21",
+	 "correo":"gatita21@gmail.com",
+	 "pass":"password",
 	 "telefono":"20201921",
 	 "rol":"normal"
   }

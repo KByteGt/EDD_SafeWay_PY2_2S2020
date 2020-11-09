@@ -85,6 +85,7 @@ public class UserController extends Controller {
         //Buscar usuario en la tabla de referencia de usuarios por id
         int index = -1;
         for(Nodo n : authUsers){
+//            System.out.println(" -> ["+n.getId()+"] "+n.getUsername());
             if(n.getUsername().equals(nombre)){
                 index = n.getId();
                 break;
@@ -255,6 +256,7 @@ public class UserController extends Controller {
 
                         String password = cryp.sha256(pass);
 
+                        System.out.println(" - Insertando usuario: " + username);
                         //Insertar segun rol
                         if(rol.equals("conductor")){
                             //Insertar en conductor
@@ -304,5 +306,43 @@ public class UserController extends Controller {
         authDrivers.add(new Nodo(id, name));
     }
     
+    public void updateUserLocation(int id, double latitud, double longitud){
+        if(id > 0){
+            //Buscar y retornar el key
+            Key key = usuarios.buscar(id);
+
+            if(key != null){
+                //Existe usuario
+                Usuario tempUser = (Usuario) key.getValor();
+                tempUser.setLatitud(latitud);
+                tempUser.setLongitud(longitud);
+                
+                key.setValor(tempUser);
+                System.out.println(" | > Se actualizo la ubicación del usuario: "+ tempUser.getNombre());
+            } else {
+                System.out.println(" | **No se actualizo la ubicación del usuario");
+            }
+        } 
+    }
+    
+    public void updateDriverLocation(int id, double latitud, double longitud, boolean available){
+        if(id > 0){
+            //Buscar y retornar el key
+            Key key = conductores.buscar(id);
+
+            if(key != null){
+                //Existe usuario
+                Conductor tempUser = (Conductor) key.getValor();
+                tempUser.setLatitud(latitud);
+                tempUser.setLongitud(longitud);
+                tempUser.setDisponibilidad(available);
+                
+                key.setValor(tempUser);
+                System.out.println(" | > Se actualizo la ubicación del conductor: "+ tempUser.getNombre());
+            } else {
+                System.out.println(" | **No se actualizo la ubicación del conductor");
+            }
+        }
+    }
     
 }

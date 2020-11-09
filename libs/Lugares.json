@@ -20,14 +20,20 @@
       "Nombre": "Gasolinera puma quetzal",
       "Lat": 14.536,
       "Lon": -90.5868
-    }
-    ,
+    },
     {
       "id": 301,
       "Categoria": "Gasolinera",
-      "Nombre": "Gasolinera puma quetzal2",
+      "Nombre": "El naranjito",
       "Lat": 14.536,
-      "Lon": -90.5868
+      "Lon": -90.5867
+    },
+    {
+      "id": 301,
+      "Categoria": "Casa",
+      "Nombre": "Casa",
+      "Lat": 14.535,
+      "Lon": -90.5867
     }
   ]
 }
