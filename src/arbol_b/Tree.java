@@ -70,6 +70,20 @@ public class Tree<T extends Comparable<T>,V> {
      * Método para eliminar
      */
     
+    public ArrayList<Key> eliminar(T llave){
+        Key k = new Key(llave, null, "");
+        if(!isEmpty()){
+            
+            ArrayList<Key> lista = new ArrayList();
+            //Llenar lista
+            this.raiz.llenarLista(k,lista);
+            
+            return lista;
+            
+        } else {
+            return null;
+        }
+    }
     /*
      * Método para recorrer
      */

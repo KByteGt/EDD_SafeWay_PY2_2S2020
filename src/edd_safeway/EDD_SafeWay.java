@@ -15,6 +15,7 @@ import block_chain.Nodo;
 import block_chain.Zip;
 import com.google.gson.Gson;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.zip.DataFormatException;
 import tabla_hash.TablaHash;
 /**
@@ -35,6 +36,7 @@ public class EDD_SafeWay {
         logIn.setVisible(true);
 
 //        hashTable();
+//        b_tree();
     }
     
     public static void jsonNodo() throws UnsupportedEncodingException, DataFormatException{
@@ -171,16 +173,24 @@ public class EDD_SafeWay {
         
         arbol.recorrer();
         
-        System.out.println("Buscando en el árbol");
-        Key temp = arbol.buscar(14);
+        System.out.println(" ---");
         
-        if (temp != null) {
-            System.out.println("Key: " + temp.getKey());
-        } else {
-            System.out.println("No se encontro la key");
+//        System.out.println("Eliminar id 14");
+        ArrayList<Key> lista = arbol.eliminar(14);
+        
+        if(!lista.isEmpty()){
+            Tree<Integer,Integer> newTree = new Tree(5);
+            
+            for(Key k : lista){
+                newTree.insertar((Integer) k.getKey() , (Integer) k.getValor(), k.getNombre());
+            }
+            
+            arbol = newTree;
+            //newTree.recorrer();
         }
         
 //        System.out.println(arbol.getGraphviz("Prueba"));
+ arbol.recorrer();
         
     }
     

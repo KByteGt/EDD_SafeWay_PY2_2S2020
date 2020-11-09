@@ -69,11 +69,12 @@ public class LogIn extends javax.swing.JFrame{
 
         jLabel2.setText("Usuario:");
 
-        user_field.setText("User");
+        user_field.setText("marvin");
 
         jLabel3.setText("Contraseña:");
 
-        password_field.setText("Password");
+        password_field.setText("admin");
+        password_field.setToolTipText("");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de usuario"));
 

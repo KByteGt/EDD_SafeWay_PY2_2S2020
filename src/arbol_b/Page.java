@@ -5,6 +5,8 @@
  */
 package arbol_b;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author JOSED
@@ -224,53 +226,54 @@ class Page {
     
     //Eliminar Key k del subárbol del nodo actual
     public void eliminar(Key k){
-        //-1 tomar ruta izquierda 0 : tomar ruta derecha de idx
-        int idx = findKey(k); 
         
-        
-        if(idx < 0){
-            //Buscar en el subárbol izquierdo
-            if(isHoja()){
-                //NO existe 
-                System.out.println(" La clave K<< "+ k.getKey().toString() + ">> no existe");
-
-            }else {
-                keys[0].getIzquierda().eliminar(k);
-            }
-        } else {
-            //Verificar si el elemento a eliminar está en el nodo
-            if(idx < size && keys[idx].compareTo(k.getKey()) == 0){
-                if(isHoja()){
-                    //Es un nodo hoja, llamar a removeFromLeaf()
-                    eliminarDeHoja(idx);
-                } else{
-                    //No es un nodo hoja, llamar a removeFromNoLeaf()
-                    eliminarDeNoHoja(idx);
-                }
-            } else {
-                //Buscar en el subárbol derecho
-                if(isHoja()){
-                    //NO existe 
-                    System.out.println(" La clave K<< "+ k.getKey().toString() + ">> no existe");
-                    
-                }else {
-                    //La key está presente en el sub árbol derecho
-                    boolean flag = ( (idx == size -1)? true : false);
-                    
-                    if(keys[idx].getDerecha().getSize() < (grado / 2)){
-                        //Llenar keys[idx]
-                        llenar(idx);
-                    }
-                    
-                    //Despues de reordenar validar pos
-                    if(flag && idx > size){
-                        keys[idx -1].getDerecha().eliminar(k);
-                    } else {
-                        keys[idx].getDerecha().eliminar(k);
-                    }
-                }
-            }
-        }
+//        //-1 tomar ruta izquierda 0 : tomar ruta derecha de idx
+//        int idx = findKey(k); 
+//        
+//        
+//        if(idx < 0){
+//            //Buscar en el subárbol izquierdo
+//            if(isHoja()){
+//                //NO existe 
+//                System.out.println(" La clave K<< "+ k.getKey().toString() + ">> no existe");
+//
+//            }else {
+//                keys[0].getIzquierda().eliminar(k);
+//            }
+//        } else {
+//            //Verificar si el elemento a eliminar está en el nodo
+//            if(idx < size && keys[idx].compareTo(k.getKey()) == 0){
+//                if(isHoja()){
+//                    //Es un nodo hoja, llamar a removeFromLeaf()
+//                    eliminarDeHoja(idx);
+//                } else{
+//                    //No es un nodo hoja, llamar a removeFromNoLeaf()
+//                    eliminarDeNoHoja(idx);
+//                }
+//            } else {
+//                //Buscar en el subárbol derecho
+//                if(isHoja()){
+//                    //NO existe 
+//                    System.out.println(" La clave K<< "+ k.getKey().toString() + ">> no existe");
+//                    
+//                }else {
+//                    //La key está presente en el sub árbol derecho
+//                    boolean flag = ( (idx == size -1)? true : false);
+//                    
+//                    if(keys[idx].getDerecha().getSize() < (grado / 2)){
+//                        //Llenar keys[idx]
+//                        llenar(idx);
+//                    }
+//                    
+//                    //Despues de reordenar validar pos
+//                    if(flag && idx > size){
+//                        keys[idx -1].getDerecha().eliminar(k);
+//                    } else {
+//                        keys[idx].getDerecha().eliminar(k);
+//                    }
+//                }
+//            }
+//        }
         
     }
     
@@ -450,5 +453,24 @@ class Page {
         }
         
         return g;
+    }
+
+    public void llenarLista(Key k, ArrayList lista) {
+        int i;
+        
+        for(i = 0; i < size; i++){
+            if(!isHoja()){
+                keys[i].getIzquierda().llenarLista(k,lista);
+            }
+            
+            if(keys[i].compareTo(k.getKey()) != 0){
+                //Insertar
+                lista.add(keys[i]);
+            }
+        }
+        
+        if(!isHoja()){
+            keys[size - 1].getDerecha().llenarLista(k, lista);
+        }
     }
 }

@@ -45,7 +45,7 @@ public class UserController extends Controller {
     private ArrayList<Nodo> authDrivers;
     
     private static Tree<Integer,Usuario> usuarios;
-    private static Tree<Integer,Usuario> conductores;
+    private static Tree<Integer,Conductor> conductores;
     
     private final Usuario admin = new Usuario();
     private static UserController userController;
@@ -345,4 +345,36 @@ public class UserController extends Controller {
         }
     }
     
+    
+    public void deleteUser(int id){
+        ArrayList<Key> lista = usuarios.eliminar(id);
+        
+        if(!lista.isEmpty()){
+            System.out.println(" | > Eliminando usuario");
+            Tree<Integer,Usuario> newTree = new Tree(5);
+            
+            for(Key k : lista){
+                newTree.insertar((Integer) k.getKey() , (Usuario) k.getValor(), k.getNombre());
+            }
+            
+            usuarios = newTree;
+            //newTree.recorrer();
+        }
+    }
+    
+    public void deleteDriver(int id){
+        ArrayList<Key> lista = conductores.eliminar(id);
+        
+        if(!lista.isEmpty()){
+            System.out.println(" | > Eliminando conductor");
+            Tree<Integer,Conductor> newTree = new Tree(5);
+            
+            for(Key k : lista){
+                newTree.insertar((Integer) k.getKey() , (Conductor) k.getValor(), k.getNombre());
+            }
+            
+            conductores = newTree;
+            //newTree.recorrer();
+        }
+    }
 }
