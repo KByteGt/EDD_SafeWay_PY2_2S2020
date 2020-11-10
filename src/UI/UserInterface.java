@@ -34,7 +34,7 @@ public class UserInterface extends javax.swing.JFrame {
         this.user = null;
         
         this.label_usuario.setText("");
-        this.Label_loading.setText("");
+        this.label_loading.setText("");
         
         placeList = placeController.getPlaces();
         //Colocar lugares
@@ -83,7 +83,7 @@ public class UserInterface extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         select_place = new javax.swing.JComboBox<>();
         btn_calculate = new javax.swing.JButton();
-        Label_loading = new javax.swing.JLabel();
+        label_loading = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(698, 450));
@@ -235,7 +235,7 @@ public class UserInterface extends javax.swing.JFrame {
             }
         });
 
-        Label_loading.setText("Calculando ruta . . .");
+        label_loading.setText("Calculando ruta . . .");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -256,7 +256,7 @@ public class UserInterface extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(Label_loading, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(label_loading, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -277,7 +277,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btn_calculate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Label_loading)
+                .addComponent(label_loading)
                 .addContainerGap())
         );
 
@@ -405,7 +405,17 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btn_calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calculateActionPerformed
-        // TODO add your handling code here:
+        
+        
+        //Btn calcular ruta
+        label_loading.setText(" Cargando");
+        
+        //Obtener el lugar seleccionado
+        String place_f = select_place.getSelectedItem().toString();
+        
+        System.out.println(" ** Ruta ->");
+        System.out.println(" ["+user.getPlace()+ " -> " + place_f + "]");
+        
     }//GEN-LAST:event_btn_calculateActionPerformed
 
     /**
@@ -444,7 +454,6 @@ public class UserInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Label_loading;
     private javax.swing.JButton btn_calculate;
     private javax.swing.JButton btn_delete_account;
     private javax.swing.JButton btn_new_password;
@@ -460,6 +469,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel label_coordinate;
+    private javax.swing.JLabel label_loading;
     private javax.swing.JLabel label_place;
     private javax.swing.JLabel label_salir;
     private javax.swing.JLabel label_usuario;
