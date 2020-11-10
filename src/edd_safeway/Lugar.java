@@ -62,8 +62,4 @@ public class Lugar {
         
         return g;
     }
-    
-    public void cargarJSON(){
-        
-    }
 }

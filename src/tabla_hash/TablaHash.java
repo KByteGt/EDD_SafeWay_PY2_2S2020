@@ -204,7 +204,7 @@ public class TablaHash {
         return g;
     }
     
-    public ArrayList getPlaceList(){
+    public ArrayList<Lugar> getPlaceList(){
         ArrayList<Lugar> list = new ArrayList();
         
         for (int i = 0; i < size; i++) {

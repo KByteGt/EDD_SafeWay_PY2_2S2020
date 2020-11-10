@@ -169,7 +169,7 @@ public class PlaceController extends Controller{
         return i;
     }
     
-    public ArrayList getPlaces(){
+    public ArrayList<Lugar> getPlaces(){
         
         if(lugares.getPlaceList().isEmpty()){
             return null;

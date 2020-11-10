@@ -17,7 +17,7 @@ public class Usuario {
     
     private String place;
     
-    private ArrayList<Integer> travelList;
+    private ArrayList<Integer> invoiceList;
     
     //Construcotes
     
@@ -30,7 +30,7 @@ public class Usuario {
         this.telefono = "";
         this.latitud = 0.0;
         this.longitud = 0.0;
-        this.travelList = new ArrayList();
+        this.invoiceList = new ArrayList();
         this.place = "";
     }
 
@@ -43,7 +43,7 @@ public class Usuario {
         this.telefono = telefono;
         this.latitud = latitud;
         this.longitud = longitud;
-        this.travelList = new ArrayList();
+        this.invoiceList = new ArrayList();
         this.place = "";
     }
     
@@ -113,12 +113,12 @@ public class Usuario {
         this.longitud = longitud;
     }
     
-    public void addTravelId(int id){
-        this.travelList.add(id);
+    public void addInvoiceId(int id){
+        this.invoiceList.add(id);
     }
     
-    public ArrayList getTravelList(){
-        return this.travelList;
+    public ArrayList getInvoiceList(){
+        return this.invoiceList;
     }
 
     public String getPlace() {

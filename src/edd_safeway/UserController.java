@@ -379,4 +379,51 @@ public class UserController extends Controller {
             //newTree.recorrer();
         }
     }
+    
+    public void updateUserInfo(int id, String name, String phone){
+        //Buscar usuario
+        Key key = usuarios.buscar(id);
+
+        if(key != null){
+            //Existe usuario
+            Usuario tempUser = (Usuario) key.getValor();
+            tempUser.setNombre(name);
+            tempUser.setTelefono(phone);
+            
+            key.setValor(tempUser);
+        } 
+    }
+    
+    public void updateUserPassword(int id, String password){
+        //Buscar usuario
+        Key key = usuarios.buscar(id);
+        String encryptedPassword = cryp.sha256(password);
+
+        if(key != null){
+            //Existe usuario
+            Usuario tempUser = (Usuario) key.getValor();
+            tempUser.setContraseña(encryptedPassword);
+            
+            key.setValor(tempUser);
+        }
+    }
+    
+    //Travel information
+    public ArrayList getInvoiceList(int id){
+        Key key = usuarios.buscar(id);
+        
+        if(key != null){
+            //Buscamos la lista
+            Usuario tempUser = (Usuario) key.getValor();
+            ArrayList list = tempUser.getInvoiceList();
+            
+            if(!list.isEmpty()){
+                return list;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
 }

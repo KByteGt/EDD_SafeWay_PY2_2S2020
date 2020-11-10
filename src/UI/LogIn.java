@@ -212,6 +212,12 @@ public class LogIn extends javax.swing.JFrame{
                 
                 if(user != null){
                     System.out.println(" | > Launching user interface...");
+                    
+                    UserInterface ui = new UserInterface();
+                    ui.setUser(user);
+                    ui.setVisible(true);
+                    
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "LogIn", JOptionPane.WARNING_MESSAGE);
                 }
