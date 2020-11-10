@@ -396,9 +396,13 @@ public class UserInterface extends javax.swing.JFrame {
         //Ver Historial de viajes
         //Mostrar un frame con una tabla de información 
         // a detalle del invoce y travel
-        ArrayList list = userController.getInvoiceList(user.getId());
+        ArrayList list = userController.getUserInvoiceList(user.getId());
         if(list != null){
             //Launch table
+            TravelHistory table = new TravelHistory();
+            table.updateTable(list, true);
+            table.setUser(user.getUsuario());
+            table.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "No tienens ningún viaje por el momento...");
         }

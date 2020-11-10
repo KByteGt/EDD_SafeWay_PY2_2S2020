@@ -5,6 +5,7 @@
  */
 package edd_safeway;
 
+import arbol_b.Key;
 import arbol_b.Tree;
 
 /**
@@ -37,4 +38,16 @@ public class InvoiceController extends Controller{
         facturas.insertar(indexInvoice, newInvoice, "Q"+total);
         indexInvoice++;
     }
+    
+    public Invoice searchInvoice(int id){
+        
+        Key key = facturas.buscar(id);
+        if( key != null){
+            return (Invoice) key.getValor();
+        } else {
+            return null;
+        }
+       
+    }
+    
 }

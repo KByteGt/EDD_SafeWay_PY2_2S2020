@@ -409,7 +409,7 @@ public class UserController extends Controller {
     }
     
     //Travel information
-    public ArrayList getInvoiceList(int id){
+    public ArrayList getUserInvoiceList(int id){
         Key key = usuarios.buscar(id);
         
         if(key != null){
@@ -424,6 +424,76 @@ public class UserController extends Controller {
             }
         } else {
             return null;
+        }
+    }
+    
+    public ArrayList getDriverInvoiceList(int id){
+        Key key = conductores.buscar(id);
+        
+        if(key != null){
+            //Buscamos la lista
+            Conductor tempUser = (Conductor) key.getValor();
+            ArrayList list = tempUser.getInvoiceList();
+            
+            if(!list.isEmpty()){
+                return list;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+    
+    //Agregar invoice
+    public void addUserInvoice(int user, int invoice){
+        //Buscar y almacenar el invoice
+        Key key = usuarios.buscar(user);
+
+        if(key != null){
+            //Existe usuario
+            Usuario temp = (Usuario) key.getValor();
+            temp.addInvoiceId(invoice);
+            key.setValor(temp);
+        } 
+    }
+    
+    public void addDriverInvoice(int user, int invoice){
+        //Buscar y almacenar el invoice
+        Key key = conductores.buscar(user);
+
+        if(key != null){
+            //Existe usuario
+            Conductor temp = (Conductor) key.getValor();
+            temp.addInvoiceId(invoice);
+            key.setValor(temp);
+        } 
+    }
+    
+    public String getUserName(int index){
+
+        //Buscar y retornar el key
+        Key key = usuarios.buscar(index);
+
+        if(key != null){
+            //Existe usuario
+            Usuario temp = (Usuario) key.getValor();
+            return temp.getNombre();
+        } else {
+            return "";
+        }
+    }
+    
+    public String getDriverName(int index){
+        //Buscar y retornar el key
+        Key key = usuarios.buscar(index);
+
+        if(key != null){
+            //Existe usuario
+            Conductor temp = (Conductor) key.getValor();
+            return temp.getNombre();
+        } else {
+            return "";
         }
     }
 }
