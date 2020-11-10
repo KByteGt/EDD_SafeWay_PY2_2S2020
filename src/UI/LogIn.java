@@ -227,6 +227,12 @@ public class LogIn extends javax.swing.JFrame{
                 
                 if(driver != null){
                      System.out.println(" | > Launching driver interface...");
+                     
+                     DriverInterface ui = new DriverInterface();
+                     ui.setUser(driver);
+                     ui.setVisible(true);
+                     
+                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectas", "LogIn", JOptionPane.WARNING_MESSAGE);
                 }

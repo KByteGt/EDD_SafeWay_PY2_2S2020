@@ -111,7 +111,7 @@ public class UserController extends Controller {
 
         //Buscar usuario en la tabla de referencia de usuarios por id
         int index = -1;
-        for(Nodo n : authUsers){
+        for(Nodo n : authDrivers){
             if(n.getUsername().equals(nombre)){
                 index = n.getId();
                 break;
@@ -394,6 +394,20 @@ public class UserController extends Controller {
         } 
     }
     
+    public void updateDriverInfo(int id, String name, String phone){
+        //Buscar usuario
+        Key key = conductores.buscar(id);
+
+        if(key != null){
+            //Existe usuario
+            Conductor tempUser = (Conductor) key.getValor();
+            tempUser.setNombre(name);
+            tempUser.setTelefono(phone);
+            
+            key.setValor(tempUser);
+        } 
+    }
+    
     public void updateUserPassword(int id, String password){
         //Buscar usuario
         Key key = usuarios.buscar(id);
@@ -402,6 +416,20 @@ public class UserController extends Controller {
         if(key != null){
             //Existe usuario
             Usuario tempUser = (Usuario) key.getValor();
+            tempUser.setContraseña(encryptedPassword);
+            
+            key.setValor(tempUser);
+        }
+    }
+    
+    public void updateDriverPassword(int id, String password){
+        //Buscar usuario
+        Key key = conductores.buscar(id);
+        String encryptedPassword = cryp.sha256(password);
+
+        if(key != null){
+            //Existe usuario
+            Conductor tempUser = (Conductor) key.getValor();
             tempUser.setContraseña(encryptedPassword);
             
             key.setValor(tempUser);

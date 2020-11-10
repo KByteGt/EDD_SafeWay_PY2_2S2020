@@ -54,7 +54,7 @@ public class LogInController extends Controller{
         if(temp != null && password.equals(temp.getContraseña())){
             //Existe el conductor
             System.out.println("Usuario: " + temp.getUsuario() + " ("+ temp.getContraseña() +")");
-            temp = temp; 
+            return temp; 
         }
 
         return null;
