@@ -503,7 +503,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
-            <Property name="text" type="java.lang.String" value="4 - Archivo de Localidades"/>
+            <Property name="text" type="java.lang.String" value="2.2 - Archivo de Localidades"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="label_ver_lugares">
@@ -545,12 +545,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel16">
           <Properties>
-            <Property name="text" type="java.lang.String" value="5 - Archivo de Conexiones"/>
+            <Property name="text" type="java.lang.String" value="3 - Archivo de Conexiones"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel18">
           <Properties>
-            <Property name="text" type="java.lang.String" value="3 - Archivo de ubicaci&#xf3;n de usuarios"/>
+            <Property name="text" type="java.lang.String" value="2.1 - Archivo de ubicaci&#xf3;n de usuarios"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="label_ver_ubicaciones">

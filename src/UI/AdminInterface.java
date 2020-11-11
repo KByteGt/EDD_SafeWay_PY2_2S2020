@@ -309,7 +309,7 @@ public class AdminInterface extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setText("4 - Archivo de Localidades");
+        jLabel12.setText("2.2 - Archivo de Localidades");
 
         label_ver_lugares.setText("Ver ejemplo de archivo");
         label_ver_lugares.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -341,9 +341,9 @@ public class AdminInterface extends javax.swing.JFrame {
             }
         });
 
-        jLabel16.setText("5 - Archivo de Conexiones");
+        jLabel16.setText("3 - Archivo de Conexiones");
 
-        jLabel18.setText("3 - Archivo de ubicación de usuarios");
+        jLabel18.setText("2.1 - Archivo de ubicación de usuarios");
 
         label_ver_ubicaciones.setText("Ver ejemplo de archivo");
         label_ver_ubicaciones.addMouseListener(new java.awt.event.MouseAdapter() {

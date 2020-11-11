@@ -7,10 +7,24 @@ package UI;
 
 import edd_safeway.GrafoController;
 import edd_safeway.InvoiceController;
+import edd_safeway.Lugar;
+import edd_safeway.PlaceController;
 import edd_safeway.TravelController;
 import edd_safeway.UserController;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.swing.JComponent;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -26,6 +40,7 @@ public class MapView extends javax.swing.JFrame {
     private TravelController travelConroller;
     private InvoiceController invoiceController;
     private UserController userController;
+    private PlaceController placeController;
     /**
      * Creates new form MapView
      */
@@ -40,6 +55,7 @@ public class MapView extends javax.swing.JFrame {
         this.travelConroller = TravelController.getInstance();
         this.invoiceController = InvoiceController.getInstance();
         this.userController = UserController.getInstance();
+        this.placeController = PlaceController.getInstance();
     }
 
     /**
@@ -51,7 +67,6 @@ public class MapView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        scrollPane = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         btn_confirmar = new javax.swing.JButton();
         label_costo = new javax.swing.JLabel();
@@ -97,7 +112,7 @@ public class MapView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label_peso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_costo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(label_costo, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_confirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -154,10 +169,6 @@ public class MapView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -168,15 +179,14 @@ public class MapView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
@@ -251,10 +261,11 @@ public class MapView extends javax.swing.JFrame {
     private javax.swing.JLabel label_costo;
     private javax.swing.JLabel label_peso;
     private javax.swing.JLabel label_ruta;
-    private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 
     public void setPuntos(String puntoA, String puntoB, int userId){
+        
+        //String pagina ="https://maps.googleapis.com/maps/api/staticmap?center=40.718217,-73.998284&zoom=13&size=600x300&maptype=roadmap8&markers=color:red%7Clabel:A%7C40.718217,-73.998284&markers=color:red%7Clabel:B%7C40.702147,-74.015794&key=AIzaSyCOgY_KsV_Bv1yOhYOdioVgLYGz-kfv654";
         this.puntoA = puntoA;
         this.puntoB = puntoB;
         this.userId = userId;
@@ -269,8 +280,8 @@ public class MapView extends javax.swing.JFrame {
         if(this.peso == Double.MAX_VALUE){
             //No se puede hacer el viaje
             this.label_ruta.setText(" **NO SE PUEDE REALIZAR EL VIAJE, NO HAY CAMINO DISPONIBLE ENTRE LOS DOS PUNTOS ");
-            this.label_costo.setText("Total: Q0.00");
-            this.label_peso.setText("Peso: infinito");
+            this.label_costo.setText("Total: Q0.00 ");
+            this.label_peso.setText("Peso: infinito oo ");
             this.btn_confirmar.setEnabled(false);
         } else {
             //Mostrar ruta
@@ -280,7 +291,69 @@ public class MapView extends javax.swing.JFrame {
             this.label_ruta.setText(ruta);
             this.label_costo.setText("Total: Q"+this.monto);
             this.label_peso.setText("Peso: "+this.peso);
+            
+            try {
+                Lugar inicio = placeController.getPlace(puntoA);
+                Lugar destino = placeController.getPlace(puntoB);
+                
+                String m_marker1, m_marker2;
+                        
+                String m_header = "https://maps.googleapis.com/maps/api/staticmap?";
+                String m_center = "center="+inicio.getLatitud()+","+inicio.getLongitud();
+                String m_options = "&zoom=15&size=900x900&maptype=roadmap8";
+                
+                if(inicio != null){
+                    m_marker1 = "&markers=color:red%7Clabel:A%"+inicio.getLatitud()+","+inicio.getLongitud();
+                } else {
+                    m_marker1 = "";
+                }
+                
+                if(destino != null){
+                    m_marker2 = "&markers=color:red%7Clabel:B%"+destino.getLatitud()+","+destino.getLongitud();
+                }else {
+                    m_marker2 = "";
+                }
+                
+                String m_key = "&key=AIzaSyCOgY_KsV_Bv1yOhYOdioVgLYGz-kfv654";
+                String txt = m_header + m_center + m_options + m_marker1 + m_marker2 + m_key;
+                
+                System.out.println("Ruta: " + txt);
+                crearMapa(txt);
+            } catch (Exception e) {
+                System.out.println("No se pudo mostrar el mapa: " + e);
+            }
+            
         }
     }
+    
+    private void crearMapa(String pagina) throws MalformedURLException, IOException{
+        //Mostrar map
 
+            URL url = new URL(pagina);
+            final ImageComponent img = new ImageComponent(url);
+            
+            JFrame frame = new JFrame("Test");
+            frame.add(new JScrollPane(img));
+
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setSize(900, 900);
+            frame.setVisible(true);
+    }
+
+}
+
+class ImageComponent extends JComponent {
+       private final BufferedImage img;
+
+       public ImageComponent(URL url) throws IOException {
+           img = ImageIO.read(url);
+           setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
+
+       }
+
+       @Override protected void paintComponent(Graphics g) {
+           super.paintComponent(g);
+           g.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), this);
+
+       }
 }
