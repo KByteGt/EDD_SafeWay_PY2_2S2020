@@ -150,6 +150,8 @@ public class GrafoController {
         String tempVertice = "";
         String menorVertice = "";
         double tempPeso = 0.0;
+        double peso = 0.0;
+        double costo = 0.0;
         
         boolean flag = true;
         
@@ -195,8 +197,6 @@ public class GrafoController {
                     tempVertice = vecino.getNameA();
                 }
                 
-                System.out.println(" |- sub vertice: " + tempVertice);
-                
                 if( !visto.get(tempVertice)){
                     //Añadimos el Vertice a la pila
                     pila.add(tempVertice);
@@ -212,9 +212,11 @@ public class GrafoController {
                     if(dt > 0 && dt < tempPeso){
                         menorVertice = tempVertice;
                         tempPeso = dt;
+                        peso = dt;
+                        costo += vecino.getCosto();
                     }
 
-                    visto.put(tempVertice, true);
+//                    visto.put(tempVertice, true);
                 }
             }
             
@@ -240,6 +242,7 @@ public class GrafoController {
         //6- Se toma como proximo punto acutla el de menor valor en el vector de distancias
         //Se almacena el valor en una cola de prioridad y se regresa al paso 3
         
+//        System.out.println(" * Peso: " + peso+", Costo: " + costo);
         return camino;
     }
     
@@ -296,7 +299,6 @@ public class GrafoController {
             //El minimo se guarda en vertice
             visto.put(vertice, true);
             vistos++;
-            System.out.println("Minimo: " + vertice);
             
             //Tomar sucesores
             for(Arista w : grafo.getVertice(vertice).getAristas()){
