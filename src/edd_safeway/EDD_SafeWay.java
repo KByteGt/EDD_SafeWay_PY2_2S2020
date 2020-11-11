@@ -16,10 +16,24 @@ import block_chain.Logger;
 import block_chain.Nodo;
 import block_chain.Zip;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.StaticMapsRequest;
+import com.google.maps.errors.ApiException;
+import com.google.maps.model.GeocodingResult;
+import com.google.maps.model.Size;
+import java.awt.BorderLayout;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.zip.DataFormatException;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 import tabla_hash.TablaHash;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
 /**
  *
  * @author JOSED
@@ -31,15 +45,38 @@ public class EDD_SafeWay {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ApiException, InterruptedException, IOException {
         // TODO code application logic here
 //        Cryptography cryp = Cryptography.getInstance();
 //        
 //        logIn.setVisible(true);
         
-        grafo();
+        
+//        grafo();
 //        hashTable();
 //        b_tree();
+//
+//        MapViewOptions options = new MapViewOptions();
+//        options.importPlaces();
+//        options.setApiKey("AIzaSyCOgY_KsV_Bv1yOhYOdioVgLYGz-kfv654");
+//        
+//        GoogleMap map = new GoogleMap(options);
+//        
+//        JFrame frame = new JFrame(" Google Maps - Hello, World!");
+//        
+//        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        frame.add(map, BorderLayout.CENTER);
+//        frame.setSize(700,500);
+//        frame.setLocationRelativeTo(null);
+//        frame.setVisible(true);
+
+//        GeoApiContext context = new GeoApiContext.Builder()
+//            .apiKey("AIzaSyCOgY_KsV_Bv1yOhYOdioVgLYGz-kfv654")
+//            .build();
+//        GeocodingResult[] results =  GeocodingApi.geocode(context,
+//            "1600 Amphitheatre Parkway Mountain View, CA 94043").await();
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//        System.out.println(gson.toJson(results[0].addressComponents));
     }
     
     public static void jsonNodo() throws UnsupportedEncodingException, DataFormatException{
@@ -237,6 +274,10 @@ public class EDD_SafeWay {
         System.out.println(hashTable.getGraphviz("lugares"));
     }
     
+    public static void GMap(){
+        
+    }
+    
     public static void grafo(){
 
         GrafoController grafoController = GrafoController.getInstance();
@@ -272,5 +313,9 @@ public class EDD_SafeWay {
         }
      
         
+    }
+    
+    public static StaticMapsRequest newRequest(GeoApiContext context, Size size) {
+        return new StaticMapsRequest(context).size(size);
     }
 }
