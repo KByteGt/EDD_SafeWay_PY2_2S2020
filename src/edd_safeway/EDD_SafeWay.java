@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package edd_safeway;
+import Grafo.Grafo;
+import Grafo.Vertice;
 import arbol_b.Key;
 import arbol_b.Tree;
 import block_chain.Cryptography;
@@ -31,10 +33,11 @@ public class EDD_SafeWay {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Cryptography cryp = Cryptography.getInstance();
+//        Cryptography cryp = Cryptography.getInstance();
+//        
+//        logIn.setVisible(true);
         
-        logIn.setVisible(true);
-
+        grafo();
 //        hashTable();
 //        b_tree();
     }
@@ -232,5 +235,42 @@ public class EDD_SafeWay {
         hashTable.imprimir();
         
         System.out.println(hashTable.getGraphviz("lugares"));
+    }
+    
+    public static void grafo(){
+
+        GrafoController grafoController = GrafoController.getInstance();
+        
+        grafoController.insertarArista("Lugar A", "Lugar B",3,35.6);
+        grafoController.insertarArista("Lugar B", "Lugar C",4,30.6);
+        grafoController.insertarArista("Lugar C", "Lugar D",3,35.6);
+        grafoController.insertarArista("Lugar D", "Lugar E",2,38);
+        grafoController.insertarArista("Lugar A", "Lugar E",2,38);
+        grafoController.insertarArista("Lugar E", "Lugar B",8,50);
+        grafoController.insertarArista("Lugar D", "Lugar B",6,45.6);
+
+        
+        grafoController.printAristas("Lugar A");
+        grafoController.printAristas("Lugar B");
+        grafoController.printAristas("Lugar C");
+        grafoController.printAristas("Lugar D");
+        grafoController.printAristas("Lugar E");
+        
+        
+        //Camino
+        //Lugar A -> Lugar C
+        ArrayList<String> camino = grafoController.getCamino("Lugar A", "Lugar C");
+        double costo = 0;
+        double peso = 0;
+        
+        if(camino != null){
+            for (int i = 0; i < camino.size(); i++) {
+                System.out.println(" - "+camino.get(i));
+//                costo = grafoController.
+            }
+        } else {
+            System.out.println("No hay camino :(");
+        }
+     
     }
 }

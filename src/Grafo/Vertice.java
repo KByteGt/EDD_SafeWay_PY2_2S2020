@@ -11,33 +11,33 @@ import java.util.ArrayList;
  *
  * @author JOSED
  */
-class Vertice {
+public class Vertice {
     
-    private ArrayList<Arista> vecinos;
+    private ArrayList<Arista> aristas;
     private String etiqueta;
     
     public Vertice (String etiqueta){
         this.etiqueta = etiqueta;
-        this.vecinos = new ArrayList<Arista>();
+        this.aristas = new ArrayList<Arista>();
     }
     
     //Insertar un vecino
     public void insertarVecino(Arista arista){
-        if(!this.vecinos.contains(arista)){
-            this.vecinos.add(arista);
+        if(!this.aristas.contains(arista)){
+            this.aristas.add(arista);
         }
     }
     
     public boolean haveVecino(Arista arista){
-        return this.vecinos.contains(arista);
+        return this.aristas.contains(arista);
     }
     
-    public Arista getVecico(int index){
-        return this.vecinos.get(index);
+    public Arista getArista(int index){
+        return this.aristas.get(index);
     }
     
-    public int getNumVecinos(){
-        return this.vecinos.size();
+    public int getGrado(){
+        return this.aristas.size();
     }
 
     String getEtiqueta() {
@@ -63,7 +63,7 @@ class Vertice {
         return this.etiqueta.hashCode();
     }
     
-    public ArrayList<Arista> getVecinos(){
-        return new ArrayList<Arista>(this.vecinos);
+    public ArrayList<Arista> getAristas(){
+        return new ArrayList<Arista>(this.aristas);
     }
 }

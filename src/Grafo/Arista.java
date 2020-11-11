@@ -9,9 +9,9 @@ package Grafo;
  *
  * @author JOSED
  */
-class Arista {
+public class Arista {
     private Vertice puntoA, puntoB;;
-    private int peso;
+    private double peso;
     private double costo;
     
     public Arista(Vertice puntoA, Vertice puntoB){
@@ -26,7 +26,7 @@ class Arista {
             this.puntoA = puntoB;
             this.puntoB = puntoA;
         }
-        
+
         this.peso = peso;
         this.costo = costo;
         
@@ -49,6 +49,10 @@ class Arista {
     public void setPuntoA(Vertice puntoA) {
         this.puntoA = puntoA;
     }
+    
+    public String getNameA(){
+        return this.puntoA.getEtiqueta();
+    }
 
     public Vertice getPuntoB() {
         return puntoB;
@@ -58,7 +62,11 @@ class Arista {
         this.puntoB = puntoB;
     }
 
-    public int getPeso() {
+    public String getNameB(){
+        return this.puntoB.getEtiqueta();
+    }
+    
+    public double getPeso() {
         return peso;
     }
 
@@ -74,14 +82,16 @@ class Arista {
         this.costo = costo;
     }
     
-    public int compareTo(Arista arista){
+    public double compareTo(Arista arista){
         return this.peso - arista.peso;
     }
     
+    @Override
     public String toString(){
         return "({"+this.puntoA +", "+this.puntoB+"}, "+this.peso+" - Q"+this.costo+")";
     }
     
+    @Override
     public int hashCode(){
         return (puntoA.getEtiqueta() + puntoB.getEtiqueta()).hashCode();
     }
@@ -92,11 +102,7 @@ class Arista {
         } else {
             Arista arista = (Arista) objeto;
             
-            if(arista.puntoA.equals(this.puntoA) && arista.puntoB.equals(this.puntoB)){
-                return true;
-            } else {
-                return false;
-            }
+            return arista.puntoA.equals(this.puntoA) && arista.puntoB.equals(this.puntoB);
         }
     }
 }
