@@ -33,7 +33,6 @@ public class GrafoController {
     private double peso = 0.0;
     
     private ArrayList<String> caminoMasCorto;
-    private int costoTotal;
     
     //Otros
     private static GrafoController controller;
@@ -91,6 +90,7 @@ public class GrafoController {
             this.dijkstra = false;
             this.costo = 0.0;
             this.peso = 0.0;
+            System.out.println(" - Calcular camino de: "+puntoA+" -> "+puntoB);
             return dijkstra(puntoA,puntoB,grafo.getVertices());
         }else{
             return null;

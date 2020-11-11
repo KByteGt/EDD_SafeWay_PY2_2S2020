@@ -245,16 +245,9 @@ public class EDD_SafeWay {
         grafoController.insertarArista("Lugar B", "Lugar C",4,30.6);
         grafoController.insertarArista("Lugar C", "Lugar D",3,35.6);
         grafoController.insertarArista("Lugar D", "Lugar E",2,38);
-        grafoController.insertarArista("Lugar A", "Lugar E",2,38);
+        grafoController.insertarArista("Lugar A", "Lugar E",3,38);
         grafoController.insertarArista("Lugar E", "Lugar B",8,50);
         grafoController.insertarArista("Lugar D", "Lugar B",6,45.6);
-
-        
-        grafoController.printAristas("Lugar A");
-        grafoController.printAristas("Lugar B");
-        grafoController.printAristas("Lugar C");
-        grafoController.printAristas("Lugar D");
-        grafoController.printAristas("Lugar E");
         
         
         //Camino
@@ -266,11 +259,12 @@ public class EDD_SafeWay {
         if(camino != null){
             for (int i = 0; i < camino.size(); i++) {
                 System.out.println(" - "+camino.get(i));
-//                costo = grafoController.
             }
         } else {
             System.out.println("No hay camino :(");
         }
      
+        System.out.println(" Costo Final: " + grafoController.getCosto());
+        System.out.println(" Peso Final: " + grafoController.getPeso());
     }
 }
