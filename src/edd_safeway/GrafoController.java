@@ -34,12 +34,17 @@ public class GrafoController {
     
     private ArrayList<String> caminoMasCorto;
     
+    HashMap<String, Double> t_distancias;
+    HashMap<String, Double> t_costos;
+    
     //Otros
     private static GrafoController controller;
     private Grafo grafo;
     
     private GrafoController(){
         grafo = new Grafo();
+        t_distancias = null;
+        t_costos = null;
     }
     
     public static GrafoController getInstance(){
@@ -48,6 +53,12 @@ public class GrafoController {
         }
         
         return controller;
+    }
+    
+    public Arista getArista(String A, String B){
+        Arista arista = new Arista(new Vertice(A), new Vertice(B));
+        
+        return grafo.getArista(arista);
     }
     
     public double getCosto(){
@@ -81,23 +92,57 @@ public class GrafoController {
     
     //Algoritmo Dijkstra
     public ArrayList<String> getCamino(String puntoA, String puntoB){
-//        ArrayList<String> lista = new ArrayList();
-//        
+     
         Vertice A = grafo.getVertice(puntoA);
         Vertice B = grafo.getVertice(puntoB);
         
         if(A != null && B != null){
-            this.dijkstra = false;
-            this.costo = 0.0;
-            this.peso = 0.0;
+            
             System.out.println(" - Calcular camino de: "+puntoA+" -> "+puntoB);
-            return dijkstra(puntoA,puntoB,grafo.getVertices());
+
+            return dijkstraA(puntoA,puntoB,grafo.getVertices());
         }else{
             return null;
         }
     }
     
-    private ArrayList<String> dijkstra(String inicio, String fin, int N){
+    public boolean getPesoCosto(String inicio, String destino){
+        
+        if(dijkstra){
+            //Está activo antes de su cálculo
+            
+            if(this.t_distancias.get(inicio) == 0){
+                //La matriz ya está generada
+                
+                this.costo = this.t_costos.get(destino);
+                this.peso = this.t_distancias.get(destino);
+                
+                return true;
+            } 
+        }
+        
+        //No se ha generado la matriz
+        Vertice vertice = new Vertice(inicio);
+
+        if(grafo.haveVertice(vertice) ){
+
+            //Limpiar data
+            this.dijkstra = false;
+            //Obtener matriz Dijkstra
+            dijkstraB(inicio, grafo.getVertices());
+
+            if(dijkstra){
+                //Poner los costos y valores disponibles
+                this.costo = this.t_costos.get(destino);
+                this.peso = this.t_distancias.get(destino);
+
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private ArrayList<String> dijkstraA(String inicio, String fin, int N){
         Stack<String> pila = new Stack<>();
         ArrayList<String> camino = new ArrayList();
         HashMap<String, Double> distancias = new HashMap<>();
@@ -105,9 +150,6 @@ public class GrafoController {
         String tempVertice = "";
         String menorVertice = "";
         double tempPeso = 0.0;
-        
-        double peso = 0.0;
-        double costo = 0.0;
         
         boolean flag = true;
         
@@ -123,7 +165,7 @@ public class GrafoController {
             visto.put(v, false);
         }
 
-        System.out.println(" -> Comenzando algoritmo Dijkstra...");
+        System.out.println(" -> Comenzando algoritmo Dijkstra... obtener camino");
         
         distancias.put(inicio, 0.0);
         pila.push(inicio);
@@ -170,8 +212,6 @@ public class GrafoController {
                     if(dt > 0 && dt < tempPeso){
                         menorVertice = tempVertice;
                         tempPeso = dt;
-                        peso = dt;
-                        costo += vecino.getCosto();
                     }
 
                     visto.put(tempVertice, true);
@@ -200,13 +240,102 @@ public class GrafoController {
         //6- Se toma como proximo punto acutla el de menor valor en el vector de distancias
         //Se almacena el valor en una cola de prioridad y se regresa al paso 3
         
-        System.out.println(" | > Peso: " + peso);
-        System.out.println(" | > Costo: " + costo);
-        this.peso = peso;
-        this.costo = costo;
-        this.dijkstra = true;
         return camino;
     }
+    
+    private void dijkstraB(String inicio, int N){
+        HashMap<String, Double> distancias = new HashMap<>();
+        HashMap<String, Double> costos = new HashMap<>();
+        HashMap<String, Boolean> visto = new HashMap<>();
+
+        int vistos = 0;
+        System.out.println(" -> Comenzando algoritmo Dijkstra... obtener precio y costo");
+        
+        //1- Inicializar distanicias[i] con un valor infinito relativo
+        grafo.verticeKeys().stream().map((w) -> {
+            Arista arista = this.getArista(inicio, w);
+            //Si no existe la arista entre inicio y w
+            if(arista != null){
+                distancias.put(w, arista.getPeso());
+                costos.put(w, arista.getCosto());
+            } else {
+                distancias.put(w, Double.MAX_VALUE); // 0 -1
+                costos.put(w, 0.0);
+            }
+            return w;
+        }).forEachOrdered((w) -> {
+            visto.put(w, false);
+        });
+
+        distancias.put(inicio, 0.0);
+        visto.put(inicio, true);
+        vistos++;
+        
+//        pila.push(inicio);
+//        camino.add(inicio);
+        
+        //Mintras no estén vistos todos los nodos
+        while(vistos < N){
+            //Tomar el mínimo del vector distancia y que no esté visto
+            double minimo = Double.MAX_VALUE;
+            String vertice = "";
+            double distancia = 0.0;
+            
+            //Obtener el minimo
+            for(String k : distancias.keySet()){
+                if(!visto.get(k)){
+                    //No está visto
+                    distancia = distancias.get(k);
+                    if(distancia < minimo){
+                        minimo = distancia;
+                        vertice = k;
+                    }
+                }
+            }
+            
+            //El minimo se guarda en vertice
+            visto.put(vertice, true);
+            vistos++;
+            System.out.println("Minimo: " + vertice);
+            
+            //Tomar sucesores
+            for(Arista w : grafo.getVertice(vertice).getAristas()){
+                
+                Arista arista = null;
+                String temp = "";
+                
+                if(vertice.compareTo(w.getNameA()) == 0){
+                    //Usar etiqueta B
+                    temp = w.getNameB();
+                    arista = this.getArista(vertice, w.getNameB());
+                } else {
+                    //Usar etiqueta A
+                    temp = w.getNameA();
+                    arista = this.getArista(vertice, w.getNameA());
+                }
+                
+                double dt = distancias.get(vertice) + arista.getPeso();
+                double total = costos.get(vertice) + arista.getCosto();
+                
+                if(distancias.get(temp) > dt){
+                    distancias.put(temp, dt);
+                    costos.put(temp, total);
+                }
+            }
+        }
+        
+        System.out.println("Distancias[]");
+        System.out.println(" [key][valor]");
+        
+        distancias.keySet().forEach((k) -> {
+            System.out.println(" ["+k+"]["+distancias.get(k)+"] - Q"+costos.get(k));
+        });
+
+        this.dijkstra = true;
+        this.t_costos = costos;
+        this.t_distancias = distancias;
+    }
+
 }
 
 

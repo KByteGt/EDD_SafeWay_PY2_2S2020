@@ -75,6 +75,20 @@ public class Grafo {
             return this.aristas.containsKey(arista.hashCode());
         }
     }
+    
+    public Arista getArista(Arista arista){
+        if(arista.getPuntoA() == null || arista.getPuntoB() == null){
+            return null;
+        } else {
+            if(this.aristas.containsKey(arista.hashCode())){
+                return this.aristas.get(arista.hashCode());
+            } else {
+                return null;
+            }
+            
+//            return this.aristas.containsKey(arista.hashCode());
+        }
+    }
 
     public boolean haveVertice(Vertice vertice){
         return (this.vertices.get(vertice.getEtiqueta()) != null);

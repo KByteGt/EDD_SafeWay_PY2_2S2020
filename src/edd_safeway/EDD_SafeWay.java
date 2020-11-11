@@ -245,16 +245,23 @@ public class EDD_SafeWay {
         grafoController.insertarArista("Lugar B", "Lugar C",4,30.6);
         grafoController.insertarArista("Lugar C", "Lugar D",3,35.6);
         grafoController.insertarArista("Lugar D", "Lugar E",2,38);
-        grafoController.insertarArista("Lugar A", "Lugar E",3,38);
+        grafoController.insertarArista("Lugar A", "Lugar E",2,38);
         grafoController.insertarArista("Lugar E", "Lugar B",8,50);
         grafoController.insertarArista("Lugar D", "Lugar B",6,45.6);
+        grafoController.insertarArista("Lugar B", "Lugar G",4,20);
+        grafoController.insertarArista("Lugar C", "Lugar G",3,20);
+        grafoController.insertarArista("Lugar D", "Lugar F",1,20);
+        grafoController.insertarArista("Lugar C", "Lugar F",1,20);
+        grafoController.insertarArista("Lugar F", "Lugar G",20,20);
         
         
         //Camino
         //Lugar A -> Lugar C
-        ArrayList<String> camino = grafoController.getCamino("Lugar A", "Lugar C");
-        double costo = 0;
-        double peso = 0;
+        ArrayList<String> camino = grafoController.getCamino("Lugar A", "Lugar G");
+        if(grafoController.getPesoCosto("Lugar A", "Lugar G")){
+            System.out.println(" Costo Final: " + grafoController.getCosto());
+            System.out.println(" Peso Final: " + grafoController.getPeso());
+        }
         
         if(camino != null){
             for (int i = 0; i < camino.size(); i++) {
@@ -264,7 +271,6 @@ public class EDD_SafeWay {
             System.out.println("No hay camino :(");
         }
      
-        System.out.println(" Costo Final: " + grafoController.getCosto());
-        System.out.println(" Peso Final: " + grafoController.getPeso());
+        
     }
 }
