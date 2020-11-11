@@ -144,6 +144,7 @@ public class GrafoController extends Controller{
     
     public boolean getPesoCosto(String inicio, String destino){
         
+        System.out.println(" - Calcular camino de: "+inicio+" -> "+destino);
         if(dijkstra){
             //Está activo antes de su cálculo
             
@@ -290,6 +291,8 @@ public class GrafoController extends Controller{
         int vistos = 0;
         System.out.println(" -> Comenzando algoritmo Dijkstra... obtener precio y costo");
         
+        System.out.println(" ** Inicio: " + inicio);
+        
         //1- Inicializar distanicias[i] con un valor infinito relativo
         grafo.verticeKeys().stream().map((w) -> {
             Arista arista = this.getArista(inicio, w);
@@ -332,9 +335,15 @@ public class GrafoController extends Controller{
                 }
             }
             
+            if(vertice == ""){
+                //No hay más caminos
+                break;
+            }
             //El minimo se guarda en vertice
             visto.put(vertice, true);
             vistos++;
+            
+            System.out.println(" ** Vertice: " + vertice);
             
             //Tomar sucesores
             for(Arista w : grafo.getVertice(vertice).getAristas()){

@@ -1,39 +1,179 @@
 {
-  "Lugares": [
-    {
-      "id": 152,
-      "Categoria": "USAC",
-      "Nombre": "T-3",
-      "Lat": 14.5877,
-      "Lon": -90.5536
-    },
-    {
-      "id": 200,
-      "Categoria": "Plaza",
-      "Nombre": "Plaza Villa nueva",
-      "Lat": 14.5333,
-      "Lon": -90.5852
-    },
-    {
-      "id": 300,
-      "Categoria": "Gasolinera",
-      "Nombre": "Gasolinera puma quetzal",
-      "Lat": 14.536,
-      "Lon": -90.5868
-    },
-    {
-      "id": 301,
-      "Categoria": "Gasolinera",
-      "Nombre": "El naranjito",
-      "Lat": 14.536,
-      "Lon": -90.5867
-    },
-    {
-      "id": 301,
-      "Categoria": "Casa",
-      "Nombre": "Casa",
-      "Lat": 14.535,
-      "Lon": -90.5867
-    }
-  ]
+    "Lugares": [
+        {
+            "id": 1,
+            "Categoria": "USAC",
+            "Nombre": "T-3",
+            "Lat": 14.5877,
+            "Lon": -90.5536
+        },
+        {
+            "id": 2,
+            "Categoria": "Plaza",
+            "Nombre": "Plaza Villa Nueva",
+            "Lat": 14.533,
+            "Lon": -90.5852
+        },
+        {
+            "id": 3,
+            "Categoria": "Gasolinera",
+            "Nombre": "Gasolinera puma quetzal villa nueva",
+            "Lat": 14.536,
+            "Lon": -90.5868
+        },
+        {
+            "id": 4,
+            "Categoria": "Colegio",
+            "Nombre": "Colegio Vida",
+            "Lat": 14.5353,
+            "Lon": -90.5770
+        },
+        {
+            "id": 5,
+            "Categoria": "Residenciales",
+            "Nombre": "Residenciales catalina villa nueva",
+            "Lat": 14.5364,
+            "Lon": -90.5820
+        },
+        {
+            "id": 6,
+            "Categoria": "Despensa",
+            "Nombre": "Despensa Familiar Galerias Catalina",
+            "Lat": 14.5390,
+            "Lon": -90.5839
+        },
+        {
+            "id": 7,
+            "Categoria": "Colonia",
+            "Nombre": "Colonia Sur",
+            "Lat": 14.5427,
+            "Lon": -90.5870
+        },
+        {
+            "id": 8,
+            "Categoria": "Planes",
+            "Nombre": "Planes del Frutal villa nueva",
+            "Lat": 14.5362,
+            "Lon": -90.5702
+        },
+        {
+            "id": 9,
+            "Categoria": "Pollo Campero",
+            "Nombre": "Pollo Campero Santa Clara",
+            "Lat": 14.5305,
+            "Lon": -90.5967
+        },
+        {
+            "id": 10,
+            "Categoria": "Gasolinera",
+            "Nombre": "Gasolinera Shell Santa Clara",
+            "Lat": 14.5303,
+            "Lon": -90.5964
+        },
+        {
+            "id": 11,
+            "Categoria": "Walmart",
+            "Nombre": "Walmart Santa Clara",
+            "Lat": 14.5318,
+            "Lon": -90.5979
+        },
+        {
+            "id": 12,
+            "Categoria": "McDonald's",
+            "Nombre": "McDonald's Santa Clara",
+            "Lat": 14.5299,
+            "Lon": -90.5970
+        },
+        {
+            "id": 13,
+            "Categoria": "Centro Comercial",
+            "Nombre": "Centro Comercial Santa Clara",
+            "Lat": 14.5307,
+            "Lon": -90.5982
+        },
+        {
+            "id": 14,
+            "Categoria": "USAC",
+            "Nombre": "Estadio USAC",
+            "Lat": 14.5866,
+            "Lon": -90.5479
+        },
+        {
+            "id": 15,
+            "Categoria": "USAC",
+            "Nombre": "S-12",
+            "Lat": 14.5827,
+            "Lon": -90.5552
+        },
+        {
+            "id": 16,
+            "Categoria": "USAC",
+            "Nombre": "Entrada",
+            "Lat": 14.5894,
+            "Lon": -90.5515
+        },
+        {
+            "id": 17,
+            "Categoria": "Condominio",
+            "Nombre": "Condominio Santa Catalina",
+            "Lat": 14.5375,
+            "Lon": -90.5762
+        },
+        {
+            "id": 18,
+            "Categoria": "Iglesia",
+            "Nombre": "Iglesia lomas de san jose",
+            "Lat": 14.5437,
+            "Lon": -90.5844
+        },
+        {
+            "id": 19,
+            "Categoria": "Gasolinera",
+            "Nombre": "Gasolinera puma Ranchon 1",
+            "Lat": 14.5329,
+            "Lon": -90.5945
+        },
+        {
+            "id": 20,
+            "Categoria": "Iglesia",
+            "Nombre": "Casa de oracion VN",
+            "Lat": 14.5342,
+            "Lon": -90.5895
+        },
+        {
+            "id": 21,
+            "Categoria": "Ventas",
+            "Nombre": "Super Mayen VN",
+            "Lat": 14.5359,
+            "Lon": -90.5941
+        },
+        {
+            "id": 22,
+            "Categoria": "Estructuras",
+            "Nombre": "Redondel Santa Clara",
+            "Lat": 14.5302,
+            "Lon": -90.5957
+        },
+        {
+            "id": 23,
+            "Categoria": "Restaurante",
+            "Nombre": "Estancia Santa Clara",
+            "Lat": 14.5319,
+            "Lon": -90.5999
+        },
+        {
+            "id": 24,
+            "Categoria": "Hospital",
+            "Nombre": "Sanatorio Belen",
+            "Lat": 14.5301,
+            "Lon": -90.5870
+        },
+        {
+            "id": 25,
+            "Categoria": "McDonald's",
+            "Nombre": "McDonald's Villa Nueva",
+            "Lat": 14.5264,
+            "Lon": -90.5886
+        }
+    ]
 }

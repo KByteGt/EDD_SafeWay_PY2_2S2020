@@ -279,7 +279,7 @@ public class AdminInterface extends javax.swing.JFrame {
 
         jLabel8.setText("Los archivos permitidos son en formato JSON");
 
-        jLabel9.setText("- Archivo de Usuarios");
+        jLabel9.setText("1 - Archivo de Usuarios");
 
         btn_json_usuarios.setText("Cargar JSON");
         btn_json_usuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -309,7 +309,7 @@ public class AdminInterface extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setText("- Archivo de Localidades");
+        jLabel12.setText("4 - Archivo de Localidades");
 
         label_ver_lugares.setText("Ver ejemplo de archivo");
         label_ver_lugares.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -325,7 +325,7 @@ public class AdminInterface extends javax.swing.JFrame {
             }
         });
 
-        jLabel14.setText("- Archivo de Lugares");
+        jLabel14.setText("2 - Archivo de Lugares");
 
         label_ver_conexiones.setText("Ver ejemplo de archivo");
         label_ver_conexiones.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -341,9 +341,9 @@ public class AdminInterface extends javax.swing.JFrame {
             }
         });
 
-        jLabel16.setText("- Archivo de Conexiones");
+        jLabel16.setText("5 - Archivo de Conexiones");
 
-        jLabel18.setText("- Archivo de ubicación de usuarios");
+        jLabel18.setText("3 - Archivo de ubicación de usuarios");
 
         label_ver_ubicaciones.setText("Ver ejemplo de archivo");
         label_ver_ubicaciones.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -456,18 +456,15 @@ public class AdminInterface extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(label_user)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_salir))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(label_user)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_salir))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -563,7 +560,7 @@ public class AdminInterface extends javax.swing.JFrame {
         
         //Cargar archivo JSON de Usuarios
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("abrir archivo JSON");
+        fileChooser.setDialogTitle("Cargar usuarios - JSON");
         fileChooser.setFileFilter(jsonFilter);
         int selection = fileChooser.showOpenDialog(this);
         
@@ -581,7 +578,7 @@ public class AdminInterface extends javax.swing.JFrame {
         
         //Cargar archivo JSON de Lugares
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("abrir archivo JSON");
+        fileChooser.setDialogTitle("Cargar lugares - JSON");
         fileChooser.setFileFilter(jsonFilter);
         int selection = fileChooser.showOpenDialog(this);
         
@@ -600,7 +597,7 @@ public class AdminInterface extends javax.swing.JFrame {
         
         //Cargar conexiones en grafo
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("abrir archivo JSON");
+        fileChooser.setDialogTitle("Cargar rutas (Grafo) - JSON");
         fileChooser.setFileFilter(jsonFilter);
         int selection = fileChooser.showOpenDialog(this);
         
@@ -619,7 +616,7 @@ public class AdminInterface extends javax.swing.JFrame {
         
         //Cargar archivo JSON de ubicaciones de usuario
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("abrir archivo JSON");
+        fileChooser.setDialogTitle("Ubicación de usuarios - JSON");
         fileChooser.setFileFilter(jsonFilter);
         int selection = fileChooser.showOpenDialog(this);
         
@@ -638,7 +635,7 @@ public class AdminInterface extends javax.swing.JFrame {
         
         //Cargar archivo JSON de ubicaciones de usuario
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("abrir archivo JSON");
+        fileChooser.setDialogTitle("Ubicación de conductores - JSON");
         fileChooser.setFileFilter(jsonFilter);
         int selection = fileChooser.showOpenDialog(this);
         

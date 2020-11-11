@@ -393,6 +393,7 @@ public class DriverInterface extends javax.swing.JFrame {
 
         //Tomar viaje
         //Actualizar invoice
+        invoiceController.removePendingInvoice();
         invoiceController.updatePendingInvoice(indexInvoice, user.getId());
         Lugar place = placeController.getPlace(destino);
         

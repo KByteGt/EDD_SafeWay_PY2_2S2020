@@ -76,8 +76,13 @@ public class InvoiceController extends Controller{
         if(pendingInvoices.isEmpty()){
             return -1;
         } else {
-            return pendingInvoices.poll();
+            return pendingInvoices.peek();
+            
         }
+    }
+    
+    public void removePendingInvoice(){
+        pendingInvoices.poll();
     }
     
     public Invoice searchInvoice(int id){

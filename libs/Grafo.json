@@ -1,46 +1,236 @@
 {
-  "Grafo":[
-    { "inicio":"T-3",
-      "final":"Plaza Villa nueva",
-      "peso":3,
-      "unidad":"KM",
-      "precio": 35.6,
-      "moneda":"Quetzales"
-    },
-    { "inicio":"T-3",
-      "final":"Gasolinera puma quetzal",
-      "peso":10,
-      "unidad":"KM",
-      "precio": 110.25,
-      "moneda":"Quetzales"
-    },
-    { "inicio":"Plaza Villa nueva",
-      "final":"Gasolinera puma quetzal",
-      "peso":5,
-      "unidad":"KM",
-      "precio": 50.96,
-      "moneda":"Quetzales"
-    },
-    { "inicio":"Plaza Villa nueva",
-      "final":"El naranjito",
-      "peso":6,
-      "unidad":"KM",
-      "precio": 50.96,
-      "moneda":"Quetzales"
-    },
-    { "inicio":"Casa",
-      "final":"El naranjito",
-      "peso":9,
-      "unidad":"KM",
-      "precio": 50.96,
-      "moneda":"Quetzales"
-    },
-    { "inicio":"Casa",
-      "final":"Gasolinera puma quetzal",
-      "peso":20,
-      "unidad":"KM",
-      "precio": 50.96,
-      "moneda":"Quetzales"
-    }
-  ]
+    "Grafo": [
+        {
+            "inicio": "Entrada",
+            "final": "T-3",
+            "peso": 1,
+            "unidad": "KM",
+            "precio": 10,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "T-3",
+            "final": "S-12",
+            "peso": 1.4,
+            "unidad": "KM",
+            "precio": 15,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "S-12",
+            "final": "Estadio USAC",
+            "peso": 2.3,
+            "unidad": "KM",
+            "precio": 17.20,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Estadio USAC",
+            "final": "Entrada",
+            "peso": 0.5,
+            "unidad": "KM",
+            "precio": 5,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Planes del Frutal villa nueva",
+            "final": "Condominio Santa Catalina",
+            "peso": 1.5,
+            "unidad": "KM",
+            "precio": 20,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Condominio Santa Catalina",
+            "final": "Colegio Vida",
+            "peso": 1,
+            "unidad": "KM",
+            "precio": 10,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Condominio Santa Catalina",
+            "final": "Residenciales catalina villa nueva",
+            "peso": 2,
+            "unidad": "KM",
+            "precio": 10,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Condominio Santa Catalina",
+            "final": "Despensa Familiar Galerias Catalina",
+            "peso": 5,
+            "unidad": "KM",
+            "precio": 30,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Residenciales catalina villa nueva",
+            "final": "Despensa Familiar Galerias Catalina",
+            "peso": 2,
+            "unidad": "KM",
+            "precio": 10,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Despensa Familiar Galerias Catalina",
+            "final": "Gasolinera puma quetzal villa nueva",
+            "peso": 5,
+            "unidad": "KM",
+            "precio": 50,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Despensa Familiar Galerias Catalina",
+            "final": "Iglesia lomas de san jose",
+            "peso": 1.7,
+            "unidad": "KM",
+            "precio": 35.99,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Iglesia lomas de san jose",
+            "final": "Colonia Sur",
+            "peso": 1,
+            "unidad": "KM",
+            "precio": 15,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Gasolinera puma quetzal villa nueva",
+            "final": "Casa de oracion VN",
+            "peso": 4,
+            "unidad": "KM",
+            "precio": 45,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Casa de oracion VN",
+            "final": "Super Mayen VN",
+            "peso": 2.7,
+            "unidad": "KM",
+            "precio": 15,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Super Mayen VN",
+            "final": "Gasolinera puma Ranchon 1",
+            "peso": 3,
+            "unidad": "KM",
+            "precio": 15,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Gasolinera puma Ranchon 1",
+            "final": "Redondel Santa Clara",
+            "peso": 15,
+            "unidad": "KM",
+            "precio": 80,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Redondel Santa Clara",
+            "final": "Gasolinera Shell Santa Clara",
+            "peso": 0.5,
+            "unidad": "KM",
+            "precio": 10,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Gasolinera Shell Santa Clara",
+            "final": "Pollo Campero Santa Clara",
+            "peso": 10,
+            "unidad": "KM",
+            "precio": 100,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Gasolinera Shell Santa Clara",
+            "final": "McDonald's Santa Clara",
+            "peso": 0.3,
+            "unidad": "KM",
+            "precio": 7,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Pollo Campero Santa Clara",
+            "final": "Walmart Santa Clara",
+            "peso": 10,
+            "unidad": "KM",
+            "precio": 100,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "McDonald's Santa Clara",
+            "final": "Centro Comercial Santa Clara",
+            "peso": 0.1,
+            "unidad": "KM",
+            "precio": 5,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Walmart Santa Clara",
+            "final": "Centro Comercial Santa Clara",
+            "peso": 10,
+            "unidad": "KM",
+            "precio": 100,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Walmart Santa Clara",
+            "final": "Estancia Santa Clara",
+            "peso": 10,
+            "unidad": "KM",
+            "precio": 100,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Centro Comercial Santa Clara",
+            "final": "Estancia Santa Clara",
+            "peso": 0.25,
+            "unidad": "KM",
+            "precio": 10,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Centro Comercial Santa Clara",
+            "final": "Pollo Campero Santa Clara",
+            "peso": 0.1,
+            "unidad": "KM",
+            "precio": 5,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Gasolinera puma quetzal villa nueva",
+            "final": "Plaza Villa Nueva",
+            "peso": 2,
+            "unidad": "KM",
+            "precio": 15,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Plaza Villa Nueva",
+            "final": "Sanatorio Belen",
+            "peso": 2,
+            "unidad": "KM",
+            "precio": 15,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "Sanatorio Belen",
+            "final": "McDonald's Villa Nueva",
+            "peso": 2,
+            "unidad": "KM",
+            "precio": 15,
+            "moneda": "Quetzales"
+        },
+        {
+            "inicio": "McDonald's Villa Nueva",
+            "final": "Redondel Santa Clara",
+            "peso": 2,
+            "unidad": "KM",
+            "precio": 15,
+            "moneda": "Quetzales"
+        }
+    ]
 }

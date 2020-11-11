@@ -1,77 +1,310 @@
 {
-	"usuarios":[
-  {
-	 "id":1,
-	 "nombre":"Bruno Wayne",
-	 "usuario":"batman",
-	 "correo":"batman@gmail.com",
-	 "pass":"batman",
-	 "telefono":"20201921",
-	 "rol":"conductor"
-  },
-  {
-	 "id":2,
-	 "nombre":"Michael Schumacher",
-	 "usuario":"mschumacher",
-	 "correo":"mschumacher@gmail.com",
-	 "pass":"schumacher",
-	 "telefono":"20201921",
-	 "rol":"conductor"
-  },
-  {
-	 "id":3,
-	 "nombre":"José Lopez",
-	 "usuario":"kbyte",
-	 "correo":"kbyte.gt@gmail.com",
-	 "pass":"123456",
-	 "telefono":"20201921",
-	 "rol":"conductor"
-  },
-  {
-	 "id":1,
-	 "nombre":"Clark Ken",
-	 "usuario":"superman",
-	 "correo":"superman@gmail.com",
-	 "pass":"superman",
-	 "telefono":"20201921",
-	 "rol":"normal"
-  },
-  {
-	 "id":2,
-	 "nombre":"Peter Parker",
-	 "usuario":"spiderman",
-	 "correo":"spiderman@gmail.com",
-	 "pass":"spiderman",
-	 "telefono":"20201921",
-	 "rol":"normal"
-  },
-  {
-	 "id":3,
-	 "nombre":"José López",
-	 "usuario":"kbyte",
-	 "correo":"j.lopez@gmail.com",
-	 "pass":"123456",
-	 "telefono":"20201921",
-	 "rol":"normal"
-  },
-  {
-	 "id":4,
-	 "nombre":"Lol",
-	 "usuario":"lolsito123",
-	 "correo":"lolsito123@gmail.com",
-	 "pass":"password",
-	 "telefono":"20201921",
-	 "rol":"normal"
-  },
-  {
-	 "id":5,
-	 "nombre":"Maria Perez",
-	 "usuario":"gatita21",
-	 "correo":"gatita21@gmail.com",
-	 "pass":"password",
-	 "telefono":"20201921",
-	 "rol":"normal"
-  }
-]
-
+    "usuarios": [
+        {
+            "id": 1,
+            "nombre": "Padilla Daugherty",
+            "usuario": "Phillips",
+            "correo": "padillaphillips@genmex.com",
+            "pass": "Helixo",
+            "telefono": "8505-6235",
+            "rol": "normal"
+        },
+        {
+            "id": 2,
+            "nombre": "Alma Farmer",
+            "usuario": "Roach",
+            "correo": "almaroach@helixo.com",
+            "pass": "Ziggles",
+            "telefono": "9825-5636",
+            "rol": "normal"
+        },
+        {
+            "id": 3,
+            "nombre": "Nita Baird",
+            "usuario": "Harper",
+            "correo": "nitaharper@ziggles.com",
+            "pass": "Ezent",
+            "telefono": "8655-7727",
+            "rol": "normal"
+        },
+        {
+            "id": 4,
+            "nombre": "Lelia Huber",
+            "usuario": "Morgan",
+            "correo": "leliamorgan@ezent.com",
+            "pass": "Terragen",
+            "telefono": "9324-1426",
+            "rol": "normal"
+        },
+        {
+            "id": 5,
+            "nombre": "Estella Workman",
+            "usuario": "Olson",
+            "correo": "estellaolson@terragen.com",
+            "pass": "Ronbert",
+            "telefono": "9175-2528",
+            "rol": "normal"
+        },
+        {
+            "id": 6,
+            "nombre": "Benita Harrell",
+            "usuario": "Parsons",
+            "correo": "benitaparsons@ronbert.com",
+            "pass": "Incubus",
+            "telefono": "9854-2923",
+            "rol": "normal"
+        },
+        {
+            "id": 7,
+            "nombre": "Solomon Yates",
+            "usuario": "Tanner",
+            "correo": "solomontanner@incubus.com",
+            "pass": "Uxmox",
+            "telefono": "8024-9635",
+            "rol": "conductor"
+        },
+        {
+            "id": 8,
+            "nombre": "Riddle Mccall",
+            "usuario": "Riggs",
+            "correo": "riddleriggs@uxmox.com",
+            "pass": "Geekosis",
+            "telefono": "9564-4127",
+            "rol": "conductor"
+        },
+        {
+            "id": 9,
+            "nombre": "Sonja Hicks",
+            "usuario": "Orr",
+            "correo": "sonjaorr@geekosis.com",
+            "pass": "Sustenza",
+            "telefono": "9095-9737",
+            "rol": "conductor"
+        },
+        {
+            "id": 10,
+            "nombre": "Cain Durham",
+            "usuario": "Freeman",
+            "correo": "cainfreeman@sustenza.com",
+            "pass": "Magneato",
+            "telefono": "9765-5130",
+            "rol": "conductor"
+        },
+        {
+            "id": 11,
+            "nombre": "Sheryl Robbins",
+            "usuario": "Wilcox",
+            "correo": "sherylwilcox@magneato.com",
+            "pass": "Temorak",
+            "telefono": "8304-0933",
+            "rol": "normal"
+        },
+        {
+            "id": 12,
+            "nombre": "Eve Terry",
+            "usuario": "Leon",
+            "correo": "eveleon@temorak.com",
+            "pass": "Quarex",
+            "telefono": "9114-1033",
+            "rol": "normal"
+        },
+        {
+            "id": 13,
+            "nombre": "Gwen Hudson",
+            "usuario": "Rodriguez",
+            "correo": "gwenrodriguez@quarex.com",
+            "pass": "Biflex",
+            "telefono": "8874-0024",
+            "rol": "normal"
+        },
+        {
+            "id": 14,
+            "nombre": "Nguyen Lawrence",
+            "usuario": "Burks",
+            "correo": "nguyenburks@biflex.com",
+            "pass": "Zipak",
+            "telefono": "8234-7639",
+            "rol": "normal"
+        },
+        {
+            "id": 15,
+            "nombre": "Louise Wolfe",
+            "usuario": "Alvarado",
+            "correo": "louisealvarado@zipak.com",
+            "pass": "Musix",
+            "telefono": "9255-9220",
+            "rol": "normal"
+        },
+        {
+            "id": 16,
+            "nombre": "Lewis Powell",
+            "usuario": "Oliver",
+            "correo": "lewisoliver@musix.com",
+            "pass": "Coash",
+            "telefono": "8805-6232",
+            "rol": "conductor"
+        },
+        {
+            "id": 17,
+            "nombre": "Roxie Paul",
+            "usuario": "Maddox",
+            "correo": "roxiemaddox@coash.com",
+            "pass": "Utarian",
+            "telefono": "8275-0522",
+            "rol": "normal"
+        },
+        {
+            "id": 18,
+            "nombre": "Calderon Holder",
+            "usuario": "Spears",
+            "correo": "calderonspears@utarian.com",
+            "pass": "Comvoy",
+            "telefono": "9525-1130",
+            "rol": "conductor"
+        },
+        {
+            "id": 19,
+            "nombre": "Kathleen Kirby",
+            "usuario": "Ewing",
+            "correo": "kathleenewing@comvoy.com",
+            "pass": "Icology",
+            "telefono": "9425-6634",
+            "rol": "normal"
+        },
+        {
+            "id": 20,
+            "nombre": "Malone Anthony",
+            "usuario": "Albert",
+            "correo": "malonealbert@icology.com",
+            "pass": "Tasmania",
+            "telefono": "9904-2037",
+            "rol": "normal"
+        },
+        {
+            "id": 21,
+            "nombre": "Leola Carver",
+            "usuario": "Salinas",
+            "correo": "leolasalinas@tasmania.com",
+            "pass": "Zolavo",
+            "telefono": "8145-5227",
+            "rol": "conductor"
+        },
+        {
+            "id": 22,
+            "nombre": "Kent Elliott",
+            "usuario": "Daniel",
+            "correo": "kentdaniel@zolavo.com",
+            "pass": "Lotron",
+            "telefono": "9905-0137",
+            "rol": "normal"
+        },
+        {
+            "id": 23,
+            "nombre": "Gonzalez Delacruz",
+            "usuario": "Stokes",
+            "correo": "gonzalezstokes@lotron.com",
+            "pass": "Netropic",
+            "telefono": "8835-8625",
+            "rol": "conductor"
+        },
+        {
+            "id": 24,
+            "nombre": "Burton Schwartz",
+            "usuario": "Fry",
+            "correo": "burtonfry@netropic.com",
+            "pass": "Exosis",
+            "telefono": "9595-2529",
+            "rol": "normal"
+        },
+        {
+            "id": 25,
+            "nombre": "Velma Lynch",
+            "usuario": "Wise",
+            "correo": "velmawise@exosis.com",
+            "pass": "Ovolo",
+            "telefono": "8755-5932",
+            "rol": "normal"
+        },
+        {
+            "id": 26,
+            "nombre": "Krystal Lester",
+            "usuario": "Cantrell",
+            "correo": "krystalcantrell@ovolo.com",
+            "pass": "Sealoud",
+            "telefono": "9724-7534",
+            "rol": "normal"
+        },
+        {
+            "id": 27,
+            "nombre": "Delores Montgomery",
+            "usuario": "Conrad",
+            "correo": "deloresconrad@sealoud.com",
+            "pass": "Kegular",
+            "telefono": "8284-8222",
+            "rol": "conductor"
+        },
+        {
+            "id": 28,
+            "nombre": "Harriet Nichols",
+            "usuario": "Mcdaniel",
+            "correo": "harrietmcdaniel@kegular.com",
+            "pass": "Zillactic",
+            "telefono": "8294-3022",
+            "rol": "conductor"
+        },
+        {
+            "id": 29,
+            "nombre": "Lowery Hobbs",
+            "usuario": "Macias",
+            "correo": "lowerymacias@zillactic.com",
+            "pass": "Zaya",
+            "telefono": "9345-8131",
+            "rol": "conductor"
+        },
+        {
+            "id": 30,
+            "nombre": "Rivas Gardner",
+            "usuario": "William",
+            "correo": "rivaswilliam@zaya.com",
+            "pass": "Kenegy",
+            "telefono": "9774-8526",
+            "rol": "conductor"
+        },
+        {
+            "id": 31,
+            "nombre": "Joyner Martinez",
+            "usuario": "Brock",
+            "correo": "joynerbrock@kenegy.com",
+            "pass": "Comtour",
+            "telefono": "8815-1336",
+            "rol": "normal"
+        },
+        {
+            "id": 32,
+            "nombre": "Lorraine Levine",
+            "usuario": "Moore",
+            "correo": "lorrainemoore@comtour.com",
+            "pass": "Voratak",
+            "telefono": "8495-4135",
+            "rol": "normal"
+        },
+        {
+            "id": 33,
+            "nombre": "Abigail Berry",
+            "usuario": "Nicholson",
+            "correo": "abigailnicholson@voratak.com",
+            "pass": "Accruex",
+            "telefono": "9945-0122",
+            "rol": "conductor"
+        },
+        {
+            "id": 34,
+            "nombre": "Teresa Navarro",
+            "usuario": "Case",
+            "correo": "teresacase@accruex.com",
+            "pass": "Ewaves",
+            "telefono": "8005-5027",
+            "rol": "conductor"
+        }
+    ]
 }

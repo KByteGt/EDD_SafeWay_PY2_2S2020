@@ -266,13 +266,21 @@ public class MapView extends javax.swing.JFrame {
             this.monto = grafoController.getCosto();
         }
         
-        //Mostrar ruta
-        String ruta = "["+puntoA+" -> "+puntoB+"]";
-//        ruta = lista.stream().map((s) -> ", " + s).reduce(ruta, String::concat); //Error de recursividad
-        
-        this.label_ruta.setText(ruta);
-        this.label_costo.setText("Total: Q"+this.monto);
-        this.label_peso.setText("Peso: "+this.peso);
+        if(this.peso == Double.MAX_VALUE){
+            //No se puede hacer el viaje
+            this.label_ruta.setText(" **NO SE PUEDE REALIZAR EL VIAJE, NO HAY CAMINO DISPONIBLE ENTRE LOS DOS PUNTOS ");
+            this.label_costo.setText("Total: Q0.00");
+            this.label_peso.setText("Peso: infinito");
+            this.btn_confirmar.setEnabled(false);
+        } else {
+            //Mostrar ruta
+            String ruta = "["+puntoA+" -> "+puntoB+"]";
+    //        ruta = lista.stream().map((s) -> ", " + s).reduce(ruta, String::concat); //Error de recursividad
+
+            this.label_ruta.setText(ruta);
+            this.label_costo.setText("Total: Q"+this.monto);
+            this.label_peso.setText("Peso: "+this.peso);
+        }
     }
 
 }
