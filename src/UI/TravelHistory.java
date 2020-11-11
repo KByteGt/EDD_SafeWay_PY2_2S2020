@@ -81,6 +81,11 @@ public class TravelHistory extends javax.swing.JFrame {
 
         btn_back.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_back.setText("Regresar");
+        btn_back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_backActionPerformed(evt);
+            }
+        });
 
         label_travels.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label_travels.setText("Viajes totals: 10");
@@ -104,7 +109,7 @@ public class TravelHistory extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_back, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,6 +146,12 @@ public class TravelHistory extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
+        
+        
+        this.dispose();
+    }//GEN-LAST:event_btn_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,11 +211,19 @@ public class TravelHistory extends javax.swing.JFrame {
                 if(invoice != null){
                     model.setValueAt(id, row, 0);
                     
-                    String user = userController.getUserName(invoice.getId_user());
-                    if(!isUser){
-                        //Obetner conductor
-                        user = userController.getDriverName(invoice.getId_driver());
-                    } 
+                    String user = "";
+                    if(isUser){
+                        if(invoice.getId_driver() >= 0){
+                            //Obetner conductor
+                            user = userController.getDriverName(invoice.getId_driver());
+                        } else {
+                            //No hay conductor asignado
+                            user = " - ";
+                        }
+                        
+                    } else {
+                        user = userController.getUserName(invoice.getId_user());
+                    }
                     
                     model.setValueAt(user, row, 1);
                     

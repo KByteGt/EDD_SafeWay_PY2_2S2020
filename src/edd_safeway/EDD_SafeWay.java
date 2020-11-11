@@ -41,6 +41,7 @@ import java.io.IOException;
 public class EDD_SafeWay {
  
     public static UI.LogIn logIn = new UI.LogIn();
+    
 
     /**
      * @param args the command line arguments

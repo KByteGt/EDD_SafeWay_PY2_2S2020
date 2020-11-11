@@ -6,7 +6,11 @@
 package UI;
 
 import edd_safeway.GrafoController;
+import edd_safeway.InvoiceController;
+import edd_safeway.TravelController;
+import edd_safeway.UserController;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,8 +20,12 @@ public class MapView extends javax.swing.JFrame {
 
     private String puntoA, puntoB;
     private double monto, peso;
+    private int userId;
     
     private GrafoController grafoController;
+    private TravelController travelConroller;
+    private InvoiceController invoiceController;
+    private UserController userController;
     /**
      * Creates new form MapView
      */
@@ -25,9 +33,13 @@ public class MapView extends javax.swing.JFrame {
         initComponents();
         this.puntoA = "";
         this.puntoB = "";
+        this.userId = 0;
         this.monto = 0.0;
         this.peso = 0.0;
         this.grafoController = GrafoController.getInstance();
+        this.travelConroller = TravelController.getInstance();
+        this.invoiceController = InvoiceController.getInstance();
+        this.userController = UserController.getInstance();
     }
 
     /**
@@ -49,7 +61,7 @@ public class MapView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         label_ruta = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btn_confirmar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_confirmar.setText("Confirmar viaje");
@@ -71,7 +83,6 @@ public class MapView extends javax.swing.JFrame {
         btn_cancelar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btn_cancelar.setText("Cancelar");
         btn_cancelar.setToolTipText("");
-        btn_cancelar.setActionCommand("Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelarActionPerformed(evt);
@@ -179,9 +190,19 @@ public class MapView extends javax.swing.JFrame {
         System.out.println(" ** Confirmando viaje... espera a que un conductor acepte el viaje...");
         //Btn confirmar
         
-        //1- Guardar factura con los datos, sin el conductor
+        //1- Guardar viaje
+        int indexTravel = travelConroller.addTravelMap(puntoA, puntoB);
         
-        //2- Guardar viaje
+        //1- Guardar factura con los datos, sin el conductor
+        int indexInvoice = invoiceController.addInkvoiceMap(userId, indexTravel, monto);
+        
+        //3- Añadir el id al invoiceList del usuario
+        
+        userController.addUserInvoice(userId, indexInvoice);
+        
+        JOptionPane.showMessageDialog(this, "El conductor llegara pronto...");
+        this.dispose();
+        
         
         //Agregar en una lista para su confirmación con el conductor
     }//GEN-LAST:event_btn_confirmarActionPerformed
@@ -233,9 +254,10 @@ public class MapView extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 
-    public void setPuntos(String puntoA, String puntoB){
+    public void setPuntos(String puntoA, String puntoB, int userId){
         this.puntoA = puntoA;
         this.puntoB = puntoB;
+        this.userId = userId;
         
         ArrayList<String> lista = grafoController.getCamino(puntoA, puntoB);
         boolean flag = grafoController.getPesoCosto(puntoA, puntoB);

@@ -521,7 +521,7 @@ public class UserController extends Controller {
             Conductor temp = (Conductor) key.getValor();
             return temp.getNombre();
         } else {
-            return "";
+            return " Usuario eliminado: "+index;
         }
     }
 }

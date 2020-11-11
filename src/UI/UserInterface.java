@@ -74,7 +74,7 @@ public class UserInterface extends javax.swing.JFrame {
         phone_field = new javax.swing.JTextField();
         btn_save = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        btn_history_travel = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         label_place = new javax.swing.JLabel();
@@ -85,7 +85,7 @@ public class UserInterface extends javax.swing.JFrame {
         btn_calculate = new javax.swing.JButton();
         label_loading = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(698, 450));
 
         label_usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -201,11 +201,11 @@ public class UserInterface extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Viajes"));
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton4.setText("Ver historial de viajes");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btn_history_travel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_history_travel.setText("Ver historial de viajes");
+        btn_history_travel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btn_history_travelActionPerformed(evt);
             }
         });
 
@@ -286,20 +286,17 @@ public class UserInterface extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btn_history_travel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_history_travel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -390,7 +387,7 @@ public class UserInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_delete_accountActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btn_history_travelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_history_travelActionPerformed
         
         
         //Ver Historial de viajes
@@ -406,7 +403,7 @@ public class UserInterface extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No tienens ningún viaje por el momento...");
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btn_history_travelActionPerformed
 
     private void btn_calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calculateActionPerformed
         
@@ -417,11 +414,8 @@ public class UserInterface extends javax.swing.JFrame {
         //Obtener el lugar seleccionado
         String place_f = select_place.getSelectedItem().toString();
         
-        System.out.println(" ** Ruta ->");
-        System.out.println(" ["+user.getPlace()+ " -> " + place_f + "]");
-        
         MapView map = new MapView();
-        map.setPuntos(user.getPlace(), place_f);
+        map.setPuntos(user.getPlace(), place_f, user.getId());
         map.setVisible(true);
         
     }//GEN-LAST:event_btn_calculateActionPerformed
@@ -464,10 +458,10 @@ public class UserInterface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_calculate;
     private javax.swing.JButton btn_delete_account;
+    private javax.swing.JButton btn_history_travel;
     private javax.swing.JButton btn_new_password;
     private javax.swing.JButton btn_save;
     private javax.swing.JTextField email_field;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

@@ -7,6 +7,7 @@ package edd_safeway;
 
 import arbol_b.Key;
 import arbol_b.Tree;
+import block_chain.Logger;
 
 /**
  *
@@ -40,6 +41,18 @@ public class TravelController extends Controller{
         indexTravel++;
     }
     
+    public int addTravelMap(String place1, String place2){
+        String date = Logger.getInstance().getTimeStamp();
+        Travel newTravel = new Travel(indexTravel, place1, place2, date);
+        
+        viajes.insertar(indexTravel, newTravel, date);
+        
+        System.out.println(" --> Viaje añadido: ["+indexTravel+"] {"+place1+" -> "+place2+", "+date+"}");
+        indexTravel++;
+        
+        return indexTravel-1;
+    }
+    
     public Travel getTravel(int id){
         
         Key key = viajes.buscar(id);
@@ -48,6 +61,19 @@ public class TravelController extends Controller{
             return (Travel) key.getValor();
         } else {
             return  null;
+        }
+    }
+
+    public boolean viewTravelsTree() {
+        String dot = viajes.getGraphviz("Viajes");
+        
+        if(!dot.isEmpty()){
+            this.writeTxt("BTreeTravels",dot);
+            this.writePDF("BTreeTravels");
+            this.openPDF();
+            return true;
+        } else {
+            return false;
         }
     }
 }

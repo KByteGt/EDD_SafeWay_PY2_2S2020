@@ -6,7 +6,9 @@
 package UI;
 
 import edd_safeway.GrafoController;
+import edd_safeway.InvoiceController;
 import edd_safeway.PlaceController;
+import edd_safeway.TravelController;
 import edd_safeway.UserController;
 import edd_safeway.Usuario;
 import javax.swing.JFileChooser;
@@ -23,6 +25,8 @@ public class AdminInterface extends javax.swing.JFrame {
     private UserController userController;
     private PlaceController placeController;
     private GrafoController grafoController;
+    private InvoiceController invoiceController;
+    private TravelController travelController;
     
     private FileNameExtensionFilter jsonFilter;
 
@@ -36,6 +40,8 @@ public class AdminInterface extends javax.swing.JFrame {
         this.userController = UserController.getInstance();
         this.placeController = PlaceController.getInstance();
         this.grafoController = GrafoController.getInstance();
+        this.invoiceController = InvoiceController.getInstance();
+        this.travelController = TravelController.getInstance();
         this.user = null;
     }
 
@@ -518,14 +524,29 @@ public class AdminInterface extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Abrindo PDF", "B tree Drivers", JOptionPane.PLAIN_MESSAGE);
         }
+        
     }//GEN-LAST:event_btn_reporte_conductoresActionPerformed
 
     private void btn_reporte_facturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reporte_facturasActionPerformed
-        // TODO add your handling code here:
+        
+        //Mostrar reporte de facturas árbol B
+        if(!invoiceController.viewInvoicesTree()){
+           JOptionPane.showMessageDialog(this, "No hay facturas registrados", "B tree Invoices", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Abrindo PDF", "B tree Invoices", JOptionPane.PLAIN_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btn_reporte_facturasActionPerformed
 
     private void btn_reporte_viajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reporte_viajesActionPerformed
-        // TODO add your handling code here:
+        
+        //Mostrar reporte de facturas árbol B
+        if(!travelController.viewTravelsTree()){
+           JOptionPane.showMessageDialog(this, "No hay viajes registrados", "B tree Travel", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Abrindo PDF", "B tree Travel", JOptionPane.PLAIN_MESSAGE);
+        }
+        
     }//GEN-LAST:event_btn_reporte_viajesActionPerformed
 
     private void btn_reporte_tablahashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reporte_tablahashActionPerformed

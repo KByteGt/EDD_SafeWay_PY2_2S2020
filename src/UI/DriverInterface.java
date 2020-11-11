@@ -6,6 +6,10 @@
 package UI;
 
 import edd_safeway.Conductor;
+import edd_safeway.Invoice;
+import edd_safeway.InvoiceController;
+import edd_safeway.Travel;
+import edd_safeway.TravelController;
 import edd_safeway.UserController;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -18,6 +22,8 @@ import javax.swing.JOptionPane;
 public class DriverInterface extends javax.swing.JFrame {
 
     private UserController userController;
+    private InvoiceController invoiceController;
+    private TravelController travelController;
     private Conductor user;
     /**
      * Creates new form DriverInterface
@@ -26,6 +32,8 @@ public class DriverInterface extends javax.swing.JFrame {
         initComponents();
         
         this.userController = UserController.getInstance();
+        this.travelController = TravelController.getInstance();
+        this.invoiceController = InvoiceController.getInstance();
         
         this.label_status_travel.setText("No hay ningún viaje disponible");
         this.label_place1.setText("");
@@ -510,10 +518,32 @@ public class DriverInterface extends javax.swing.JFrame {
             //Disponible
             this.label_status.setText("Disponible");
             this.label_status.setForeground(new Color(51,102,0));
+            
+            int invoiceIndex = invoiceController.getPendingInvoice();
+            if(invoiceIndex >= 0){
+                
+                Invoice invoice = invoiceController.searchInvoice(invoiceIndex);
+                Travel travel = travelController.getTravel(invoice.getId_travel());
+                //Actualizar campo de viajes
+                this.label_status_travel.setText(" Viaje nuevo disponible");
+                this.label_place1.setText("Ubicación: "+travel.getPlace1());
+                this.label_place2.setText("Destino: "+travel.getPlace2());
+                this.label_monto.setText("Q"+invoice.getMonto());
+                this.btn_take_travel.setEnabled(true);
+            }
+            
+            
         } else {
             //No disponible
             this.label_status.setText("No disponible");
             this.label_status.setForeground(new Color(153,0,0));
+            
+            //Actualizar campo de viajes
+            this.label_status_travel.setText(" No hay ningun viaje disponible");
+            this.label_place1.setText("");
+            this.label_place2.setText("");
+            this.label_monto.setText("");
+            this.btn_take_travel.setEnabled(false);
         }
 
     }
