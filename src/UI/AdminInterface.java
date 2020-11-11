@@ -5,6 +5,7 @@
  */
 package UI;
 
+import edd_safeway.GrafoController;
 import edd_safeway.PlaceController;
 import edd_safeway.UserController;
 import edd_safeway.Usuario;
@@ -21,6 +22,7 @@ public class AdminInterface extends javax.swing.JFrame {
     private Usuario user;
     private UserController userController;
     private PlaceController placeController;
+    private GrafoController grafoController;
     
     private FileNameExtensionFilter jsonFilter;
 
@@ -33,6 +35,7 @@ public class AdminInterface extends javax.swing.JFrame {
         
         this.userController = UserController.getInstance();
         this.placeController = PlaceController.getInstance();
+        this.grafoController = GrafoController.getInstance();
         this.user = null;
     }
 
@@ -573,7 +576,22 @@ public class AdminInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_json_lugaresActionPerformed
 
     private void btn_json_conexionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_json_conexionesActionPerformed
-        // TODO add your handling code here:
+        
+        //Cargar conexiones en grafo
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("abrir archivo JSON");
+        fileChooser.setFileFilter(jsonFilter);
+        int selection = fileChooser.showOpenDialog(this);
+        
+        if(selection == JFileChooser.APPROVE_OPTION){
+            int request = grafoController.loadConections(fileChooser.getSelectedFile());
+            if( request >= 0){
+                JOptionPane.showMessageDialog(this, request + " las conexiones cargadas con éxito", "JSON Grafo", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo cargar el JSON", "JSON Grafo", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
     }//GEN-LAST:event_btn_json_conexionesActionPerformed
 
     private void btn_json_ubicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_json_ubicacionesActionPerformed

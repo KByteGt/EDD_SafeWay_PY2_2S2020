@@ -8,6 +8,10 @@ package edd_safeway;
 import Grafo.Arista;
 import Grafo.Grafo;
 import Grafo.Vertice;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -18,7 +22,7 @@ import java.util.Stack;
  *
  * @author JOSED
  */
-public class GrafoController {
+public class GrafoController extends Controller{
     //Algoritmo Dijkstra
 //    private final int MAX = 10005;
 //    private final int INF = 1 << 30;
@@ -69,7 +73,7 @@ public class GrafoController {
         return this.peso;
     }
     
-    public void insertarArista(String puntoA, String puntoB, int peso, double precio){
+    public void insertarArista(String puntoA, String puntoB, double peso, double precio){
         
         boolean flag = grafo.insertarArista(puntoA, puntoB, peso, precio);
         
@@ -88,6 +92,38 @@ public class GrafoController {
             }
         }
         
+    }
+    
+    //
+    public int loadConections(File file){
+        String gson = getJson(file);
+        int i = -1;
+        
+        if(!gson.isEmpty()){
+            i = 0;
+            
+            JsonElement element = json.fromJson(gson, JsonElement.class);
+            JsonObject obj = element.getAsJsonObject();
+            
+            JsonArray places = obj.getAsJsonArray("Grafo");
+            if(places != null){
+                for(JsonElement places_obj : places){
+                    JsonObject place = places_obj.getAsJsonObject();
+                    
+                    if(place != null){
+                        String puntoA= place.get("inicio").getAsString();
+                        String puntoB = place.get("final").getAsString();
+                        double peso = place.get("peso").getAsDouble();
+                        double precio = place.get("precio").getAsDouble();
+                        
+                        this.insertarArista(puntoA, puntoB, peso, precio);
+                        i++;
+                    }
+                }
+            }
+        }
+
+        return i;
     }
     
     //Algoritmo Dijkstra

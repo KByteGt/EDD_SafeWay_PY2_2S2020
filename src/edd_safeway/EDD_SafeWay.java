@@ -48,8 +48,8 @@ public class EDD_SafeWay {
     public static void main(String[] args) throws ApiException, InterruptedException, IOException {
         // TODO code application logic here
 //        Cryptography cryp = Cryptography.getInstance();
-//        
-//        logIn.setVisible(true);
+        
+        logIn.setVisible(true);
         
         
 //        grafo();

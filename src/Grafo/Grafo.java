@@ -37,7 +37,7 @@ public class Grafo {
         return insertarArista(A,B, 1, 1);
     }
    
-    public boolean insertarArista(String puntoA, String puntoB, int peso, double costo){
+    public boolean insertarArista(String puntoA, String puntoB, double peso, double costo){
         if(puntoA.equals(puntoB))
            return false;
         

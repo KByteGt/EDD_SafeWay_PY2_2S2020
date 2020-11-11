@@ -18,7 +18,7 @@ public class Arista {
         this(puntoA,puntoB,1,1);
     }
     
-    public Arista(Vertice puntoA, Vertice puntoB, int peso, double costo){
+    public Arista(Vertice puntoA, Vertice puntoB, double peso, double costo){
         if(puntoA.getEtiqueta().compareTo(puntoB.getEtiqueta()) <= 0){
             this.puntoA = puntoA;
             this.puntoB = puntoB;

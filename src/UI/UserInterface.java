@@ -420,6 +420,10 @@ public class UserInterface extends javax.swing.JFrame {
         System.out.println(" ** Ruta ->");
         System.out.println(" ["+user.getPlace()+ " -> " + place_f + "]");
         
+        MapView map = new MapView();
+        map.setPuntos(user.getPlace(), place_f);
+        map.setVisible(true);
+        
     }//GEN-LAST:event_btn_calculateActionPerformed
 
     /**

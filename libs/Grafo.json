@@ -20,6 +20,27 @@
       "unidad":"KM",
       "precio": 50.96,
       "moneda":"Quetzales"
+    },
+    { "inicio":"Plaza Villa nueva",
+      "final":"El naranjito",
+      "peso":6,
+      "unidad":"KM",
+      "precio": 50.96,
+      "moneda":"Quetzales"
+    },
+    { "inicio":"Casa",
+      "final":"El naranjito",
+      "peso":9,
+      "unidad":"KM",
+      "precio": 50.96,
+      "moneda":"Quetzales"
+    },
+    { "inicio":"Casa",
+      "final":"Gasolinera puma quetzal",
+      "peso":20,
+      "unidad":"KM",
+      "precio": 50.96,
+      "moneda":"Quetzales"
     }
   ]
 }
