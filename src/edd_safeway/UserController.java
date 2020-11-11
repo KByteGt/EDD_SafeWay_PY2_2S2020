@@ -514,7 +514,7 @@ public class UserController extends Controller {
     
     public String getDriverName(int index){
         //Buscar y retornar el key
-        Key key = usuarios.buscar(index);
+        Key key = conductores.buscar(index);
 
         if(key != null){
             //Existe usuario

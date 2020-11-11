@@ -178,4 +178,14 @@ public class PlaceController extends Controller{
         }
         
     }
+    
+    public Lugar getPlace(String name){
+        Lugar tempPlace = (Lugar) lugares.buscar(name).getValor();
+        
+        if(tempPlace != null){
+            return tempPlace;
+        } else {
+            return null;
+        }
+    }
 }

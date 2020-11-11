@@ -46,7 +46,7 @@ public class TravelHistory extends javax.swing.JFrame {
         label_travels = new javax.swing.JLabel();
         label_user = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(702, 708));
 
         invoice_table.setModel(new javax.swing.table.DefaultTableModel(

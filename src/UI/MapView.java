@@ -259,7 +259,7 @@ public class MapView extends javax.swing.JFrame {
         this.puntoB = puntoB;
         this.userId = userId;
         
-        ArrayList<String> lista = grafoController.getCamino(puntoA, puntoB);
+//        ArrayList<String> lista = grafoController.getCamino(puntoA, puntoB); //Error de recursividad
         boolean flag = grafoController.getPesoCosto(puntoA, puntoB);
         if(flag){
             this.peso = grafoController.getPeso();
@@ -267,8 +267,8 @@ public class MapView extends javax.swing.JFrame {
         }
         
         //Mostrar ruta
-        String ruta = "";
-        ruta = lista.stream().map((s) -> ", " + s).reduce(ruta, String::concat);
+        String ruta = "["+puntoA+" -> "+puntoB+"]";
+//        ruta = lista.stream().map((s) -> ", " + s).reduce(ruta, String::concat); //Error de recursividad
         
         this.label_ruta.setText(ruta);
         this.label_costo.setText("Total: Q"+this.monto);

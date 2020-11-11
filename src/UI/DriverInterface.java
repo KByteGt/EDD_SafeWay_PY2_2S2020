@@ -8,6 +8,8 @@ package UI;
 import edd_safeway.Conductor;
 import edd_safeway.Invoice;
 import edd_safeway.InvoiceController;
+import edd_safeway.Lugar;
+import edd_safeway.PlaceController;
 import edd_safeway.Travel;
 import edd_safeway.TravelController;
 import edd_safeway.UserController;
@@ -24,7 +26,12 @@ public class DriverInterface extends javax.swing.JFrame {
     private UserController userController;
     private InvoiceController invoiceController;
     private TravelController travelController;
+    private PlaceController placeController;
     private Conductor user;
+    
+    private int indexUser;
+    private int indexInvoice;
+    private String destino;
     /**
      * Creates new form DriverInterface
      */
@@ -34,12 +41,17 @@ public class DriverInterface extends javax.swing.JFrame {
         this.userController = UserController.getInstance();
         this.travelController = TravelController.getInstance();
         this.invoiceController = InvoiceController.getInstance();
+        this.placeController = PlaceController.getInstance();
         
         this.label_status_travel.setText("No hay ningún viaje disponible");
         this.label_place1.setText("");
         this.label_place2.setText("");
         this.label_monto.setText("");
         this.btn_take_travel.setEnabled(false);
+        
+        this.indexUser = 0;
+        this.indexInvoice = 0;
+        this.destino = "";
     }
 
     /**
@@ -379,14 +391,23 @@ public class DriverInterface extends javax.swing.JFrame {
 
     private void btn_take_travelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_take_travelActionPerformed
 
-        //Btn calcular ruta
-//        label_loading.setText(" Cargando");
-//
-//        //Obtener el lugar seleccionado
-//        String place_f = select_place.getSelectedItem().toString();
-//
-//        System.out.println(" ** Ruta ->");
-//        System.out.println(" ["+user.getPlace()+ " -> " + place_f + "]");
+        //Tomar viaje
+        //Actualizar invoice
+        invoiceController.updatePendingInvoice(indexInvoice, user.getId());
+        Lugar place = placeController.getPlace(destino);
+        
+        //Añadir invoice a conductor
+        userController.addDriverInvoice(user.getId(), indexInvoice);
+        
+        //Actualizar posición Usuario
+        userController.updateUserLocation(indexUser, place.getLatitud(), place.getLongitud(), destino);
+        
+        //Actualizar posición Conductor
+        userController.updateDriverLocation(user.getId(), place.getLatitud(), place.getLongitud(), true, destino);
+        
+        JOptionPane.showMessageDialog(this, "Viaje tomado, se actualizara la ubicación...");
+        
+        this.resetInfoTravel(); 
 
     }//GEN-LAST:event_btn_take_travelActionPerformed
 
@@ -530,6 +551,11 @@ public class DriverInterface extends javax.swing.JFrame {
                 this.label_place2.setText("Destino: "+travel.getPlace2());
                 this.label_monto.setText("Q"+invoice.getMonto());
                 this.btn_take_travel.setEnabled(true);
+                
+                //Variables para reubicar Usuario y Conductor
+                this.indexInvoice = invoice.getId();
+                this.indexUser = invoice.getId_user();
+                this.destino = travel.getPlace2();
             }
             
             
@@ -555,5 +581,20 @@ public class DriverInterface extends javax.swing.JFrame {
         System.out.println(" | > Log Out");
         
         this.dispose();
+    }
+    
+    private void resetInfoTravel(){
+        //No disponible
+        this.label_status.setText("No disponible");
+        this.label_status.setForeground(new Color(153,0,0));
+
+        //Actualizar campo de viajes
+        this.label_status_travel.setText(" Viajando...");
+        this.label_place1.setText("");
+        this.label_place2.setText("");
+        this.label_monto.setText("");
+        this.btn_take_travel.setEnabled(false);
+        
+        
     }
 }

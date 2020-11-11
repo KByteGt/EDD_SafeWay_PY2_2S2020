@@ -62,6 +62,16 @@ public class InvoiceController extends Controller{
         
     }
     
+    public void updatePendingInvoice(int index, int driver){
+        Key key = facturas.buscar(index);
+        if( key != null){
+            Invoice temp = (Invoice) key.getValor();
+            temp.setId_driver(driver);
+            
+            key.setValor(temp);
+        } 
+    }
+    
     public int getPendingInvoice(){
         if(pendingInvoices.isEmpty()){
             return -1;
