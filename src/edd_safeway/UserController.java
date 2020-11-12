@@ -7,6 +7,7 @@ package edd_safeway;
 
 import arbol_b.Key;
 import arbol_b.Tree;
+import block_chain.Log;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -49,6 +50,7 @@ public class UserController extends Controller {
     
     private final Usuario admin = new Usuario();
     private static UserController userController;
+    private SecurityController securityController = SecurityController.getInstance();
     
     private int indexUser;
     private int indexDriver;
@@ -170,6 +172,14 @@ public class UserController extends Controller {
             
             //Agregar usuario a authUsers
             addAuthUsers(indexUser, user);
+            
+             
+            //Insertar en el Log
+            Log log = new Log();
+            log.setAccion(Log.Accion.INSERTAR);
+            log.setTipo(Log.Tipo.USUARIO);
+            log.setObjeto(newUser);
+            securityController.addLog(log);
 
             return true;
         } catch (Exception e) {
@@ -194,6 +204,14 @@ public class UserController extends Controller {
             
             //Agregar usuario a authDrivers
             addAuthDrivers(indexDriver, user);
+            
+             
+            //Insertar en el Log
+            Log log = new Log();
+            log.setAccion(Log.Accion.INSERTAR);
+            log.setTipo(Log.Tipo.CONDUCTOR);
+            log.setObjeto(newUser);
+            securityController.addLog(log);
             
             return true;
         } catch (Exception e) {
@@ -267,11 +285,19 @@ public class UserController extends Controller {
                             //Insertar el usuario
                             conductores.insertar(id, newUser, username);
                             addAuthDrivers(id,username);
-
+                           
                             if(id > indexDriver){
                                 //Ajustar indexDriver
                                 indexDriver = id;
                             }
+                            
+                             
+                            //Insertar en el Log
+                            Log log = new Log();
+                            log.setAccion(Log.Accion.INSERTAR);
+                            log.setTipo(Log.Tipo.USUARIO);
+                            log.setObjeto(newUser);
+                            securityController.addLog(log);
 
                         } else {
                             //Insertar en usuario
@@ -287,6 +313,13 @@ public class UserController extends Controller {
                                 //Ajustamos indexUser
                                 indexUser = id;
                             }
+                            
+                            //Insertar en el Log
+                            Log log = new Log();
+                            log.setAccion(Log.Accion.INSERTAR);
+                            log.setTipo(Log.Tipo.CONDUCTOR);
+                            log.setObjeto(newUser);
+                            securityController.addLog(log);
                         }
 
                         i++;

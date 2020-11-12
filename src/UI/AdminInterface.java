@@ -8,6 +8,7 @@ package UI;
 import edd_safeway.GrafoController;
 import edd_safeway.InvoiceController;
 import edd_safeway.PlaceController;
+import edd_safeway.SecurityController;
 import edd_safeway.TravelController;
 import edd_safeway.UserController;
 import edd_safeway.Usuario;
@@ -59,7 +60,7 @@ public class AdminInterface extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        time_field = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         btn_nuevaRuta = new javax.swing.JButton();
@@ -112,7 +113,7 @@ public class AdminInterface extends javax.swing.JFrame {
 
         jLabel1.setText("Tiempo de commit:");
 
-        jTextField1.setText("3");
+        time_field.setText("3");
 
         jLabel2.setText("minutos");
 
@@ -142,7 +143,7 @@ public class AdminInterface extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(time_field, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -164,7 +165,7 @@ public class AdminInterface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(time_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -652,7 +653,15 @@ public class AdminInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_json_localidadesActionPerformed
 
     private void btn_colocarTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_colocarTiempoActionPerformed
-        // TODO add your handling code here:
+        
+        //Btn colocar tiempo
+        try {
+            int t = Integer.parseInt(this.time_field.getText());
+            
+            SecurityController.getInstance().setTime(t);
+            
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btn_colocarTiempoActionPerformed
 
     private void btn_nuevaRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevaRutaActionPerformed
@@ -756,13 +765,13 @@ public class AdminInterface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel label_user;
     private javax.swing.JLabel label_ver_conexiones;
     private javax.swing.JLabel label_ver_localidades;
     private javax.swing.JLabel label_ver_lugares;
     private javax.swing.JLabel label_ver_ubicaciones;
     private javax.swing.JLabel label_ver_usuarios;
+    private javax.swing.JTextField time_field;
     // End of variables declaration//GEN-END:variables
 
     public void setUser(Usuario user){

@@ -5,6 +5,7 @@
  */
 package block_chain;
 
+import com.google.gson.Gson;
 import java.util.ArrayList;
 
 /**
@@ -83,6 +84,11 @@ public class Nodo {
 
     public void setHash(String hash) {
         this.hash = hash;
+    }
+    
+    public String getDataJSONFormat(){
+        Gson json= new Gson();
+        return json.toJson(data);
     }
     
 //    public String getJSON(){

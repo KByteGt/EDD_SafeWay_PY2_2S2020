@@ -12,11 +12,11 @@ package block_chain;
 public class Log {
     //Tipos de acciones
     public enum Accion{
-        ELIMINA,BUSCAR,INSERTAR;
+        ELIMINA,UPDATE,INSERTAR;
     }
     
     public enum Tipo{
-        USUARIO,CONDUCTOR,LUGAR,ASIGNACION;
+        USUARIO,CONDUCTOR,LUGAR,ASIGNACION,INVOICE,TRAVEL;
     }
     
     private Accion accion;
