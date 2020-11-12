@@ -7,6 +7,7 @@ package edd_safeway;
 
 import arbol_b.Key;
 import arbol_b.Tree;
+import block_chain.Log;
 import block_chain.Logger;
 
 /**
@@ -39,6 +40,13 @@ public class TravelController extends Controller{
         viajes.insertar(indexTravel, newTravel, date);
         
         indexTravel++;
+        
+        //Insertar en el Log
+        Log log = new Log();
+        log.setAccion(Log.Accion.INSERTAR);
+        log.setTipo(Log.Tipo.TRAVEL);
+        log.setObjeto(newTravel);
+        SecurityController.getInstance().addLog(log);
     }
     
     public int addTravelMap(String place1, String place2){
@@ -49,6 +57,13 @@ public class TravelController extends Controller{
         
         System.out.println(" --> Viaje añadido: ["+indexTravel+"] {"+place1+" -> "+place2+", "+date+"}");
         indexTravel++;
+        
+         //Insertar en el Log
+        Log log = new Log();
+        log.setAccion(Log.Accion.INSERTAR);
+        log.setTipo(Log.Tipo.TRAVEL);
+        log.setObjeto(newTravel);
+        SecurityController.getInstance().addLog(log);
         
         return indexTravel-1;
     }

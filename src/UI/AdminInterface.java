@@ -120,6 +120,7 @@ public class AdminInterface extends javax.swing.JFrame {
         jLabel19.setText("Carpeta: C:\\SafeWay_EDD");
 
         btn_nuevaRuta.setText("Nueva ruta");
+        btn_nuevaRuta.setEnabled(false);
         btn_nuevaRuta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_nuevaRutaActionPerformed(evt);
@@ -659,6 +660,8 @@ public class AdminInterface extends javax.swing.JFrame {
             int t = Integer.parseInt(this.time_field.getText());
             
             SecurityController.getInstance().setTime(t);
+            
+            JOptionPane.showMessageDialog(this, "Tiempo actualizado a "+t+" min!");
             
         } catch (Exception e) {
         }

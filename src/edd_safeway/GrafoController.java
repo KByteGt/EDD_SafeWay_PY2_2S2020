@@ -8,6 +8,7 @@ package edd_safeway;
 import Grafo.Arista;
 import Grafo.Grafo;
 import Grafo.Vertice;
+import block_chain.Log;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

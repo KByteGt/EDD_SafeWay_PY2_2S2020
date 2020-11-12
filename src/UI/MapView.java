@@ -204,7 +204,7 @@ public class MapView extends javax.swing.JFrame {
         int indexTravel = travelConroller.addTravelMap(puntoA, puntoB);
         
         //1- Guardar factura con los datos, sin el conductor
-        int indexInvoice = invoiceController.addInkvoiceMap(userId, indexTravel, monto);
+        int indexInvoice = invoiceController.addInvoiceMap(userId, indexTravel, monto);
         
         //3- Añadir el id al invoiceList del usuario
         

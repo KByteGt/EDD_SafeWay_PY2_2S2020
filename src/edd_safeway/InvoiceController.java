@@ -7,6 +7,7 @@ package edd_safeway;
 
 import arbol_b.Key;
 import arbol_b.Tree;
+import block_chain.Log;
 import block_chain.Logger;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -43,9 +44,16 @@ public class InvoiceController extends Controller{
         
         facturas.insertar(indexInvoice, newInvoice, "Q"+total);
         indexInvoice++;
+        
+        //Insertar en el Log
+        Log log = new Log();
+        log.setAccion(Log.Accion.INSERTAR);
+        log.setTipo(Log.Tipo.INVOICE);
+        log.setObjeto(newInvoice);
+        SecurityController.getInstance().addLog(log);
     }
     
-    public int addInkvoiceMap(int user, int travel, double total){
+    public int addInvoiceMap(int user, int travel, double total){
         String date = Logger.getInstance().getTimeStamp();
         Invoice newInvoice = new Invoice(indexInvoice, user, -1, travel, date, total);
         
@@ -57,6 +65,13 @@ public class InvoiceController extends Controller{
         System.out.println(" --> Factura añadida: ["+indexInvoice+"] {Usuario: "+user+", Viaje: "+travel+", Fecha: "+date+", Total: Q"+total+"}");
         
         indexInvoice++;
+        
+        //Insertar en el Log
+        Log log = new Log();
+        log.setAccion(Log.Accion.INSERTAR);
+        log.setTipo(Log.Tipo.INVOICE);
+        log.setObjeto(newInvoice);
+        SecurityController.getInstance().addLog(log);
         
         return indexInvoice-1;
         

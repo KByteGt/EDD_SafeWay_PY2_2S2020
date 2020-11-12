@@ -5,6 +5,7 @@
  */
 package edd_safeway;
 
+import block_chain.Log;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -22,6 +23,7 @@ public class PlaceController extends Controller{
     
     private static PlaceController placeController;
     private UserController userController;
+    private SecurityController securityController;
     
     private int indexPlace = 0;
     
@@ -29,6 +31,7 @@ public class PlaceController extends Controller{
         //Constructor
         lugares = new TablaHash(11);
         userController = UserController.getInstance();
+        securityController = SecurityController.getInstance();
     }
     
     public static PlaceController getInstance(){
@@ -92,6 +95,13 @@ public class PlaceController extends Controller{
                             indexPlace = id;
                         }
                         i++;
+                        
+                        //Insertar en el Log
+                        Log log = new Log();
+                        log.setAccion(Log.Accion.INSERTAR);
+                        log.setTipo(Log.Tipo.LUGAR);
+                        log.setObjeto(newPlace);
+                        securityController.addLog(log);
                     }
                 }
             }

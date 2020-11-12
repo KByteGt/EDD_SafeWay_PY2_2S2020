@@ -20,7 +20,6 @@ public class EDD_SafeWay {
      */
     public static void main(String[] args){
         // TODO code application logic here
-//        Cryptography cryp = Cryptography.getInstance();
         
         //Verificar si no hay un nodo
         SecurityController bockchain = SecurityController.getInstance();

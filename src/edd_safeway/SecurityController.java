@@ -5,7 +5,6 @@
  */
 package edd_safeway;
 
-import UI.LogIn;
 import block_chain.Cryptography;
 import block_chain.Log;
 import block_chain.Nodo;
@@ -15,7 +14,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Date;
