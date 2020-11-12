@@ -44,8 +44,9 @@ public class SecurityController extends Thread{
     
     private SecurityController(){
         //Constructor
-        this.time = 5; //Tiempo por defecto 5 min
+        this.time = 3; //Tiempo por defecto 5 min
         this.logs = new Stack();
+        this.setPath(path);
         //Cargar data inicial si existe
         rollback();
         
@@ -195,6 +196,9 @@ public class SecurityController extends Thread{
             bloque.setHash(hash);
             bloque.setNonce(nonce);
             
+            //Actualizar le hash
+            this.previousHash = hash;
+            
             
             //Procedemos a guardar el bloque
             guardarBloque(bloque);
@@ -207,8 +211,7 @@ public class SecurityController extends Thread{
         
         //Si no arrancar la aplicación
         
-        LogIn log = new LogIn();
-        log.setVisible(true);
+        
     }
     
     
@@ -218,7 +221,7 @@ public class SecurityController extends Thread{
         try {
             //se comprime primero y luego se cifra
             Gson json = new Gson();
-            String nombre = this.getTimeStamp();
+            String nombre = this.getNombreTimeStamp();
             String data = json.toJson(bloque);
             byte[] archivoZip = zip.zip(data);
             byte[] archivoCript = cryp.cifrar(Arrays.toString(archivoZip));
@@ -245,6 +248,28 @@ public class SecurityController extends Thread{
         Timestamp ts = new Timestamp(date.getTime());
         
         return ts.toString();
+    }
+    
+    private String getNombreTimeStamp(){
+        String temp = getTimeStamp();
+        char[] lista = temp.toCharArray();
+        
+        String nombre = "";
+        
+        for (int i = 0; i < lista.length; i++) {
+            if(lista[i] == '.'){
+                break;
+            } else {
+                if(lista[i] == ':'){
+                    nombre += '.';
+                } else {
+                    nombre += lista[i];
+                }
+            }
+        }
+        
+        return nombre;
+        
     }
     
     /*//////////////////////////////////////////////
