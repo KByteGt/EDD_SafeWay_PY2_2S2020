@@ -69,7 +69,7 @@ public class SecurityController extends Thread{
             
             if(!paused){
                 try {
-                    System.out.println("Sleep: "+(time * 60000));
+                    System.out.println("Sleep: "+(time * 60000)+" milis");
                     sleep(time * 60000); //Pausa para ejecutar la sigiente iteración
                 } catch (Exception e) {
                     break;
